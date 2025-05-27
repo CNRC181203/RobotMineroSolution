@@ -8,7 +8,7 @@ using namespace RobotMineroPersistencia;
 namespace RobotMineroController {
 	public ref class Controller
 	{
-	public : 
+	public :   // hola mundo
 		static List<Usuario^>^ usuarios = gcnew List<Usuario^>(); 
 		
 	public:
