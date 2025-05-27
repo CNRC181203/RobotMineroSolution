@@ -85,6 +85,7 @@ void RobotMineroController::Controller::QueryAllTasks(){
 
 int RobotMineroController::Controller::AgregarUsuario(Usuario^ usuario)
 {
+	int i = 0;
 	try {
 		usuarios->Add(usuario);
 		Persistance::PersistBinaryFile("usuarios.bin", usuarios);
