@@ -11,7 +11,10 @@ namespace RobotMineroController {
 	public :   // hola mundo, Ayar esta loco 
 		static List<Usuario^>^ usuarios = gcnew List<Usuario^>(); 
 		
-	public:
+	public://hola mundo de nuevo
+		
+		// Hola
+
 
 		//Métodos CRUD Usuario
 		static int  AgregarUsuario(Usuario^ usuario);
