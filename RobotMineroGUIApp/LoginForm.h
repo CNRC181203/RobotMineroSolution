@@ -1,6 +1,9 @@
 #pragma once
 #include "RobotMineroForm.h"
 
+
+
+
 namespace RobotMineroGUIApp {
 
 	using namespace System;
@@ -13,6 +16,8 @@ namespace RobotMineroGUIApp {
 	/// <summary>
 	/// Resumen de LoginForm
 	/// </summary>
+	
+
 	public ref class LoginForm : public System::Windows::Forms::Form
 	{
 	public:
@@ -78,9 +83,10 @@ namespace RobotMineroGUIApp {
 			this->label1->Font = (gcnew System::Drawing::Font(L"Times New Roman", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label1->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->label1->Location = System::Drawing::Point(163, 39);
+			this->label1->Location = System::Drawing::Point(217, 48);
+			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(351, 24);
+			this->label1->Size = System::Drawing::Size(467, 31);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Ingrese la contraseña para modificar o";
 			// 
@@ -90,9 +96,10 @@ namespace RobotMineroGUIApp {
 			this->label2->Font = (gcnew System::Drawing::Font(L"Times New Roman", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label2->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->label2->Location = System::Drawing::Point(198, 63);
+			this->label2->Location = System::Drawing::Point(264, 78);
+			this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(275, 24);
+			this->label2->Size = System::Drawing::Size(369, 31);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"actualizar los datos del equipo";
 			// 
@@ -102,26 +109,29 @@ namespace RobotMineroGUIApp {
 			this->label3->Font = (gcnew System::Drawing::Font(L"Times New Roman", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label3->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->label3->Location = System::Drawing::Point(90, 125);
+			this->label3->Location = System::Drawing::Point(120, 154);
+			this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(88, 17);
+			this->label3->Size = System::Drawing::Size(110, 22);
 			this->label3->TabIndex = 2;
 			this->label3->Text = L"Contraseña:";
 			// 
 			// textPasswordInput
 			// 
-			this->textPasswordInput->Location = System::Drawing::Point(228, 125);
+			this->textPasswordInput->Location = System::Drawing::Point(304, 154);
+			this->textPasswordInput->Margin = System::Windows::Forms::Padding(4);
 			this->textPasswordInput->Name = L"textPasswordInput";
 			this->textPasswordInput->PasswordChar = '*';
-			this->textPasswordInput->Size = System::Drawing::Size(121, 20);
+			this->textPasswordInput->Size = System::Drawing::Size(160, 22);
 			this->textPasswordInput->TabIndex = 3;
 			// 
 			// bttnAddPassword
 			// 
 			this->bttnAddPassword->BackColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->bttnAddPassword->Location = System::Drawing::Point(93, 187);
+			this->bttnAddPassword->Location = System::Drawing::Point(124, 230);
+			this->bttnAddPassword->Margin = System::Windows::Forms::Padding(4);
 			this->bttnAddPassword->Name = L"bttnAddPassword";
-			this->bttnAddPassword->Size = System::Drawing::Size(75, 23);
+			this->bttnAddPassword->Size = System::Drawing::Size(100, 28);
 			this->bttnAddPassword->TabIndex = 4;
 			this->bttnAddPassword->Text = L"Aceptar";
 			this->bttnAddPassword->UseVisualStyleBackColor = false;
@@ -130,9 +140,10 @@ namespace RobotMineroGUIApp {
 			// bttnCancelPassword
 			// 
 			this->bttnCancelPassword->BackColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->bttnCancelPassword->Location = System::Drawing::Point(274, 187);
+			this->bttnCancelPassword->Location = System::Drawing::Point(365, 230);
+			this->bttnCancelPassword->Margin = System::Windows::Forms::Padding(4);
 			this->bttnCancelPassword->Name = L"bttnCancelPassword";
-			this->bttnCancelPassword->Size = System::Drawing::Size(75, 23);
+			this->bttnCancelPassword->Size = System::Drawing::Size(100, 28);
 			this->bttnCancelPassword->TabIndex = 5;
 			this->bttnCancelPassword->Text = L"Cancelar";
 			this->bttnCancelPassword->UseVisualStyleBackColor = false;
@@ -140,24 +151,27 @@ namespace RobotMineroGUIApp {
 			// 
 			// LoginForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->ClientSize = System::Drawing::Size(708, 287);
+			this->ClientSize = System::Drawing::Size(944, 353);
 			this->Controls->Add(this->bttnCancelPassword);
 			this->Controls->Add(this->bttnAddPassword);
 			this->Controls->Add(this->textPasswordInput);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
+			this->Margin = System::Windows::Forms::Padding(4);
 			this->Name = L"LoginForm";
 			this->Text = L"LoginForm";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &LoginForm::LoginForm_FormClosing);
 			this->Load += gcnew System::EventHandler(this, &LoginForm::LoginForm_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
+	private: bool cerradoPorCodigo = false;
 	private: System::Void bttnAddPassword_Click(System::Object^ sender, System::EventArgs^ e) {
 		String^ contrasenha = textPasswordInput->Text->Trim();
 		if (contrasenha == nullptr) {
@@ -167,6 +181,7 @@ namespace RobotMineroGUIApp {
 			MessageBox::Show("Bienvedido a la interfaz. Por favor haga click en 'Aceptar'");
 			RobotMineroForm^ robotMineroForm = gcnew RobotMineroForm();
 			robotMineroForm->Show();
+			cerradoPorCodigo = true;
 			this->Close();
 		}
 		else {
@@ -178,5 +193,7 @@ namespace RobotMineroGUIApp {
 	}
 private: System::Void LoginForm_Load(System::Object^ sender, System::EventArgs^ e) {
 }
+
+private: System::Void LoginForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e);
 };
 }

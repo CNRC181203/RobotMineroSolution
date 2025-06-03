@@ -150,10 +150,13 @@ namespace RobotMineroGUIApp {
 private: System::Void bttnMantenimiento_Click(System::Object^ sender, System::EventArgs^ e) {
 	LoginForm^ LogObject = gcnew LoginForm();
 	LogObject->Show();
+	this->Hide();
 }
+
 private: System::Void bttnLogin_Click(System::Object^ sender, System::EventArgs^ e) {
 	LogingChambersForm^ objectForm = gcnew LogingChambersForm();
 	objectForm->Show();
+	this->Hide();
 }
 };
 }

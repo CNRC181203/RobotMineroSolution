@@ -36,7 +36,8 @@ namespace RobotMineroGUIApp {
 		}
 	private: System::Windows::Forms::Button^ bttnShowMapaS;
 	private: System::Windows::Forms::Button^ bttnShowMydatesS;
-	private: System::Windows::Forms::Button^ bttnInputMoreDatesS;
+	private: System::Windows::Forms::LinkLabel^ LinkVolver;
+
 	protected:
 
 	private:
@@ -54,16 +55,17 @@ namespace RobotMineroGUIApp {
 		{
 			this->bttnShowMapaS = (gcnew System::Windows::Forms::Button());
 			this->bttnShowMydatesS = (gcnew System::Windows::Forms::Button());
-			this->bttnInputMoreDatesS = (gcnew System::Windows::Forms::Button());
+			this->LinkVolver = (gcnew System::Windows::Forms::LinkLabel());
 			this->SuspendLayout();
 			// 
 			// bttnShowMapaS
 			// 
 			this->bttnShowMapaS->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->bttnShowMapaS->Location = System::Drawing::Point(41, 39);
+			this->bttnShowMapaS->Location = System::Drawing::Point(58, 83);
+			this->bttnShowMapaS->Margin = System::Windows::Forms::Padding(4);
 			this->bttnShowMapaS->Name = L"bttnShowMapaS";
-			this->bttnShowMapaS->Size = System::Drawing::Size(136, 29);
+			this->bttnShowMapaS->Size = System::Drawing::Size(181, 36);
 			this->bttnShowMapaS->TabIndex = 3;
 			this->bttnShowMapaS->Text = L"Mapa de gases";
 			this->bttnShowMapaS->UseVisualStyleBackColor = true;
@@ -72,37 +74,41 @@ namespace RobotMineroGUIApp {
 			// 
 			this->bttnShowMydatesS->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->bttnShowMydatesS->Location = System::Drawing::Point(277, 39);
+			this->bttnShowMydatesS->Location = System::Drawing::Point(367, 83);
+			this->bttnShowMydatesS->Margin = System::Windows::Forms::Padding(4);
 			this->bttnShowMydatesS->Name = L"bttnShowMydatesS";
-			this->bttnShowMydatesS->Size = System::Drawing::Size(190, 29);
+			this->bttnShowMydatesS->Size = System::Drawing::Size(253, 36);
 			this->bttnShowMydatesS->TabIndex = 5;
 			this->bttnShowMydatesS->Text = L"Visualizar mis datos";
 			this->bttnShowMydatesS->UseVisualStyleBackColor = true;
 			this->bttnShowMydatesS->Click += gcnew System::EventHandler(this, &SuperivsorForm::bttnShowMydatesS_Click);
 			// 
-			// bttnInputMoreDatesS
+			// LinkVolver
 			// 
-			this->bttnInputMoreDatesS->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->bttnInputMoreDatesS->Location = System::Drawing::Point(41, 112);
-			this->bttnInputMoreDatesS->Name = L"bttnInputMoreDatesS";
-			this->bttnInputMoreDatesS->Size = System::Drawing::Size(190, 29);
-			this->bttnInputMoreDatesS->TabIndex = 6;
-			this->bttnInputMoreDatesS->Text = L"Ingresar datos adicionales";
-			this->bttnInputMoreDatesS->UseVisualStyleBackColor = true;
+			this->LinkVolver->AutoSize = true;
+			this->LinkVolver->Location = System::Drawing::Point(579, 197);
+			this->LinkVolver->Name = L"LinkVolver";
+			this->LinkVolver->Size = System::Drawing::Size(87, 16);
+			this->LinkVolver->TabIndex = 9;
+			this->LinkVolver->TabStop = true;
+			this->LinkVolver->Text = L"Cerrar sesión";
+			this->LinkVolver->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &SuperivsorForm::LinkVolver_LinkClicked);
 			// 
 			// SuperivsorForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(515, 180);
-			this->Controls->Add(this->bttnInputMoreDatesS);
+			this->ClientSize = System::Drawing::Size(687, 222);
+			this->Controls->Add(this->LinkVolver);
 			this->Controls->Add(this->bttnShowMydatesS);
 			this->Controls->Add(this->bttnShowMapaS);
+			this->Margin = System::Windows::Forms::Padding(4);
 			this->Name = L"SuperivsorForm";
 			this->Text = L"SuperivsorForm";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &SuperivsorForm::SuperivsorForm_FormClosing);
 			this->Load += gcnew System::EventHandler(this, &SuperivsorForm::SuperivsorForm_Load);
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 #pragma endregion
@@ -111,6 +117,9 @@ namespace RobotMineroGUIApp {
 	private: System::Void bttnShowMydatesS_Click(System::Object^ sender, System::EventArgs^ e) {
 		ShowDatesUserForm^ pantallaSupervisor = gcnew ShowDatesUserForm();
 		pantallaSupervisor->Show();
+		this->Hide();
 	}
-	};
+	private: System::Void LinkVolver_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e);
+private: System::Void SuperivsorForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e);
+};
 }

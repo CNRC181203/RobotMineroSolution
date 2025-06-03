@@ -62,6 +62,7 @@ namespace RobotMineroGUIApp {
 	private: System::Windows::Forms::TextBox^ txtShowLastDaysPeon;
 	private: System::Windows::Forms::Label^ label11;
 	private: System::Windows::Forms::TextBox^ txtShowSalarioPeon;
+	private: System::Windows::Forms::Button^ btnAtras;
 
 
 
@@ -109,23 +110,26 @@ namespace RobotMineroGUIApp {
 			this->txtShowLastDaysPeon = (gcnew System::Windows::Forms::TextBox());
 			this->label11 = (gcnew System::Windows::Forms::Label());
 			this->txtShowSalarioPeon = (gcnew System::Windows::Forms::TextBox());
+			this->btnAtras = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbShowImagePeon))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// pbShowImagePeon
 			// 
-			this->pbShowImagePeon->Location = System::Drawing::Point(27, 19);
+			this->pbShowImagePeon->Location = System::Drawing::Point(36, 23);
+			this->pbShowImagePeon->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->pbShowImagePeon->Name = L"pbShowImagePeon";
-			this->pbShowImagePeon->Size = System::Drawing::Size(291, 314);
+			this->pbShowImagePeon->Size = System::Drawing::Size(388, 386);
 			this->pbShowImagePeon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pbShowImagePeon->TabIndex = 0;
 			this->pbShowImagePeon->TabStop = false;
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(400, 360);
+			this->button1->Location = System::Drawing::Point(533, 443);
+			this->button1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(193, 23);
+			this->button1->Size = System::Drawing::Size(257, 28);
 			this->button1->TabIndex = 1;
 			this->button1->Text = L"Ingresar datos adicionales";
 			this->button1->UseVisualStyleBackColor = true;
@@ -136,9 +140,10 @@ namespace RobotMineroGUIApp {
 			this->label4->AutoSize = true;
 			this->label4->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label4->Location = System::Drawing::Point(396, 84);
+			this->label4->Location = System::Drawing::Point(528, 103);
+			this->label4->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(63, 19);
+			this->label4->Size = System::Drawing::Size(77, 23);
 			this->label4->TabIndex = 7;
 			this->label4->Text = L"Nombre";
 			// 
@@ -147,9 +152,10 @@ namespace RobotMineroGUIApp {
 			this->label3->AutoSize = true;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label3->Location = System::Drawing::Point(396, 116);
+			this->label3->Location = System::Drawing::Point(528, 143);
+			this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(64, 19);
+			this->label3->Size = System::Drawing::Size(79, 23);
 			this->label3->TabIndex = 6;
 			this->label3->Text = L"Apellido";
 			// 
@@ -158,9 +164,10 @@ namespace RobotMineroGUIApp {
 			this->label2->AutoSize = true;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(396, 55);
+			this->label2->Location = System::Drawing::Point(528, 68);
+			this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(176, 19);
+			this->label2->Size = System::Drawing::Size(222, 23);
 			this->label2->TabIndex = 5;
 			this->label2->Text = L"Fecha fin de contratación";
 			// 
@@ -169,9 +176,10 @@ namespace RobotMineroGUIApp {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(396, 22);
+			this->label1->Location = System::Drawing::Point(528, 27);
+			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(155, 19);
+			this->label1->Size = System::Drawing::Size(195, 23);
 			this->label1->TabIndex = 4;
 			this->label1->Text = L"Fecha de contratación";
 			// 
@@ -180,9 +188,10 @@ namespace RobotMineroGUIApp {
 			this->label5->AutoSize = true;
 			this->label5->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label5->Location = System::Drawing::Point(396, 144);
+			this->label5->Location = System::Drawing::Point(528, 177);
+			this->label5->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(43, 19);
+			this->label5->Size = System::Drawing::Size(53, 23);
 			this->label5->TabIndex = 8;
 			this->label5->Text = L"Edad";
 			this->label5->Click += gcnew System::EventHandler(this, &ShowDatesPeonForm::label5_Click);
@@ -192,9 +201,10 @@ namespace RobotMineroGUIApp {
 			this->label6->AutoSize = true;
 			this->label6->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label6->Location = System::Drawing::Point(396, 173);
+			this->label6->Location = System::Drawing::Point(528, 213);
+			this->label6->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(111, 19);
+			this->label6->Size = System::Drawing::Size(140, 23);
 			this->label6->TabIndex = 9;
 			this->label6->Text = L"Estado del EPP";
 			// 
@@ -203,9 +213,10 @@ namespace RobotMineroGUIApp {
 			this->label7->AutoSize = true;
 			this->label7->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label7->Location = System::Drawing::Point(396, 203);
+			this->label7->Location = System::Drawing::Point(528, 250);
+			this->label7->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(141, 19);
+			this->label7->Size = System::Drawing::Size(174, 23);
 			this->label7->TabIndex = 10;
 			this->label7->Text = L"Tanques de oxigeno";
 			// 
@@ -214,9 +225,10 @@ namespace RobotMineroGUIApp {
 			this->label8->AutoSize = true;
 			this->label8->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label8->Location = System::Drawing::Point(396, 232);
+			this->label8->Location = System::Drawing::Point(528, 286);
+			this->label8->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(80, 19);
+			this->label8->Size = System::Drawing::Size(98, 23);
 			this->label8->TabIndex = 11;
 			this->label8->Text = L"Botiquines";
 			// 
@@ -225,9 +237,10 @@ namespace RobotMineroGUIApp {
 			this->label9->AutoSize = true;
 			this->label9->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label9->Location = System::Drawing::Point(396, 260);
+			this->label9->Location = System::Drawing::Point(528, 320);
+			this->label9->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(144, 19);
+			this->label9->Size = System::Drawing::Size(177, 23);
 			this->label9->TabIndex = 12;
 			this->label9->Text = L"Dias desde la ultima";
 			// 
@@ -236,73 +249,83 @@ namespace RobotMineroGUIApp {
 			this->label10->AutoSize = true;
 			this->label10->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label10->Location = System::Drawing::Point(396, 279);
+			this->label10->Location = System::Drawing::Point(528, 343);
+			this->label10->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label10->Name = L"label10";
-			this->label10->Size = System::Drawing::Size(113, 19);
+			this->label10->Size = System::Drawing::Size(140, 23);
 			this->label10->TabIndex = 13;
 			this->label10->Text = L"revision medica";
 			// 
 			// txtShowFechaStartPeon
 			// 
-			this->txtShowFechaStartPeon->Location = System::Drawing::Point(642, 21);
+			this->txtShowFechaStartPeon->Location = System::Drawing::Point(856, 26);
+			this->txtShowFechaStartPeon->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->txtShowFechaStartPeon->Name = L"txtShowFechaStartPeon";
-			this->txtShowFechaStartPeon->Size = System::Drawing::Size(171, 20);
+			this->txtShowFechaStartPeon->Size = System::Drawing::Size(227, 22);
 			this->txtShowFechaStartPeon->TabIndex = 14;
 			// 
 			// txtShowFechaFinPeon
 			// 
-			this->txtShowFechaFinPeon->Location = System::Drawing::Point(642, 54);
+			this->txtShowFechaFinPeon->Location = System::Drawing::Point(856, 66);
+			this->txtShowFechaFinPeon->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->txtShowFechaFinPeon->Name = L"txtShowFechaFinPeon";
-			this->txtShowFechaFinPeon->Size = System::Drawing::Size(171, 20);
+			this->txtShowFechaFinPeon->Size = System::Drawing::Size(227, 22);
 			this->txtShowFechaFinPeon->TabIndex = 15;
 			// 
 			// txtShowNombrePeon
 			// 
-			this->txtShowNombrePeon->Location = System::Drawing::Point(642, 83);
+			this->txtShowNombrePeon->Location = System::Drawing::Point(856, 102);
+			this->txtShowNombrePeon->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->txtShowNombrePeon->Name = L"txtShowNombrePeon";
-			this->txtShowNombrePeon->Size = System::Drawing::Size(171, 20);
+			this->txtShowNombrePeon->Size = System::Drawing::Size(227, 22);
 			this->txtShowNombrePeon->TabIndex = 16;
 			// 
 			// txtShowApellidoPeon
 			// 
-			this->txtShowApellidoPeon->Location = System::Drawing::Point(642, 115);
+			this->txtShowApellidoPeon->Location = System::Drawing::Point(856, 142);
+			this->txtShowApellidoPeon->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->txtShowApellidoPeon->Name = L"txtShowApellidoPeon";
-			this->txtShowApellidoPeon->Size = System::Drawing::Size(171, 20);
+			this->txtShowApellidoPeon->Size = System::Drawing::Size(227, 22);
 			this->txtShowApellidoPeon->TabIndex = 17;
 			// 
 			// txtShowEdadPeon
 			// 
-			this->txtShowEdadPeon->Location = System::Drawing::Point(642, 143);
+			this->txtShowEdadPeon->Location = System::Drawing::Point(856, 176);
+			this->txtShowEdadPeon->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->txtShowEdadPeon->Name = L"txtShowEdadPeon";
-			this->txtShowEdadPeon->Size = System::Drawing::Size(171, 20);
+			this->txtShowEdadPeon->Size = System::Drawing::Size(227, 22);
 			this->txtShowEdadPeon->TabIndex = 18;
 			// 
 			// txtShowEPPeon
 			// 
-			this->txtShowEPPeon->Location = System::Drawing::Point(642, 169);
+			this->txtShowEPPeon->Location = System::Drawing::Point(856, 208);
+			this->txtShowEPPeon->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->txtShowEPPeon->Name = L"txtShowEPPeon";
-			this->txtShowEPPeon->Size = System::Drawing::Size(171, 20);
+			this->txtShowEPPeon->Size = System::Drawing::Size(227, 22);
 			this->txtShowEPPeon->TabIndex = 19;
 			// 
 			// txtShowTanqueOPeon
 			// 
-			this->txtShowTanqueOPeon->Location = System::Drawing::Point(642, 202);
+			this->txtShowTanqueOPeon->Location = System::Drawing::Point(856, 249);
+			this->txtShowTanqueOPeon->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->txtShowTanqueOPeon->Name = L"txtShowTanqueOPeon";
-			this->txtShowTanqueOPeon->Size = System::Drawing::Size(171, 20);
+			this->txtShowTanqueOPeon->Size = System::Drawing::Size(227, 22);
 			this->txtShowTanqueOPeon->TabIndex = 20;
 			// 
 			// txtShowKitMedicPeon
 			// 
-			this->txtShowKitMedicPeon->Location = System::Drawing::Point(642, 231);
+			this->txtShowKitMedicPeon->Location = System::Drawing::Point(856, 284);
+			this->txtShowKitMedicPeon->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->txtShowKitMedicPeon->Name = L"txtShowKitMedicPeon";
-			this->txtShowKitMedicPeon->Size = System::Drawing::Size(171, 20);
+			this->txtShowKitMedicPeon->Size = System::Drawing::Size(227, 22);
 			this->txtShowKitMedicPeon->TabIndex = 21;
 			// 
 			// txtShowLastDaysPeon
 			// 
-			this->txtShowLastDaysPeon->Location = System::Drawing::Point(642, 278);
+			this->txtShowLastDaysPeon->Location = System::Drawing::Point(856, 342);
+			this->txtShowLastDaysPeon->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->txtShowLastDaysPeon->Name = L"txtShowLastDaysPeon";
-			this->txtShowLastDaysPeon->Size = System::Drawing::Size(171, 20);
+			this->txtShowLastDaysPeon->Size = System::Drawing::Size(227, 22);
 			this->txtShowLastDaysPeon->TabIndex = 23;
 			// 
 			// label11
@@ -310,24 +333,37 @@ namespace RobotMineroGUIApp {
 			this->label11->AutoSize = true;
 			this->label11->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label11->Location = System::Drawing::Point(396, 314);
+			this->label11->Location = System::Drawing::Point(528, 386);
+			this->label11->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label11->Name = L"label11";
-			this->label11->Size = System::Drawing::Size(56, 19);
+			this->label11->Size = System::Drawing::Size(69, 23);
 			this->label11->TabIndex = 24;
 			this->label11->Text = L"Salario";
 			// 
 			// txtShowSalarioPeon
 			// 
-			this->txtShowSalarioPeon->Location = System::Drawing::Point(642, 313);
+			this->txtShowSalarioPeon->Location = System::Drawing::Point(856, 385);
+			this->txtShowSalarioPeon->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->txtShowSalarioPeon->Name = L"txtShowSalarioPeon";
-			this->txtShowSalarioPeon->Size = System::Drawing::Size(171, 20);
+			this->txtShowSalarioPeon->Size = System::Drawing::Size(227, 22);
 			this->txtShowSalarioPeon->TabIndex = 25;
+			// 
+			// btnAtras
+			// 
+			this->btnAtras->Location = System::Drawing::Point(1116, 523);
+			this->btnAtras->Name = L"btnAtras";
+			this->btnAtras->Size = System::Drawing::Size(75, 23);
+			this->btnAtras->TabIndex = 26;
+			this->btnAtras->Text = L"Atrás";
+			this->btnAtras->UseVisualStyleBackColor = true;
+			this->btnAtras->Click += gcnew System::EventHandler(this, &ShowDatesPeonForm::btnAtras_Click);
 			// 
 			// ShowDatesPeonForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(935, 453);
+			this->ClientSize = System::Drawing::Size(1247, 558);
+			this->Controls->Add(this->btnAtras);
 			this->Controls->Add(this->txtShowSalarioPeon);
 			this->Controls->Add(this->label11);
 			this->Controls->Add(this->txtShowLastDaysPeon);
@@ -351,6 +387,7 @@ namespace RobotMineroGUIApp {
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->pbShowImagePeon);
+			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->Name = L"ShowDatesPeonForm";
 			this->Text = L"ShowDatesPeonForm";
 			this->Load += gcnew System::EventHandler(this, &ShowDatesPeonForm::ShowDatesPeonForm_Load);
@@ -417,5 +454,6 @@ private: System::Void label5_Click(System::Object^ sender, System::EventArgs^ e)
 		txtShowLastDaysPeon->Text = ObjectPeonUserNew->LastCheck.ToString();
 		txtShowSalarioPeon->Text = "" + ObjectPeonUserNew->Salario;
 	}
+private: System::Void btnAtras_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }
