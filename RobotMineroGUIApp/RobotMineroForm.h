@@ -164,83 +164,78 @@ namespace RobotMineroGUIApp {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(16, 18);
-			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label1->Location = System::Drawing::Point(21, 22);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(21, 13);
+			this->label1->Size = System::Drawing::Size(23, 16);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"ID:";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(16, 50);
-			this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label2->Location = System::Drawing::Point(21, 62);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(47, 13);
+			this->label2->Size = System::Drawing::Size(59, 16);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"Nombre:";
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(16, 82);
-			this->label3->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label3->Location = System::Drawing::Point(21, 101);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(47, 13);
+			this->label3->Size = System::Drawing::Size(60, 16);
 			this->label3->TabIndex = 2;
 			this->label3->Text = L"Apellido:";
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(16, 119);
-			this->label4->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label4->Location = System::Drawing::Point(21, 146);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(42, 13);
+			this->label4->Size = System::Drawing::Size(53, 16);
 			this->label4->TabIndex = 3;
 			this->label4->Text = L"Salario:";
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(16, 158);
-			this->label5->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label5->Location = System::Drawing::Point(21, 194);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(38, 13);
+			this->label5->Size = System::Drawing::Size(47, 16);
 			this->label5->TabIndex = 4;
 			this->label5->Text = L"Cargo:";
 			// 
 			// txtRecursoId
 			// 
-			this->txtRecursoId->Location = System::Drawing::Point(67, 11);
-			this->txtRecursoId->Margin = System::Windows::Forms::Padding(2);
+			this->txtRecursoId->Location = System::Drawing::Point(89, 14);
+			this->txtRecursoId->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtRecursoId->Name = L"txtRecursoId";
-			this->txtRecursoId->Size = System::Drawing::Size(61, 20);
+			this->txtRecursoId->Size = System::Drawing::Size(80, 22);
 			this->txtRecursoId->TabIndex = 5;
 			// 
 			// txtRecursoNombre
 			// 
-			this->txtRecursoNombre->Location = System::Drawing::Point(67, 43);
-			this->txtRecursoNombre->Margin = System::Windows::Forms::Padding(2);
+			this->txtRecursoNombre->Location = System::Drawing::Point(89, 53);
+			this->txtRecursoNombre->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtRecursoNombre->Name = L"txtRecursoNombre";
-			this->txtRecursoNombre->Size = System::Drawing::Size(99, 20);
+			this->txtRecursoNombre->Size = System::Drawing::Size(131, 22);
 			this->txtRecursoNombre->TabIndex = 6;
 			// 
 			// txtRecursoApellido
 			// 
-			this->txtRecursoApellido->Location = System::Drawing::Point(66, 75);
-			this->txtRecursoApellido->Margin = System::Windows::Forms::Padding(2);
+			this->txtRecursoApellido->Location = System::Drawing::Point(88, 92);
+			this->txtRecursoApellido->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtRecursoApellido->Name = L"txtRecursoApellido";
-			this->txtRecursoApellido->Size = System::Drawing::Size(98, 20);
+			this->txtRecursoApellido->Size = System::Drawing::Size(129, 22);
 			this->txtRecursoApellido->TabIndex = 7;
 			// 
 			// txtRecursoSalario
 			// 
-			this->txtRecursoSalario->Location = System::Drawing::Point(66, 112);
-			this->txtRecursoSalario->Margin = System::Windows::Forms::Padding(2);
+			this->txtRecursoSalario->Location = System::Drawing::Point(88, 138);
+			this->txtRecursoSalario->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtRecursoSalario->Name = L"txtRecursoSalario";
-			this->txtRecursoSalario->Size = System::Drawing::Size(62, 20);
+			this->txtRecursoSalario->Size = System::Drawing::Size(81, 22);
 			this->txtRecursoSalario->TabIndex = 8;
 			// 
 			// cmbRecursoCargo
@@ -250,19 +245,19 @@ namespace RobotMineroGUIApp {
 				L"Trabajador de campo", L"Operario", L"IngAmbiental",
 					L"Supervisor"
 			});
-			this->cmbRecursoCargo->Location = System::Drawing::Point(67, 150);
-			this->cmbRecursoCargo->Margin = System::Windows::Forms::Padding(2);
+			this->cmbRecursoCargo->Location = System::Drawing::Point(89, 185);
+			this->cmbRecursoCargo->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->cmbRecursoCargo->Name = L"cmbRecursoCargo";
-			this->cmbRecursoCargo->Size = System::Drawing::Size(157, 21);
+			this->cmbRecursoCargo->Size = System::Drawing::Size(208, 24);
 			this->cmbRecursoCargo->TabIndex = 9;
 			this->cmbRecursoCargo->SelectedIndexChanged += gcnew System::EventHandler(this, &RobotMineroForm::cmbRecursoCargo_SelectedIndexChanged);
 			// 
 			// btmAgregarRecurso
 			// 
-			this->btmAgregarRecurso->Location = System::Drawing::Point(63, 185);
-			this->btmAgregarRecurso->Margin = System::Windows::Forms::Padding(2);
+			this->btmAgregarRecurso->Location = System::Drawing::Point(84, 228);
+			this->btmAgregarRecurso->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btmAgregarRecurso->Name = L"btmAgregarRecurso";
-			this->btmAgregarRecurso->Size = System::Drawing::Size(65, 25);
+			this->btmAgregarRecurso->Size = System::Drawing::Size(87, 31);
 			this->btmAgregarRecurso->TabIndex = 10;
 			this->btmAgregarRecurso->Text = L"Agregar";
 			this->btmAgregarRecurso->UseVisualStyleBackColor = true;
@@ -270,10 +265,10 @@ namespace RobotMineroGUIApp {
 			// 
 			// btmModificarrecurso
 			// 
-			this->btmModificarrecurso->Location = System::Drawing::Point(170, 185);
-			this->btmModificarrecurso->Margin = System::Windows::Forms::Padding(2);
+			this->btmModificarrecurso->Location = System::Drawing::Point(227, 228);
+			this->btmModificarrecurso->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btmModificarrecurso->Name = L"btmModificarrecurso";
-			this->btmModificarrecurso->Size = System::Drawing::Size(71, 25);
+			this->btmModificarrecurso->Size = System::Drawing::Size(95, 31);
 			this->btmModificarrecurso->TabIndex = 11;
 			this->btmModificarrecurso->Text = L"Modificar";
 			this->btmModificarrecurso->UseVisualStyleBackColor = true;
@@ -281,10 +276,10 @@ namespace RobotMineroGUIApp {
 			// 
 			// btmEliminarRecurso
 			// 
-			this->btmEliminarRecurso->Location = System::Drawing::Point(283, 185);
-			this->btmEliminarRecurso->Margin = System::Windows::Forms::Padding(2);
+			this->btmEliminarRecurso->Location = System::Drawing::Point(377, 228);
+			this->btmEliminarRecurso->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btmEliminarRecurso->Name = L"btmEliminarRecurso";
-			this->btmEliminarRecurso->Size = System::Drawing::Size(76, 25);
+			this->btmEliminarRecurso->Size = System::Drawing::Size(101, 31);
 			this->btmEliminarRecurso->TabIndex = 13;
 			this->btmEliminarRecurso->Text = L"Eliminar";
 			this->btmEliminarRecurso->UseVisualStyleBackColor = true;
@@ -298,12 +293,12 @@ namespace RobotMineroGUIApp {
 					this->RecursoNombre, this->RecursoApellido, this->RecursoSalario, this->recursoCargo, this->RecursoContrasenha, this->dgvInicio,
 					this->dgvFin
 			});
-			this->dgvRecursos->Location = System::Drawing::Point(19, 228);
-			this->dgvRecursos->Margin = System::Windows::Forms::Padding(2);
+			this->dgvRecursos->Location = System::Drawing::Point(25, 281);
+			this->dgvRecursos->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->dgvRecursos->Name = L"dgvRecursos";
 			this->dgvRecursos->RowHeadersWidth = 51;
 			this->dgvRecursos->RowTemplate->Height = 24;
-			this->dgvRecursos->Size = System::Drawing::Size(887, 187);
+			this->dgvRecursos->Size = System::Drawing::Size(1183, 230);
 			this->dgvRecursos->TabIndex = 14;
 			this->dgvRecursos->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &RobotMineroForm::dgvRecursos_CellClick);
 			this->dgvRecursos->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &RobotMineroForm::dgvRecursos_CellContentClick);
@@ -339,61 +334,72 @@ namespace RobotMineroGUIApp {
 			// recursoCargo
 			// 
 			this->recursoCargo->HeaderText = L"Cargo";
+			this->recursoCargo->MinimumWidth = 6;
 			this->recursoCargo->Name = L"recursoCargo";
+			this->recursoCargo->Width = 125;
 			// 
 			// RecursoContrasenha
 			// 
 			this->RecursoContrasenha->HeaderText = L"Contraseña";
+			this->RecursoContrasenha->MinimumWidth = 6;
 			this->RecursoContrasenha->Name = L"RecursoContrasenha";
+			this->RecursoContrasenha->Width = 125;
 			// 
 			// dgvInicio
 			// 
 			this->dgvInicio->HeaderText = L"Inicio";
+			this->dgvInicio->MinimumWidth = 6;
 			this->dgvInicio->Name = L"dgvInicio";
 			this->dgvInicio->Width = 120;
 			// 
 			// dgvFin
 			// 
 			this->dgvFin->HeaderText = L"Fin";
+			this->dgvFin->MinimumWidth = 6;
 			this->dgvFin->Name = L"dgvFin";
 			this->dgvFin->Width = 120;
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(357, 29);
+			this->label6->Location = System::Drawing::Point(476, 36);
+			this->label6->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(64, 13);
+			this->label6->Size = System::Drawing::Size(79, 16);
 			this->label6->TabIndex = 15;
 			this->label6->Text = L"Contraseña:";
 			// 
 			// txtContrasenha
 			// 
-			this->txtContrasenha->Location = System::Drawing::Point(446, 29);
+			this->txtContrasenha->Location = System::Drawing::Point(595, 36);
+			this->txtContrasenha->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->txtContrasenha->Name = L"txtContrasenha";
-			this->txtContrasenha->Size = System::Drawing::Size(100, 20);
+			this->txtContrasenha->Size = System::Drawing::Size(132, 22);
 			this->txtContrasenha->TabIndex = 16;
 			// 
 			// dtpStart
 			// 
-			this->dtpStart->Location = System::Drawing::Point(446, 76);
+			this->dtpStart->Location = System::Drawing::Point(595, 94);
+			this->dtpStart->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->dtpStart->Name = L"dtpStart";
-			this->dtpStart->Size = System::Drawing::Size(200, 20);
+			this->dtpStart->Size = System::Drawing::Size(265, 22);
 			this->dtpStart->TabIndex = 17;
 			// 
 			// dtpEnd
 			// 
-			this->dtpEnd->Location = System::Drawing::Point(446, 128);
+			this->dtpEnd->Location = System::Drawing::Point(595, 158);
+			this->dtpEnd->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->dtpEnd->Name = L"dtpEnd";
-			this->dtpEnd->Size = System::Drawing::Size(200, 20);
+			this->dtpEnd->Size = System::Drawing::Size(265, 22);
 			this->dtpEnd->TabIndex = 18;
 			// 
 			// label7
 			// 
 			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(357, 78);
+			this->label7->Location = System::Drawing::Point(476, 96);
+			this->label7->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(79, 13);
+			this->label7->Size = System::Drawing::Size(98, 16);
 			this->label7->TabIndex = 19;
 			this->label7->Text = L"Fecha de inicio";
 			this->label7->Click += gcnew System::EventHandler(this, &RobotMineroForm::label7_Click);
@@ -401,9 +407,10 @@ namespace RobotMineroGUIApp {
 			// label8
 			// 
 			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(357, 134);
+			this->label8->Location = System::Drawing::Point(476, 165);
+			this->label8->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(54, 13);
+			this->label8->Size = System::Drawing::Size(66, 16);
 			this->label8->TabIndex = 20;
 			this->label8->Text = L"Fecha Fin";
 			this->label8->Click += gcnew System::EventHandler(this, &RobotMineroForm::label8_Click);
@@ -411,20 +418,20 @@ namespace RobotMineroGUIApp {
 			// pbImage
 			// 
 			this->pbImage->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
-			this->pbImage->Location = System::Drawing::Point(736, 29);
-			this->pbImage->Margin = System::Windows::Forms::Padding(2);
+			this->pbImage->Location = System::Drawing::Point(981, 36);
+			this->pbImage->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->pbImage->Name = L"pbImage";
-			this->pbImage->Size = System::Drawing::Size(121, 114);
+			this->pbImage->Size = System::Drawing::Size(160, 139);
 			this->pbImage->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pbImage->TabIndex = 63;
 			this->pbImage->TabStop = false;
 			// 
 			// btnUpdateImage
 			// 
-			this->btnUpdateImage->Location = System::Drawing::Point(736, 158);
-			this->btnUpdateImage->Margin = System::Windows::Forms::Padding(2);
+			this->btnUpdateImage->Location = System::Drawing::Point(981, 194);
+			this->btnUpdateImage->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnUpdateImage->Name = L"btnUpdateImage";
-			this->btnUpdateImage->Size = System::Drawing::Size(110, 23);
+			this->btnUpdateImage->Size = System::Drawing::Size(147, 28);
 			this->btnUpdateImage->TabIndex = 64;
 			this->btnUpdateImage->Text = L"Actualizar imagen";
 			this->btnUpdateImage->UseVisualStyleBackColor = true;
@@ -432,10 +439,10 @@ namespace RobotMineroGUIApp {
 			// 
 			// btnGraficas
 			// 
-			this->btnGraficas->Location = System::Drawing::Point(431, 185);
-			this->btnGraficas->Margin = System::Windows::Forms::Padding(2);
+			this->btnGraficas->Location = System::Drawing::Point(575, 228);
+			this->btnGraficas->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnGraficas->Name = L"btnGraficas";
-			this->btnGraficas->Size = System::Drawing::Size(215, 25);
+			this->btnGraficas->Size = System::Drawing::Size(287, 31);
 			this->btnGraficas->TabIndex = 66;
 			this->btnGraficas->Text = L"Estadística de trabajadores";
 			this->btnGraficas->UseVisualStyleBackColor = true;
@@ -443,9 +450,9 @@ namespace RobotMineroGUIApp {
 			// 
 			// RobotMineroForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(938, 445);
+			this->ClientSize = System::Drawing::Size(1251, 548);
 			this->Controls->Add(this->btnGraficas);
 			this->Controls->Add(this->pbImage);
 			this->Controls->Add(this->btnUpdateImage);
@@ -469,9 +476,10 @@ namespace RobotMineroGUIApp {
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
-			this->Margin = System::Windows::Forms::Padding(2);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"RobotMineroForm";
 			this->Text = L"RobotMineroForm";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &RobotMineroForm::RobotMineroForm_FormClosing);
 			this->Load += gcnew System::EventHandler(this, &RobotMineroForm::RobotMineroForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvRecursos))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbImage))->EndInit();
@@ -799,5 +807,6 @@ private: System::Void btnGraficas_Click(System::Object^ sender, System::EventArg
 	GraficasTrabajadoresForm^ graficaForm = gcnew GraficasTrabajadoresForm();
 	graficaForm->Show();
 }
+private: System::Void RobotMineroForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e);
 };
 }

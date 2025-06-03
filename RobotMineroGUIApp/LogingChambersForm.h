@@ -85,9 +85,10 @@ namespace RobotMineroGUIApp {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Times New Roman", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(76, 77);
+			this->label1->Location = System::Drawing::Point(101, 95);
+			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(37, 23);
+			this->label1->Size = System::Drawing::Size(47, 31);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"ID:";
 			// 
@@ -96,31 +97,35 @@ namespace RobotMineroGUIApp {
 			this->label2->AutoSize = true;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Times New Roman", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(76, 114);
+			this->label2->Location = System::Drawing::Point(101, 140);
+			this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(109, 23);
+			this->label2->Size = System::Drawing::Size(143, 31);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"Contraseña:";
 			// 
 			// textIDLoginChamb
 			// 
-			this->textIDLoginChamb->Location = System::Drawing::Point(216, 77);
+			this->textIDLoginChamb->Location = System::Drawing::Point(288, 95);
+			this->textIDLoginChamb->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->textIDLoginChamb->Name = L"textIDLoginChamb";
-			this->textIDLoginChamb->Size = System::Drawing::Size(100, 20);
+			this->textIDLoginChamb->Size = System::Drawing::Size(132, 22);
 			this->textIDLoginChamb->TabIndex = 2;
 			// 
 			// txtPasswordLoginChamb
 			// 
-			this->txtPasswordLoginChamb->Location = System::Drawing::Point(216, 114);
+			this->txtPasswordLoginChamb->Location = System::Drawing::Point(288, 140);
+			this->txtPasswordLoginChamb->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->txtPasswordLoginChamb->Name = L"txtPasswordLoginChamb";
-			this->txtPasswordLoginChamb->Size = System::Drawing::Size(100, 20);
+			this->txtPasswordLoginChamb->Size = System::Drawing::Size(132, 22);
 			this->txtPasswordLoginChamb->TabIndex = 3;
 			// 
 			// bttnAceppt2
 			// 
-			this->bttnAceppt2->Location = System::Drawing::Point(159, 175);
+			this->bttnAceppt2->Location = System::Drawing::Point(212, 215);
+			this->bttnAceppt2->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->bttnAceppt2->Name = L"bttnAceppt2";
-			this->bttnAceppt2->Size = System::Drawing::Size(75, 23);
+			this->bttnAceppt2->Size = System::Drawing::Size(100, 28);
 			this->bttnAceppt2->TabIndex = 4;
 			this->bttnAceppt2->Text = L"Aceptar";
 			this->bttnAceppt2->UseVisualStyleBackColor = true;
@@ -129,24 +134,27 @@ namespace RobotMineroGUIApp {
 			// 
 			// LogingChambersForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(450, 225);
+			this->ClientSize = System::Drawing::Size(600, 277);
 			this->Controls->Add(this->bttnAceppt2);
 			this->Controls->Add(this->txtPasswordLoginChamb);
 			this->Controls->Add(this->textIDLoginChamb);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
+			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->Name = L"LogingChambersForm";
 			this->Text = L"LogingChambersForm";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &LogingChambersForm::LogingChambersForm_FormClosing);
 			this->Load += gcnew System::EventHandler(this, &LogingChambersForm::LogingChambersForm_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-	private: System::Void LogingChambersForm_Load(System::Object^ sender, System::EventArgs^ e) {
+private: System::Void LogingChambersForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
+private: bool cerradoPorCodigo = false;
 	
 private: System::Void bttnAceppt2_Click(System::Object^ sender, System::EventArgs^ e) {
 	int extractID = Int32::Parse(textIDLoginChamb->Text);
@@ -171,7 +179,8 @@ private: System::Void bttnAceppt2_Click(System::Object^ sender, System::EventArg
 			String^ mensaje = String::Format("Bienvenido {0} {1}", Users_Valid->Nombre, Users_Valid->Apelllido);
 			MessageBox::Show(mensaje);
 			Controller::SaveId(Users_Valid->Id);
-
+			cerradoPorCodigo = true;
+			this->Close();
 			if (Users_Valid->Cargo == "Operario") {
 
 				OperarioForm^ showOperario = gcnew OperarioForm();
@@ -205,5 +214,6 @@ private: System::Void bttnAceppt2_Click(System::Object^ sender, System::EventArg
 		}
 	}
 }
+private: System::Void LogingChambersForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e);
 };
 }
