@@ -8,6 +8,7 @@ namespace RobotMineroModel {
 	public:
 		property int Id;
 		property String^ Nombre;
+		property String^ NombreUsuario;
 		property String^ Apelllido;
 		property double Salario;
 		property String^ Cargo;
@@ -15,6 +16,8 @@ namespace RobotMineroModel {
 		property DateTime^ FechaFirst;
 		property DateTime^ FechaEnd;
 		property array<Byte>^ Photo;
+		property int Edad;
+		property int NumeroTelefono;
 
 		Usuario() {}
 

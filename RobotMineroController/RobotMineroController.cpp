@@ -133,10 +133,23 @@ int RobotMineroController::Controller::EliminarUsuario(int id)
 
 Usuario^ RobotMineroController::Controller::DevolverUsuarioPorID(int usuarioID) {
 	//Persistance::PersistancetextFile("resource.txt", repoResource);
-	for each (Usuario ^ resource in usuariosNew)
+	usuariosNew = ConsultarTodosUsuario();
+	for each (Usuario ^ usuario in usuariosNew)
 	{
-		if (resource->Id == usuarioID) {
-			return resource;
+		if (usuario->Id == usuarioID) {
+			return usuario;
+		}
+	}
+	return nullptr;
+}
+
+Usuario^ RobotMineroController::Controller::DevolverUsuarioPorNomUsuario(String^ NomUsuario)
+{
+	usuariosNew = ConsultarTodosUsuario();
+	for each (Usuario ^ usuario in usuariosNew)
+	{
+		if (usuario->NombreUsuario == NomUsuario) {
+			return usuario;
 		}
 	}
 	return nullptr;
@@ -145,8 +158,8 @@ Usuario^ RobotMineroController::Controller::DevolverUsuarioPorID(int usuarioID) 
 int RobotMineroController::Controller::AgregarPeon(Peon^ peon)
 {
 	try {
-		ListPeones->Add(peon);
-		Persistance::PersistBinaryFile("Peon.bin", ListPeones);
+		ListPeon->Add(peon);
+		Persistance::PersistBinaryFile("Peon.bin", ListPeon);
 		return 1;
 	}
 	catch (Exception^ ex) {
@@ -157,19 +170,19 @@ int RobotMineroController::Controller::AgregarPeon(Peon^ peon)
 
 List<Peon^>^ RobotMineroController::Controller::ConsultarTodosPeones()
 {
-	ListPeones = (List<Peon^>^) Persistance::LoadBinaryFile("Peon.bin");
-	if (ListPeones == nullptr)
-		ListPeones = gcnew List<Peon^>();
-	return ListPeones;
+	ListPeon = (List<Peon^>^) Persistance::LoadBinaryFile("Peon.bin");
+	if (ListPeon == nullptr)
+		ListPeon = gcnew List<Peon^>();
+	return ListPeon;
 }
 
 int RobotMineroController::Controller::ActualizarPeon(Peon^ peon)
 {
-	for (int i = 0; i < ListPeones->Count; i++)
+	for (int i = 0; i < ListPeon->Count; i++)
 	{
-		if (ListPeones[i]->Id == peon->Id) {
-			ListPeones[i] = peon;
-			Persistance::PersistBinaryFile("Peon.bin", ListPeones);
+		if (ListPeon[i]->Id == peon->Id) {
+			ListPeon[i] = peon;
+			Persistance::PersistBinaryFile("Peon.bin", ListPeon);
 			return 1;
 		}
 	}
@@ -178,11 +191,11 @@ int RobotMineroController::Controller::ActualizarPeon(Peon^ peon)
 
 int RobotMineroController::Controller::EliminarPeon(int id)
 {
-	for (int i = 0; i < ListPeones->Count; i++)
+	for (int i = 0; i < ListPeon->Count; i++)
 	{
-		if (ListPeones[i]->Id == id) {
-			ListPeones->RemoveAt(i);
-			Persistance::PersistBinaryFile("Peon.bin", ListPeones);
+		if (ListPeon[i]->Id == id) {
+			ListPeon->RemoveAt(i);
+			Persistance::PersistBinaryFile("Peon.bin", ListPeon);
 			return 1;
 		}
 	}
@@ -190,7 +203,7 @@ int RobotMineroController::Controller::EliminarPeon(int id)
 }
 Peon^ RobotMineroController::Controller::DevolverPeonPorID(int peonID) {
 	//Persistance::PersistancetextFile("resource.txt", repoResource);
-	for each (Peon ^ resource in ListPeones)
+	for each (Peon ^ resource in ListPeon)
 	{
 		if (resource->Id == peonID) {
 			return resource;

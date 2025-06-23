@@ -6,13 +6,12 @@ namespace RobotMineroModel {
 	public ref class Peon: public Usuario
 	{
 	public:
+		property int ContactoEmergencia;
+		property String^ CondicionesSalud;
 		property String^ SeguroMedico;
-		property int edad;
-		property String^ EppOptimus;
-		property int tanquesDeOxigeno;
-		property String^ MedicKit;
-		property int LastCheck;
-		property array<Byte>^ PhotoSimple;
-
+		property DateTime^ LastCheck;
+		//property String^ EppOptimus;
+		//property int tanquesDeOxigeno;
+		//property String^ MedicKit;
 	};
 }

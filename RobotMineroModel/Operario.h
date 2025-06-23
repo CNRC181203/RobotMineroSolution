@@ -4,7 +4,9 @@
 namespace RobotMineroModel {
 	public ref class Operario:public Usuario
 	{
-	public://faltan atributos
+	public:
+		property String^Especialidad;
+		property int NumeroIntervenciones;
 		void IniciarAnalisis();
 		void VisualizarReporteSimple();
 	};

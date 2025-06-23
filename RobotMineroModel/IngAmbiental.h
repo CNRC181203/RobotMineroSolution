@@ -4,7 +4,10 @@
 namespace RobotMineroModel {
 	public ref class IngAmbiental:public Usuario
 	{
-	public://faltan atributos
+	public:
+		String^ Especializacion;
+		String^ NumeroLicencia;
+		String^ EntidadCertificadora;
 		void VisualizarConcetracion();
 	};
 }

@@ -132,7 +132,10 @@
     <ClCompile Include="ReporteAmbientalForm.cpp" />
     <ClCompile Include="ReporteFuncionamientoForm.cpp" />
     <ClCompile Include="RobotMineroForm.cpp" />
+    <ClCompile Include="ShowDatesIngAmbiental.cpp" />
+    <ClCompile Include="ShowDatesOperario.cpp" />
     <ClCompile Include="ShowDatesPeonForm.cpp" />
+    <ClCompile Include="ShowDatesSupervisor.cpp" />
     <ClCompile Include="ShowDatesUserForm.cpp" />
     <ClCompile Include="SuperivsorForm.cpp" />
   </ItemGroup>
@@ -170,7 +173,16 @@
     <ClInclude Include="RobotMineroForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="ShowDatesIngAmbiental.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ShowDatesOperario.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="ShowDatesPeonForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ShowDatesSupervisor.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="ShowDatesUserForm.h">
@@ -208,8 +220,17 @@
     <EmbeddedResource Include="RobotMineroForm.resx">
       <DependentUpon>RobotMineroForm.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ShowDatesIngAmbiental.resx">
+      <DependentUpon>ShowDatesIngAmbiental.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShowDatesOperario.resx">
+      <DependentUpon>ShowDatesOperario.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ShowDatesPeonForm.resx">
       <DependentUpon>ShowDatesPeonForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShowDatesSupervisor.resx">
+      <DependentUpon>ShowDatesSupervisor.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ShowDatesUserForm.resx">
       <DependentUpon>ShowDatesUserForm.h</DependentUpon>

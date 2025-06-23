@@ -109,7 +109,7 @@ namespace RobotMineroGUIApp {
 			this->label3->Font = (gcnew System::Drawing::Font(L"Times New Roman", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label3->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->label3->Location = System::Drawing::Point(120, 154);
+			this->label3->Location = System::Drawing::Point(247, 156);
 			this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(110, 22);
@@ -118,7 +118,7 @@ namespace RobotMineroGUIApp {
 			// 
 			// textPasswordInput
 			// 
-			this->textPasswordInput->Location = System::Drawing::Point(304, 154);
+			this->textPasswordInput->Location = System::Drawing::Point(431, 156);
 			this->textPasswordInput->Margin = System::Windows::Forms::Padding(4);
 			this->textPasswordInput->Name = L"textPasswordInput";
 			this->textPasswordInput->PasswordChar = '*';
@@ -128,7 +128,7 @@ namespace RobotMineroGUIApp {
 			// bttnAddPassword
 			// 
 			this->bttnAddPassword->BackColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->bttnAddPassword->Location = System::Drawing::Point(124, 230);
+			this->bttnAddPassword->Location = System::Drawing::Point(137, 230);
 			this->bttnAddPassword->Margin = System::Windows::Forms::Padding(4);
 			this->bttnAddPassword->Name = L"bttnAddPassword";
 			this->bttnAddPassword->Size = System::Drawing::Size(100, 28);
@@ -140,7 +140,7 @@ namespace RobotMineroGUIApp {
 			// bttnCancelPassword
 			// 
 			this->bttnCancelPassword->BackColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->bttnCancelPassword->Location = System::Drawing::Point(365, 230);
+			this->bttnCancelPassword->Location = System::Drawing::Point(635, 230);
 			this->bttnCancelPassword->Margin = System::Windows::Forms::Padding(4);
 			this->bttnCancelPassword->Name = L"bttnCancelPassword";
 			this->bttnCancelPassword->Size = System::Drawing::Size(100, 28);
@@ -177,7 +177,7 @@ namespace RobotMineroGUIApp {
 		if (contrasenha == nullptr) {
 			MessageBox::Show("Debe ingresar alguna contraseña");
 		}
-		else if (contrasenha == "password123") {
+		else if (contrasenha == "1") {
 			MessageBox::Show("Bienvedido a la interfaz. Por favor haga click en 'Aceptar'");
 			RobotMineroForm^ robotMineroForm = gcnew RobotMineroForm();
 			robotMineroForm->Show();

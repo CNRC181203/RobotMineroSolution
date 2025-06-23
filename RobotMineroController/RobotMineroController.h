@@ -12,10 +12,13 @@ namespace RobotMineroController {
 		static List<Usuario^>^ usuariosNew = gcnew List<Usuario^>();
 		static int savedorId;
 
-		static List<Peon^>^ ListPeones = gcnew List<Peon^>();
+		static List<Peon^>^ ListPeon = gcnew List<Peon^>();
+		static List<IngAmbiental^>^ ListAmbiental = gcnew List<IngAmbiental^>();
+		static List<Operario^>^ ListOperario = gcnew List<Operario^>();
+		static List<Supervisor^>^ ListSupervisor = gcnew List<Supervisor^>();
 		
 	public:
-		//Meotodo adicionales
+		//Métodos adicionales
 		static void SaveId(int Id);
 		static int returnId();
 
@@ -25,8 +28,9 @@ namespace RobotMineroController {
 		static int  ActualizarUsuario(Usuario^ usuario);
 		static int  EliminarUsuario(int id);
 		static Usuario^ DevolverUsuarioPorID(int usuarioID);
+		static Usuario^ DevolverUsuarioPorNomUsuario(String^ NomUsuario);
 
-		//Meotodos CRUD Peon
+		//Métodos CRUD Peon
 		static int AgregarPeon(Peon^ peon);
 		static List<Peon^>^ ConsultarTodosPeones();
 		static int ActualizarPeon(Peon^ peon);

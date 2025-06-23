@@ -52,7 +52,8 @@ namespace RobotMineroGUIApp {
 	private: System::Windows::Forms::Label^ label1;
 	protected:
 	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::TextBox^ textIDLoginChamb;
+	private: System::Windows::Forms::TextBox^ textUsuario;
+
 
 	private: System::Windows::Forms::TextBox^ txtPasswordLoginChamb;
 	private: System::Windows::Forms::Button^ bttnAceppt2;
@@ -75,7 +76,7 @@ namespace RobotMineroGUIApp {
 		{
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->textIDLoginChamb = (gcnew System::Windows::Forms::TextBox());
+			this->textUsuario = (gcnew System::Windows::Forms::TextBox());
 			this->txtPasswordLoginChamb = (gcnew System::Windows::Forms::TextBox());
 			this->bttnAceppt2 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
@@ -88,9 +89,9 @@ namespace RobotMineroGUIApp {
 			this->label1->Location = System::Drawing::Point(101, 95);
 			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(47, 31);
+			this->label1->Size = System::Drawing::Size(105, 31);
 			this->label1->TabIndex = 0;
-			this->label1->Text = L"ID:";
+			this->label1->Text = L"Usuario:";
 			// 
 			// label2
 			// 
@@ -104,18 +105,18 @@ namespace RobotMineroGUIApp {
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"Contraseña:";
 			// 
-			// textIDLoginChamb
+			// textUsuario
 			// 
-			this->textIDLoginChamb->Location = System::Drawing::Point(288, 95);
-			this->textIDLoginChamb->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
-			this->textIDLoginChamb->Name = L"textIDLoginChamb";
-			this->textIDLoginChamb->Size = System::Drawing::Size(132, 22);
-			this->textIDLoginChamb->TabIndex = 2;
+			this->textUsuario->Location = System::Drawing::Point(288, 95);
+			this->textUsuario->Margin = System::Windows::Forms::Padding(4);
+			this->textUsuario->Name = L"textUsuario";
+			this->textUsuario->Size = System::Drawing::Size(132, 22);
+			this->textUsuario->TabIndex = 2;
 			// 
 			// txtPasswordLoginChamb
 			// 
 			this->txtPasswordLoginChamb->Location = System::Drawing::Point(288, 140);
-			this->txtPasswordLoginChamb->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->txtPasswordLoginChamb->Margin = System::Windows::Forms::Padding(4);
 			this->txtPasswordLoginChamb->Name = L"txtPasswordLoginChamb";
 			this->txtPasswordLoginChamb->Size = System::Drawing::Size(132, 22);
 			this->txtPasswordLoginChamb->TabIndex = 3;
@@ -123,7 +124,7 @@ namespace RobotMineroGUIApp {
 			// bttnAceppt2
 			// 
 			this->bttnAceppt2->Location = System::Drawing::Point(212, 215);
-			this->bttnAceppt2->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->bttnAceppt2->Margin = System::Windows::Forms::Padding(4);
 			this->bttnAceppt2->Name = L"bttnAceppt2";
 			this->bttnAceppt2->Size = System::Drawing::Size(100, 28);
 			this->bttnAceppt2->TabIndex = 4;
@@ -139,10 +140,10 @@ namespace RobotMineroGUIApp {
 			this->ClientSize = System::Drawing::Size(600, 277);
 			this->Controls->Add(this->bttnAceppt2);
 			this->Controls->Add(this->txtPasswordLoginChamb);
-			this->Controls->Add(this->textIDLoginChamb);
+			this->Controls->Add(this->textUsuario);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
-			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->Margin = System::Windows::Forms::Padding(4);
 			this->Name = L"LogingChambersForm";
 			this->Text = L"LogingChambersForm";
 			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &LogingChambersForm::LogingChambersForm_FormClosing);
@@ -157,61 +158,58 @@ private: System::Void LogingChambersForm_Load(System::Object^ sender, System::Ev
 private: bool cerradoPorCodigo = false;
 	
 private: System::Void bttnAceppt2_Click(System::Object^ sender, System::EventArgs^ e) {
-	int extractID = Int32::Parse(textIDLoginChamb->Text);
-	List<Usuario^>^ ususarioLoginChamb = Controller::ConsultarTodosUsuario();
-	bool centinel_valid = 0;
-	for (int i = 0; i < ususarioLoginChamb->Count; i++)
-	{
-		if (ususarioLoginChamb[i]->Id == extractID) {
-			centinel_valid = 1;
-			break;
-		}
-	}
-	if (centinel_valid == 0) {
-		MessageBox::Show("No se encontro la ID");
-	}
-	else {
-		Usuario^ Users_Valid = Controller::DevolverUsuarioPorID(extractID);
-		Controller::SaveId(extractID);
-		String^ extractPassword = txtPasswordLoginChamb->Text;
+	try {
+		String^ NombreUsuario = textUsuario->Text->Trim();
+		if (Controller::DevolverUsuarioPorNomUsuario(NombreUsuario) != nullptr) {
+			Usuario^ user = Controller::DevolverUsuarioPorNomUsuario(NombreUsuario);
 
-		if (extractPassword == Users_Valid->contrasenha) {
-			String^ mensaje = String::Format("Bienvenido {0} {1}", Users_Valid->Nombre, Users_Valid->Apelllido);
-			MessageBox::Show(mensaje);
-			Controller::SaveId(Users_Valid->Id);
-			cerradoPorCodigo = true;
-			this->Close();
-			if (Users_Valid->Cargo == "Operario") {
 
-				OperarioForm^ showOperario = gcnew OperarioForm();
+			String^ extractPassword = txtPasswordLoginChamb->Text;
 
-				showOperario->Show();
-			}
-			else {
-				if (Users_Valid->Cargo == "IngAmbiental") {
-					IngAmbientalForm^ showIng = gcnew IngAmbientalForm();
+			if (extractPassword == user->contrasenha) {
+				String^ mensaje = String::Format("Bienvenido {0} {1}", user->Nombre, user->Apelllido);
+				MessageBox::Show(mensaje);
+				Controller::SaveId(user->Id);
+				cerradoPorCodigo = true;
+				this->Close();
+				if (user->Cargo == "Operario") {
 
-					showIng->Show();
+					OperarioForm^ showOperario = gcnew OperarioForm();
+
+					showOperario->Show();
 				}
 				else {
-					if (Users_Valid->Cargo == "Supervisor") {
-						SuperivsorForm^ showSupervisor = gcnew SuperivsorForm();
+					if (user->Cargo == "IngAmbiental") {
+						IngAmbientalForm^ showIng = gcnew IngAmbientalForm();
 
-						showSupervisor->Show();
+						showIng->Show();
 					}
 					else {
-						if (Users_Valid->Cargo == "Peon") {
-							PeonForm^ showPeon = gcnew PeonForm();
+						if (user->Cargo == "Supervisor") {
+							SuperivsorForm^ showSupervisor = gcnew SuperivsorForm();
 
-							showPeon->Show();
+							showSupervisor->Show();
+						}
+						else {
+							if (user->Cargo == "Peon") {
+								PeonForm^ showPeon = gcnew PeonForm();
+
+								showPeon->Show();
+							}
 						}
 					}
 				}
 			}
+			else {
+				MessageBox::Show("La contraseña es incorrecta");
+			}
 		}
 		else {
-			MessageBox::Show("La contraseña es incorrecta");
+			MessageBox::Show("Nombre de usuario no encontrado");
 		}
+	}
+	catch (Exception^ ex) {
+		throw ex;
 	}
 }
 private: System::Void LogingChambersForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e);
