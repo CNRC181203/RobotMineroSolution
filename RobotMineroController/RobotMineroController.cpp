@@ -211,6 +211,74 @@ Peon^ RobotMineroController::Controller::DevolverPeonPorID(int peonID) {
 	}
 	return nullptr;
 }
+				// Actuador 
+int RobotMineroController::Controller::AgregarActuador(Actuador^ actuador)
+{
+	try {
+		ListActuador->Add(actuador);
+		Persistance::PersistBinaryFile("Actuador.bin", ListActuador);
+		return 1;
+	}
+	catch (Exception^ ex) {
+		throw ex;
+	}
+	return 0;
+}
+
+List<Actuador^>^ RobotMineroController::Controller::ConsultarTodosActuadores()
+{
+	ListActuador = (List<Actuador^>^) Persistance::LoadBinaryFile("Actuador.bin");
+	if (ListActuador == nullptr)
+		ListActuador = gcnew List<Actuador^>();
+	return ListActuador;
+	
+}
+
+int RobotMineroController::Controller::ActualizarActuador(Actuador^ actuador)
+{
+	for (int i = 0; i < ListActuador->Count; i++)
+	{
+		if (ListActuador[i]->Id == actuador->Id) {
+			ListActuador[i] = actuador;
+			Persistance::PersistBinaryFile("Actuador.bin", ListActuador);
+			return 1;
+		}
+	}
+	return 0;
+}
+
+int RobotMineroController::Controller::EliminarActuador(int id)
+{
+	for (int i = 0; i < ListActuador->Count; i++)
+	{
+		if (ListActuador[i]->Id == id) {
+			ListActuador->RemoveAt(i);
+			Persistance::PersistBinaryFile("Actuador.bin", ListActuador);
+			return 1;
+		}
+	}
+	return 0;
+}
+
+Actuador^ RobotMineroController::Controller::DevolverActuadorPorID(int actuadorID)
+{
+	for each (Actuador ^ resource in ListActuador)
+	{
+		if (resource->Id == actuadorID) {
+			return resource;
+		}
+	}
+	return nullptr;
+		
+}
+
+
+
+
+
+
+
+
 void RobotMineroController::Controller::SaveId(int Id)
 {
 	savedorId = Id;  // inicializado

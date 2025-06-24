@@ -16,6 +16,7 @@ namespace RobotMineroController {
 		static List<IngAmbiental^>^ ListAmbiental = gcnew List<IngAmbiental^>();
 		static List<Operario^>^ ListOperario = gcnew List<Operario^>();
 		static List<Supervisor^>^ ListSupervisor = gcnew List<Supervisor^>();
+		static List<Actuador^>^ ListActuador = gcnew List<Actuador^>();
 		
 	public:
 		//Métodos adicionales
@@ -36,6 +37,13 @@ namespace RobotMineroController {
 		static int ActualizarPeon(Peon^ peon);
 		static int EliminarPeon(int id);
 		static Peon^ DevolverPeonPorID(int peonID);
+
+		//Metodos GRUD ACtuador
+		static int AgregarActuador(Actuador^ actuador);
+		static List<Actuador^>^ ConsultarTodosActuadores();
+		static int ActualizarActuador(Actuador^ actuador);
+		static int EliminarActuador(int id);
+		static Actuador^ DevolverActuadorPorID(int actuadorID);
 
 
 		//=== falta definir ==== 

@@ -126,7 +126,9 @@
     <ClCompile Include="IngAmbientalForm.cpp" />
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="LogingChambersForm.cpp" />
+    <ClCompile Include="ManteniminetoAckermanForm.cpp" />
     <ClCompile Include="MapaPeonForm.cpp" />
+    <ClCompile Include="OpcionesCarritoForm.cpp" />
     <ClCompile Include="OperarioForm.cpp" />
     <ClCompile Include="PeonForm.cpp" />
     <ClCompile Include="ReporteAmbientalForm.cpp" />
@@ -155,7 +157,13 @@
     <ClInclude Include="LogingChambersForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="ManteniminetoAckermanForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="MapaPeonForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="OpcionesCarritoForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="OperarioForm.h">
@@ -208,8 +216,14 @@
     <EmbeddedResource Include="LogingChambersForm.resx">
       <DependentUpon>LogingChambersForm.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ManteniminetoAckermanForm.resx">
+      <DependentUpon>ManteniminetoAckermanForm.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MapaPeonForm.resx">
       <DependentUpon>MapaPeonForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OpcionesCarritoForm.resx">
+      <DependentUpon>OpcionesCarritoForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OperarioForm.resx">
       <DependentUpon>OperarioForm.h</DependentUpon>

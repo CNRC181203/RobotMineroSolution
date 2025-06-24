@@ -1,10 +1,13 @@
 #pragma once
+#include"Actuador.h"
 
 namespace RobotMineroModel {
-	public ref class Servomotor
+	[Serializable]
+	public ref class Servomotor : public Actuador
 	{
 	public: 
 		double angulo;
+		Servomotor() {}
 	};
 }
 //

@@ -1,11 +1,14 @@
 #pragma once
 using namespace System;
+#include"Actuador.h"
 
 namespace RobotMineroModel {
-	public ref class Sensor
+	[Serializable]
+	public ref class Sensor : public Actuador
 	{
 	public:
 		int Id;
 		String^ NumeroSerie;
+		Sensor() {}
 	};
 }
