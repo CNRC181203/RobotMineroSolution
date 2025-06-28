@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ShowDatesUserForm.h"
+#include "ShowDatesOperario.h"
 #include "ReporteFuncionamientoForm.h"
 namespace RobotMineroGUIApp {
 
@@ -156,7 +156,7 @@ namespace RobotMineroGUIApp {
 private: System::Void OperarioForm_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void bttnShowMydatesO_Click(System::Object^ sender, System::EventArgs^ e) {
-	ShowDatesUserForm^pantallaOperario = gcnew ShowDatesUserForm();
+	ShowDatesOperario^pantallaOperario = gcnew ShowDatesOperario();
 	pantallaOperario->Show();
 	this->Hide();
 }

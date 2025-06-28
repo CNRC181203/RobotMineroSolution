@@ -389,7 +389,7 @@ namespace RobotMineroGUIApp {
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->pbShowImagePeon);
 			this->Name = L"ShowDatesSupervisor";
-			this->Text = L"Entidad de capacitación";
+			this->Text = L"Mis datos";
 			this->Load += gcnew System::EventHandler(this, &ShowDatesSupervisor::ShowDatesSupervisor_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbShowImagePeon))->EndInit();
 			this->ResumeLayout(false);

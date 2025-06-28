@@ -122,6 +122,7 @@
     <ClInclude Include="Actuador.h" />
     <ClInclude Include="CarroMinero.h" />
     <ClInclude Include="IngAmbiental.h" />
+    <ClInclude Include="JefeInventario.h" />
     <ClInclude Include="MapaMina.h" />
     <ClInclude Include="MapaMinaAvanzado.h" />
     <ClInclude Include="Motor.h" />
@@ -146,6 +147,7 @@
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="CarroMinero.cpp" />
     <ClCompile Include="IngAmbiental.cpp" />
+    <ClCompile Include="JefeInventario.cpp" />
     <ClCompile Include="MapaMina.cpp" />
     <ClCompile Include="MapaMinaAvanzado.cpp" />
     <ClCompile Include="Motor.cpp" />

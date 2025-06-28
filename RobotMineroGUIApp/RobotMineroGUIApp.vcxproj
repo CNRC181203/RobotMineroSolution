@@ -124,8 +124,10 @@
     <ClCompile Include="FirstStepForm.cpp" />
     <ClCompile Include="GraficasTrabajadoresForm.cpp" />
     <ClCompile Include="IngAmbientalForm.cpp" />
+    <ClCompile Include="JefeInventarioForm.cpp" />
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="LogingChambersForm.cpp" />
+    <ClCompile Include="MantenimientoActuadoresForm.cpp" />
     <ClCompile Include="MapaPeonForm.cpp" />
     <ClCompile Include="OperarioForm.cpp" />
     <ClCompile Include="PeonForm.cpp" />
@@ -149,10 +151,16 @@
     <ClInclude Include="IngAmbientalForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="JefeInventarioForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="LoginForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="LogingChambersForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="MantenimientoActuadoresForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="MapaPeonForm.h">
@@ -202,11 +210,17 @@
     <EmbeddedResource Include="IngAmbientalForm.resx">
       <DependentUpon>IngAmbientalForm.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="JefeInventarioForm.resx">
+      <DependentUpon>JefeInventarioForm.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LogingChambersForm.resx">
       <DependentUpon>LogingChambersForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantenimientoActuadoresForm.resx">
+      <DependentUpon>MantenimientoActuadoresForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MapaPeonForm.resx">
       <DependentUpon>MapaPeonForm.h</DependentUpon>

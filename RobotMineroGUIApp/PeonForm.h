@@ -133,7 +133,7 @@ namespace RobotMineroGUIApp {
 	private: System::Void PeonForm_Load(System::Object^ sender, System::EventArgs^ e) {
 		int extractIdPeonNew = Controller::returnId();
 
-		Usuario^ ObjectPeonUser = gcnew Usuario();
+		/*XUsuario^ ObjectPeonUser = gcnew Usuario();
 		ObjectPeonUser = Controller::DevolverUsuarioPorID(extractIdPeonNew);
 
 		Peon^ ObjectPeonUserNew = gcnew Peon();
@@ -146,6 +146,7 @@ namespace RobotMineroGUIApp {
 		ObjectPeonUserNew->Photo = ObjectPeonUser->Photo;
 
 		Controller::AgregarPeon(ObjectPeonUserNew);	
+		*/
 	}
 	private: System::Void bttnShowMydatesP_Click(System::Object^ sender, System::EventArgs^ e) {
 		ShowDatesPeonForm^ pantallaPeon = gcnew ShowDatesPeonForm();

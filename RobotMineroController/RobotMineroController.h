@@ -16,6 +16,7 @@ namespace RobotMineroController {
 		static List<IngAmbiental^>^ ListAmbiental = gcnew List<IngAmbiental^>();
 		static List<Operario^>^ ListOperario = gcnew List<Operario^>();
 		static List<Supervisor^>^ ListSupervisor = gcnew List<Supervisor^>();
+		static List<JefeInventario^>^ListJefeInventario = gcnew List<JefeInventario^>();
 		
 	public:
 		//Métodos adicionales
@@ -29,13 +30,32 @@ namespace RobotMineroController {
 		static int  EliminarUsuario(int id);
 		static Usuario^ DevolverUsuarioPorID(int usuarioID);
 		static Usuario^ DevolverUsuarioPorNomUsuario(String^ NomUsuario);
-
+		//Métodos CRUD Operario
+		static Operario^ DevolverOperarioPorID(int operarioId);
+		static int ActualizarOperario(Operario^ operario);
+		static List<Operario^>^ ConsultarTodosOperarios();
+		static int EliminarOperario(int oprarioId);
 		//Métodos CRUD Peon
-		static int AgregarPeon(Peon^ peon);
 		static List<Peon^>^ ConsultarTodosPeones();
 		static int ActualizarPeon(Peon^ peon);
 		static int EliminarPeon(int id);
 		static Peon^ DevolverPeonPorID(int peonID);
+		//Métodos CRUD Supervisor
+		static Supervisor^ DevolverSupervisorPorID(int supervisorId);
+		static int ActualizarSupervisor(Supervisor^ supervisor);
+		static List<Supervisor^>^ ConsultarTodosSupervisores();
+		static int EliminarSupervisor(int supervisorId);
+		//Métodos CRUD IngAmbiental
+		static IngAmbiental^ DevolverIngAmbientalPorID(int IngAmbientalId);
+		static int ActualizarIngAmbiental(IngAmbiental^ IngAmbiental);
+		static List<IngAmbiental^>^ ConsultarTodosIngAmbientales();
+		static int EliminarIngAmbiental(int IngAmbientalId);
+		//Métodos CRUD Jeje de inventario
+		static JefeInventario^ DevolverJefeInventarioPorID(int JefeInventarioId);
+		static int ActualizarJefeInventario(JefeInventario^ jefeInventario);
+		static List<JefeInventario^>^ ConsultarJefeInventario();
+		static int EliminarJefeInventario(int JefeInventarioId);
+
 
 
 		//=== falta definir ==== 

@@ -56,7 +56,7 @@ namespace RobotMineroConsoleApp {
                         break;
                     }
 
-                    Usuario^ usuario = gcnew Usuario(id, nombre, apellido, salario, cargo);
+                    Usuario^ usuario = gcnew Usuario();
                     Controller::AgregarUsuario(usuario); // Agregar el usuario al sistema
                     Console::WriteLine("Usuario registrado exitosamente.");
                     break;
@@ -99,7 +99,7 @@ namespace RobotMineroConsoleApp {
                         }
 
                         // Actualizar el cargo del usuario
-                        usuario->Cargo = nuevoCargo;
+                        //Usuario->Cargo = nuevoCargo;
                         Controller::ActualizarUsuario(usuario);
                         Console::WriteLine("Usuario actualizado exitosamente.");
                     }

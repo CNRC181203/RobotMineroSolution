@@ -1,5 +1,5 @@
 #pragma once
-#include "ShowDatesUserForm.h"
+#include "ShowDatesSupervisor.h"
 namespace RobotMineroGUIApp {
 
 	using namespace System;
@@ -115,7 +115,7 @@ namespace RobotMineroGUIApp {
 	private: System::Void SuperivsorForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void bttnShowMydatesS_Click(System::Object^ sender, System::EventArgs^ e) {
-		ShowDatesUserForm^ pantallaSupervisor = gcnew ShowDatesUserForm();
+		ShowDatesSupervisor^ pantallaSupervisor = gcnew ShowDatesSupervisor();
 		pantallaSupervisor->Show();
 		this->Hide();
 	}

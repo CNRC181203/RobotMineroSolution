@@ -11,7 +11,7 @@ namespace RobotMineroModel {
 		property String^ NombreUsuario;
 		property String^ Apelllido;
 		property double Salario;
-		property String^ Cargo;
+		//property String^ Cargo;
 		property String^ contrasenha;
 		property DateTime^ FechaFirst;
 		property DateTime^ FechaEnd;
@@ -19,15 +19,9 @@ namespace RobotMineroModel {
 		property int Edad;
 		property int NumeroTelefono;
 
-		Usuario() {}
-
-		Usuario(int id,String^ nombre, String^ apellido, double salario, String^ cargo) {
-			Id = id;
-			Nombre = nombre; 
-			Apelllido = apellido;
-			Salario = salario;
-			Cargo = cargo;
-			
+		Usuario() {
+			Edad = 0;
+			NumeroTelefono = 0;
 		}
 	};
 

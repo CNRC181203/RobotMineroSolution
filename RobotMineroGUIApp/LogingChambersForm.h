@@ -3,6 +3,8 @@
 #include "PeonForm.h"
 #include "SuperivsorForm.h"
 #include "IngAmbientalForm.h"
+#include "JefeInventarioForm.h"
+
 
 #include "ShowDatesUserForm.h"
 
@@ -162,8 +164,6 @@ private: System::Void bttnAceppt2_Click(System::Object^ sender, System::EventArg
 		String^ NombreUsuario = textUsuario->Text->Trim();
 		if (Controller::DevolverUsuarioPorNomUsuario(NombreUsuario) != nullptr) {
 			Usuario^ user = Controller::DevolverUsuarioPorNomUsuario(NombreUsuario);
-
-
 			String^ extractPassword = txtPasswordLoginChamb->Text;
 
 			if (extractPassword == user->contrasenha) {
@@ -172,29 +172,38 @@ private: System::Void bttnAceppt2_Click(System::Object^ sender, System::EventArg
 				Controller::SaveId(user->Id);
 				cerradoPorCodigo = true;
 				this->Close();
-				if (user->Cargo == "Operario") {
+				if (user->GetType() == Operario::typeid) {
 
 					OperarioForm^ showOperario = gcnew OperarioForm();
 
 					showOperario->Show();
 				}
 				else {
-					if (user->Cargo == "IngAmbiental") {
+					if (user->GetType() == IngAmbiental::typeid) {
 						IngAmbientalForm^ showIng = gcnew IngAmbientalForm();
 
 						showIng->Show();
 					}
 					else {
-						if (user->Cargo == "Supervisor") {
+						if (user->GetType() == Supervisor::typeid) {
 							SuperivsorForm^ showSupervisor = gcnew SuperivsorForm();
 
 							showSupervisor->Show();
 						}
 						else {
-							if (user->Cargo == "Peon") {
+							if (user->GetType() == Peon::typeid) {
 								PeonForm^ showPeon = gcnew PeonForm();
 
 								showPeon->Show();
+							}
+							else {
+								if (user->GetType() == JefeInventario::typeid) {
+									JefeInventarioForm^ showJefeInv = gcnew JefeInventarioForm();
+									showJefeInv->Show();
+								}
+								else {
+									MessageBox::Show("Tipo de usuario no reconocido");
+								}
 							}
 						}
 					}

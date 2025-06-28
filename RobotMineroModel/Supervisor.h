@@ -2,6 +2,7 @@
 #include"Usuario.h"
 
 namespace RobotMineroModel {
+	[Serializable]
 	public ref class Supervisor:public Usuario
 	{
 	public:	

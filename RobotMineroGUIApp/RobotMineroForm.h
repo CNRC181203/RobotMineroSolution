@@ -14,7 +14,7 @@ namespace RobotMineroGUIApp {
 
 	using namespace System::Collections::Generic;
 
-	public enum class CargoType {Peon, Operario, IngAmbiental, Supervisor};
+	public enum class CargoType {Peon, Operario, IngAmbiental, Supervisor,JefeInventario};
 
 	/// <summary>
 	/// Resumen de RobotMineroForm
@@ -149,15 +149,6 @@ namespace RobotMineroGUIApp {
 			this->btmModificarrecurso = (gcnew System::Windows::Forms::Button());
 			this->btmEliminarRecurso = (gcnew System::Windows::Forms::Button());
 			this->dgvRecursos = (gcnew System::Windows::Forms::DataGridView());
-			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->txtContrasenha = (gcnew System::Windows::Forms::TextBox());
-			this->dtpStart = (gcnew System::Windows::Forms::DateTimePicker());
-			this->dtpEnd = (gcnew System::Windows::Forms::DateTimePicker());
-			this->label7 = (gcnew System::Windows::Forms::Label());
-			this->label8 = (gcnew System::Windows::Forms::Label());
-			this->pbImage = (gcnew System::Windows::Forms::PictureBox());
-			this->btnUpdateImage = (gcnew System::Windows::Forms::Button());
-			this->btnGraficas = (gcnew System::Windows::Forms::Button());
 			this->RecursoId = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->RecursoNombre = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->RecursoApellido = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -167,6 +158,15 @@ namespace RobotMineroGUIApp {
 			this->dgvInicio = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->dgvFin = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->NombreUsuario = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->label6 = (gcnew System::Windows::Forms::Label());
+			this->txtContrasenha = (gcnew System::Windows::Forms::TextBox());
+			this->dtpStart = (gcnew System::Windows::Forms::DateTimePicker());
+			this->dtpEnd = (gcnew System::Windows::Forms::DateTimePicker());
+			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->label8 = (gcnew System::Windows::Forms::Label());
+			this->pbImage = (gcnew System::Windows::Forms::PictureBox());
+			this->btnUpdateImage = (gcnew System::Windows::Forms::Button());
+			this->btnGraficas = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvRecursos))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbImage))->BeginInit();
 			this->SuspendLayout();
@@ -251,14 +251,14 @@ namespace RobotMineroGUIApp {
 			// cmbRecursoCargo
 			// 
 			this->cmbRecursoCargo->FormattingEnabled = true;
-			this->cmbRecursoCargo->Items->AddRange(gcnew cli::array< System::Object^  >(4) {
+			this->cmbRecursoCargo->Items->AddRange(gcnew cli::array< System::Object^  >(5) {
 				L"Trabajador de campo", L"Operario", L"IngAmbiental",
-					L"Supervisor"
+					L"Supervisor", L"Jefe de Inventario"
 			});
 			this->cmbRecursoCargo->Location = System::Drawing::Point(93, 181);
 			this->cmbRecursoCargo->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->cmbRecursoCargo->Name = L"cmbRecursoCargo";
-			this->cmbRecursoCargo->Size = System::Drawing::Size(129, 24);
+			this->cmbRecursoCargo->Size = System::Drawing::Size(206, 24);
 			this->cmbRecursoCargo->TabIndex = 9;
 			this->cmbRecursoCargo->SelectedIndexChanged += gcnew System::EventHandler(this, &RobotMineroForm::cmbRecursoCargo_SelectedIndexChanged);
 			// 
@@ -313,6 +313,69 @@ namespace RobotMineroGUIApp {
 			this->dgvRecursos->TabIndex = 14;
 			this->dgvRecursos->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &RobotMineroForm::dgvRecursos_CellClick);
 			this->dgvRecursos->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &RobotMineroForm::dgvRecursos_CellContentClick);
+			// 
+			// RecursoId
+			// 
+			this->RecursoId->HeaderText = L"ID";
+			this->RecursoId->MinimumWidth = 6;
+			this->RecursoId->Name = L"RecursoId";
+			this->RecursoId->Width = 70;
+			// 
+			// RecursoNombre
+			// 
+			this->RecursoNombre->HeaderText = L"Nombre";
+			this->RecursoNombre->MinimumWidth = 6;
+			this->RecursoNombre->Name = L"RecursoNombre";
+			this->RecursoNombre->Width = 125;
+			// 
+			// RecursoApellido
+			// 
+			this->RecursoApellido->HeaderText = L"Apellido";
+			this->RecursoApellido->MinimumWidth = 6;
+			this->RecursoApellido->Name = L"RecursoApellido";
+			this->RecursoApellido->Width = 125;
+			// 
+			// RecursoSalario
+			// 
+			this->RecursoSalario->HeaderText = L"Salario";
+			this->RecursoSalario->MinimumWidth = 6;
+			this->RecursoSalario->Name = L"RecursoSalario";
+			this->RecursoSalario->Width = 75;
+			// 
+			// recursoCargo
+			// 
+			this->recursoCargo->HeaderText = L"Cargo";
+			this->recursoCargo->MinimumWidth = 6;
+			this->recursoCargo->Name = L"recursoCargo";
+			this->recursoCargo->Width = 125;
+			// 
+			// RecursoContrasenha
+			// 
+			this->RecursoContrasenha->HeaderText = L"Contraseña";
+			this->RecursoContrasenha->MinimumWidth = 6;
+			this->RecursoContrasenha->Name = L"RecursoContrasenha";
+			this->RecursoContrasenha->Width = 125;
+			// 
+			// dgvInicio
+			// 
+			this->dgvInicio->HeaderText = L"Inicio";
+			this->dgvInicio->MinimumWidth = 6;
+			this->dgvInicio->Name = L"dgvInicio";
+			this->dgvInicio->Width = 120;
+			// 
+			// dgvFin
+			// 
+			this->dgvFin->HeaderText = L"Fin";
+			this->dgvFin->MinimumWidth = 6;
+			this->dgvFin->Name = L"dgvFin";
+			this->dgvFin->Width = 120;
+			// 
+			// NombreUsuario
+			// 
+			this->NombreUsuario->HeaderText = L"Usuario";
+			this->NombreUsuario->MinimumWidth = 6;
+			this->NombreUsuario->Name = L"NombreUsuario";
+			this->NombreUsuario->Width = 125;
 			// 
 			// label6
 			// 
@@ -403,69 +466,6 @@ namespace RobotMineroGUIApp {
 			this->btnGraficas->UseVisualStyleBackColor = true;
 			this->btnGraficas->Click += gcnew System::EventHandler(this, &RobotMineroForm::btnGraficas_Click);
 			// 
-			// RecursoId
-			// 
-			this->RecursoId->HeaderText = L"ID";
-			this->RecursoId->MinimumWidth = 6;
-			this->RecursoId->Name = L"RecursoId";
-			this->RecursoId->Width = 70;
-			// 
-			// RecursoNombre
-			// 
-			this->RecursoNombre->HeaderText = L"Nombre";
-			this->RecursoNombre->MinimumWidth = 6;
-			this->RecursoNombre->Name = L"RecursoNombre";
-			this->RecursoNombre->Width = 125;
-			// 
-			// RecursoApellido
-			// 
-			this->RecursoApellido->HeaderText = L"Apellido";
-			this->RecursoApellido->MinimumWidth = 6;
-			this->RecursoApellido->Name = L"RecursoApellido";
-			this->RecursoApellido->Width = 125;
-			// 
-			// RecursoSalario
-			// 
-			this->RecursoSalario->HeaderText = L"Salario";
-			this->RecursoSalario->MinimumWidth = 6;
-			this->RecursoSalario->Name = L"RecursoSalario";
-			this->RecursoSalario->Width = 75;
-			// 
-			// recursoCargo
-			// 
-			this->recursoCargo->HeaderText = L"Cargo";
-			this->recursoCargo->MinimumWidth = 6;
-			this->recursoCargo->Name = L"recursoCargo";
-			this->recursoCargo->Width = 125;
-			// 
-			// RecursoContrasenha
-			// 
-			this->RecursoContrasenha->HeaderText = L"Contraseña";
-			this->RecursoContrasenha->MinimumWidth = 6;
-			this->RecursoContrasenha->Name = L"RecursoContrasenha";
-			this->RecursoContrasenha->Width = 125;
-			// 
-			// dgvInicio
-			// 
-			this->dgvInicio->HeaderText = L"Inicio";
-			this->dgvInicio->MinimumWidth = 6;
-			this->dgvInicio->Name = L"dgvInicio";
-			this->dgvInicio->Width = 120;
-			// 
-			// dgvFin
-			// 
-			this->dgvFin->HeaderText = L"Fin";
-			this->dgvFin->MinimumWidth = 6;
-			this->dgvFin->Name = L"dgvFin";
-			this->dgvFin->Width = 120;
-			// 
-			// NombreUsuario
-			// 
-			this->NombreUsuario->HeaderText = L"Usuario";
-			this->NombreUsuario->MinimumWidth = 6;
-			this->NombreUsuario->Name = L"NombreUsuario";
-			this->NombreUsuario->Width = 125;
-			// 
 			// RobotMineroForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -547,7 +547,37 @@ namespace RobotMineroGUIApp {
 			}
 			Random^ rand = gcnew Random();
 			String^ NombUsuario = UsuarioNewName->Substring(0, Math::Min(3, UsuarioNewName->Length)) + rand->Next(10, 100).ToString();
-			Usuario^ usuarioNew = gcnew Usuario();
+			int selectedIndex = cmbRecursoCargo->SelectedIndex;
+
+			if (selectedIndex < 0) {
+				MessageBox::Show("Debe seleccionar algun cargo");
+				return;
+			}
+			CargoType estadoType = static_cast<CargoType>(selectedIndex);
+			//String^ cargoNew = nullptr;
+			Usuario^ usuarioNew;
+			switch (estadoType) {
+				case CargoType::Peon:
+					usuarioNew=gcnew Peon();
+					//cargoNew = "Peon";
+					break;
+				case CargoType::Operario:
+					usuarioNew = gcnew Operario();
+					//cargoNew = "Operario";
+					break;
+				case CargoType::IngAmbiental:
+					usuarioNew = gcnew IngAmbiental();
+					//cargoNew = "IngAmbiental";
+					break;
+				case CargoType::Supervisor:
+					usuarioNew = gcnew Supervisor();
+					//cargoNew = "Supervisor";
+					break;
+				case CargoType::JefeInventario:
+					usuarioNew = gcnew JefeInventario();
+					//cargoNew = "JefeInventario";
+					break;
+			}
 			usuarioNew->Id = UsuarioNewID;
 			usuarioNew->Nombre = UsuarioNewName;
 			usuarioNew->Apelllido = UsuarioLastName;
@@ -560,36 +590,6 @@ namespace RobotMineroGUIApp {
 			if (UsuarioContrasenha->Length == 0) {
 				MessageBox::Show("La cotraseña no debe estar vacia");
 			}
-
-			/////////////////////////////////////////////////////////////////////////////
-			int selectedIndex = cmbRecursoCargo->SelectedIndex;
-
-			if (selectedIndex < 0) {
-				MessageBox::Show("Debe seleccionar algun cargo");
-				return;
-			}
-
-			CargoType estadoType = static_cast<CargoType>(selectedIndex);
-			String^ cargoNew = nullptr;
-
-			switch (estadoType) {
-			case CargoType::Peon:
-				cargoNew = "Peon";
-				break;
-			case CargoType::Operario:
-				cargoNew = "Operario";
-				break;
-			case CargoType::IngAmbiental:
-				cargoNew = "IngAmbiental";
-				break;
-			case CargoType::Supervisor:
-				cargoNew = "Supervisor";
-				break;
-			}
-
-			usuarioNew->Cargo = cargoNew;
-			////////////////////////////////////////////////////////////////////////////
-
 			if (pbImage != nullptr && pbImage->Image != nullptr) {
 				System::IO::MemoryStream^ ms = gcnew System::IO::MemoryStream();
 				pbImage->Image->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
@@ -611,12 +611,23 @@ namespace RobotMineroGUIApp {
 					 dgvRecursos->Rows->Clear();
 
 					 for (int i = 0; i < ususarioNewNew->Count;i++) {
+						 String^ Cargo;
+						 if (ususarioNewNew[i]->GetType() == Peon::typeid)
+							 Cargo = "Peon";
+						 else if (ususarioNewNew[i]->GetType() == Operario::typeid)
+							 Cargo = "Operario";
+						 else if (ususarioNewNew[i]->GetType() == IngAmbiental::typeid)
+							 Cargo = "IngAmbiental";
+						 else if (ususarioNewNew[i]->GetType() == Supervisor::typeid)
+							 Cargo = "Supervisor";
+						 else if (ususarioNewNew[i]->GetType() == JefeInventario::typeid)
+							 Cargo = "JefeInventario";
 						 dgvRecursos->Rows->Add(gcnew array<String^>{
 							 "" + ususarioNewNew[i]->Id,
 								 ususarioNewNew[i]->Nombre,
 								 "" + ususarioNewNew[i]->Apelllido,
 								 "" + ususarioNewNew[i]->Salario,
-								 ususarioNewNew[i]->Cargo,
+								 Cargo,
 								 ususarioNewNew[i]->contrasenha,
 								 ususarioNewNew[i]->FechaFirst != nullptr ? ususarioNewNew[i]->FechaFirst->ToString() : "",
 								 ususarioNewNew[i]->FechaEnd != nullptr ? ususarioNewNew[i]->FechaEnd->ToString() : "", 
@@ -630,79 +641,25 @@ namespace RobotMineroGUIApp {
 	private: System::Void btmEliminarRecurso_Click(System::Object^ sender, System::EventArgs^ e) {
 		try {
 			int UsuarioNewID = Int32::Parse(txtRecursoId->Text);
-			if (UsuarioNewID < 0) {
-				MessageBox::Show("El ID debe ser mayor a 0");
-				return;
-			}
-			String^ UsuarioNewName = txtRecursoNombre->Text;
-			if (UsuarioNewName->Length == 0) {
-				MessageBox::Show("El nombre del usuario no debe estar vacío");
-				return;
-			}
-			String^ UsuarioLastName = txtRecursoApellido->Text->Trim();
-			if (UsuarioLastName->Length == 0) {
-				MessageBox::Show("El apellido del ususario no debe estar vacio");
-				return;
-			}
-			double UsuarioSalario = Double::Parse(txtRecursoSalario->Text->Trim());
-			if (UsuarioSalario <= 0) {
-				MessageBox::Show("El salario debe ser mayor a 0");
-				return;
-			}
-			DateTime^ scheduleStart = dtpStart->Value;
-			if (scheduleStart == nullptr) {
-				MessageBox::Show("La fecha no debe estar vacia");
-			}
-			DateTime^ scheduleEnd = dtpEnd->Value;
-			if (scheduleEnd == nullptr) {
-				MessageBox::Show("La fecha no debe estar vacia");
-			}
-
-			Usuario^ usuarioNew = gcnew Usuario();
-			usuarioNew->Id = UsuarioNewID;
-			usuarioNew->Nombre = UsuarioNewName;
-			usuarioNew->Apelllido = UsuarioLastName;
-			usuarioNew->Salario = UsuarioSalario;
-			usuarioNew->FechaFirst = scheduleStart;
-			usuarioNew->FechaEnd = scheduleEnd;
-
-			String^ UsuarioContrasenha = txtContrasenha->Text;
-			usuarioNew->contrasenha = UsuarioContrasenha;
-			/////////////////////////////////////////////////////////////////////////////
-			int selectedIndex = cmbRecursoCargo->SelectedIndex;
-
-			if (selectedIndex < 0) {
-				MessageBox::Show("Debe seleccionar algun cargo");
-				return;
-			}
-
-			CargoType estadoType = static_cast<CargoType>(selectedIndex);
-			String^ cargoNew = nullptr;
-
-			switch (estadoType) {
-			case CargoType::Peon:
-				cargoNew = "Peon";
-				break;
-			case CargoType::Operario:
-				cargoNew = "Operario";
-				break;
-			case CargoType::IngAmbiental:
-				cargoNew = "IngAmbiental";
-				break;
-			case CargoType::Supervisor:
-				cargoNew = "Supervisor";
-				break;
-			}
-
-			usuarioNew->Cargo = cargoNew;
-			////////////////////////////////////////////////////////////////////////////
-			if (pbImage != nullptr && pbImage->Image != nullptr) {
-				System::IO::MemoryStream^ ms = gcnew System::IO::MemoryStream();
-				pbImage->Image->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
-				usuarioNew->Photo = ms->ToArray();
-			}
-
+			UsuarioNewID = Convert::ToInt32(txtRecursoId->Text);
+			Usuario^ usuario = Controller::DevolverUsuarioPorID(UsuarioNewID);
 			Controller::EliminarUsuario(UsuarioNewID);
+			if (usuario->GetType() == Peon::typeid) {
+				Controller::EliminarPeon(UsuarioNewID);
+			}
+			if (usuario->GetType() == Operario::typeid) {
+				Controller::EliminarOperario(UsuarioNewID);
+			}
+			if (usuario->GetType() == IngAmbiental::typeid) {
+				Controller::EliminarIngAmbiental(UsuarioNewID);
+			}
+			if (usuario->GetType() == Supervisor::typeid) {
+				Controller::EliminarSupervisor(UsuarioNewID);
+			}
+			if (usuario->GetType() == JefeInventario::typeid) {
+				Controller::EliminarJefeInventario(UsuarioNewID);
+			}
+
 			ShowUsuarios();
 		}
 		catch (Exception^ ex) {
@@ -717,6 +674,11 @@ namespace RobotMineroGUIApp {
 				MessageBox::Show("El ID debe ser mayor a 0");
 				return;
 			}
+			/*if (Controller::DevolverUsuarioPorID(UsuarioNewID) != nullptr) {
+				MessageBox::Show("El ID elegido ya existe");
+				return;
+			}*/
+			
 			String^ UsuarioNewName = txtRecursoNombre->Text;
 			if (UsuarioNewName->Length == 0) {
 				MessageBox::Show("El nombre del usuario no debe estar vacío");
@@ -740,45 +702,53 @@ namespace RobotMineroGUIApp {
 			if (scheduleEnd == nullptr) {
 				MessageBox::Show("La fecha no debe estar vacia");
 			}
-
-			Usuario^ usuarioNew = gcnew Usuario();
-			usuarioNew->Id = UsuarioNewID;
-			usuarioNew->Nombre = UsuarioNewName;
-			usuarioNew->Apelllido = UsuarioLastName;
-			usuarioNew->Salario = UsuarioSalario;
-			usuarioNew->FechaFirst = scheduleStart;
-			usuarioNew->FechaEnd = scheduleEnd;
-
-			String^ UsuarioContrasenha = txtContrasenha->Text;
-			usuarioNew->contrasenha = UsuarioContrasenha;
-			/////////////////////////////////////////////////////////////////////////////
+			//Random^ rand = gcnew Random();
+			//String^ NombUsuario = UsuarioNewName->Substring(0, Math::Min(3, UsuarioNewName->Length)) + rand->Next(10, 100).ToString();
 			int selectedIndex = cmbRecursoCargo->SelectedIndex;
 
 			if (selectedIndex < 0) {
 				MessageBox::Show("Debe seleccionar algun cargo");
 				return;
 			}
-
 			CargoType estadoType = static_cast<CargoType>(selectedIndex);
-			String^ cargoNew = nullptr;
-
+			//String^ cargoNew = nullptr;
+			Usuario^ usuarioNew;
 			switch (estadoType) {
-			case CargoType::Peon:
-				cargoNew = "Peon";
-				break;
-			case CargoType::Operario:
-				cargoNew = "Operario";
-				break;
-			case CargoType::IngAmbiental:
-				cargoNew = "IngAmbiental";
-				break;
-			case CargoType::Supervisor:
-				cargoNew = "Supervisor";
-				break;
+				case CargoType::Peon:
+					usuarioNew = gcnew Peon();
+					//cargoNew = "Peon";
+					break;
+				case CargoType::Operario:
+					usuarioNew = gcnew Operario();
+					//cargoNew = "Operario";
+					break;
+				case CargoType::IngAmbiental:
+					usuarioNew = gcnew IngAmbiental();
+					//cargoNew = "IngAmbiental";
+					break;
+				case CargoType::Supervisor:
+					usuarioNew = gcnew Supervisor();
+					//cargoNew = "Supervisor";
+					break;
+				case CargoType::JefeInventario:
+					usuarioNew = gcnew JefeInventario();
+					//cargoNew = "JefeInventario";
+					break;
+			}
+			Usuario^ UsuarioAnterior = Controller::DevolverUsuarioPorID(UsuarioNewID);
+			usuarioNew->Id = UsuarioNewID;
+			usuarioNew->Nombre = UsuarioNewName;
+			usuarioNew->Apelllido = UsuarioLastName;
+			usuarioNew->Salario = UsuarioSalario;
+			usuarioNew->FechaFirst = scheduleStart;
+			usuarioNew->FechaEnd = scheduleEnd;
+			usuarioNew->NombreUsuario = UsuarioAnterior->NombreUsuario;
+			String^ UsuarioContrasenha = txtContrasenha->Text;
+			usuarioNew->contrasenha = UsuarioContrasenha;
+			if (UsuarioContrasenha->Length == 0) {
+				MessageBox::Show("La cotraseña no debe estar vacia");
 			}
 
-			usuarioNew->Cargo = cargoNew;
-			////////////////////////////////////////////////////////////////////////////
 			if (pbImage != nullptr && pbImage->Image != nullptr) {
 				System::IO::MemoryStream^ ms = gcnew System::IO::MemoryStream();
 				pbImage->Image->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
@@ -786,8 +756,13 @@ namespace RobotMineroGUIApp {
 			}
 
 			Controller::ActualizarUsuario(usuarioNew);
+			Controller::ActualizarJefeInventario((JefeInventario^)usuarioNew);
+			Controller::ActualizarPeon((Peon^)usuarioNew);
+			Controller::ActualizarIngAmbiental((IngAmbiental^)usuarioNew);
+			Controller::ActualizarOperario((Operario^)usuarioNew);
 			ShowUsuarios();
-		}catch(Exception^ ex) {
+		}
+		catch (Exception^ ex) {
 			throw ex;
 		}
 	}
@@ -805,17 +780,19 @@ namespace RobotMineroGUIApp {
 			dtpStart->Value = *usersss->FechaFirst;
 			dtpEnd->Value = *usersss->FechaEnd;
 
-			String^ cargoStr = usersss->Cargo;
+			//String^ cargoStr = usersss->Cargo;
 			int selectedIndex = -1;
 
-			if (cargoStr == "Peon")
+			if (usersss->GetType()==Peon::typeid)
 				selectedIndex = 0;
-			else if (cargoStr == "Operario")
+			else if (usersss->GetType() == Operario::typeid)
 				selectedIndex = 1;
-			else if (cargoStr == "IngAmbiental")
+			else if (usersss->GetType() == IngAmbiental::typeid)
 				selectedIndex = 2;
-			else if (cargoStr == "Supervisor")
+			else if (usersss->GetType() == Supervisor::typeid)
 				selectedIndex = 3;
+			else if (usersss->GetType() == JefeInventario::typeid)
+				selectedIndex = 4;
 
 			cmbRecursoCargo->SelectedIndex = selectedIndex;
 

@@ -10,6 +10,11 @@ namespace RobotMineroModel {
 		property String^ CondicionesSalud;
 		property String^ SeguroMedico;
 		property DateTime^ LastCheck;
+		Peon() {
+			ContactoEmergencia = 0;
+			CondicionesSalud = "";
+			SeguroMedico = "";
+		}
 		//property String^ EppOptimus;
 		//property int tanquesDeOxigeno;
 		//property String^ MedicKit;

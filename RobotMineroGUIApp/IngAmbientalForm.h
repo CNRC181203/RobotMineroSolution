@@ -1,5 +1,5 @@
 #pragma once
-#include "ShowDatesUserForm.h"
+#include "ShowDatesIngAmbiental.h"
 #include "ReporteAmbientalForm.h"
 
 namespace RobotMineroGUIApp {
@@ -118,7 +118,7 @@ namespace RobotMineroGUIApp {
 	private: System::Void IngAmbientalForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void bttnShowMydatesI_Click(System::Object^ sender, System::EventArgs^ e) {
-		ShowDatesUserForm^ pantallaIng = gcnew ShowDatesUserForm();//falta cambiar
+		ShowDatesIngAmbiental^ pantallaIng = gcnew ShowDatesIngAmbiental();//falta cambiar
 		pantallaIng->Show();
 		this->Hide();
 

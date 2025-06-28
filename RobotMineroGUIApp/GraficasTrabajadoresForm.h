@@ -129,16 +129,16 @@ namespace RobotMineroGUIApp {
 		int cantidadPeon = 0, cantidadOperario = 0, cantidadSupervisor = 0, cantidadIngAmbiental = 0;
 		array<String^>^ nombreTrabajadores = gcnew array<String^>{"Peon", "Operario", "Supervisor", "IngAmbiental"};
 		for (int i = 0; i < usuariosLista->Count; i++) {
-			if (usuariosLista[i]->Cargo == nombreTrabajadores[0]) {
+			if (usuariosLista[i]->GetType() == Peon::typeid) {
 				cantidadPeon++;
 			}
-			if (usuariosLista[i]->Cargo == nombreTrabajadores[1]) {
+			if (usuariosLista[i]->GetType() == Operario::typeid) {
 				cantidadOperario++;
 			}
-			if (usuariosLista[i]->Cargo == nombreTrabajadores[2]) {
+			if (usuariosLista[i]->GetType() == Supervisor::typeid) {
 				cantidadSupervisor++;
 			}
-			if (usuariosLista[i]->Cargo == nombreTrabajadores[3]) {
+			if (usuariosLista[i]->GetType() == IngAmbiental::typeid) {
 				cantidadIngAmbiental++;
 			}
 		}
