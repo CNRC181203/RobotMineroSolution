@@ -9,6 +9,11 @@ namespace RobotMineroModel {
 		property String^Capacitacion;
 		property String^EntCapacitacion;
 		property String^SeguroSupervisor;
+		Supervisor() {
+			Capacitacion = "";
+			EntCapacitacion = "";
+			SeguroSupervisor = "";
+		}
 		void VisualizarMapaAvanzado();
 	};
 }

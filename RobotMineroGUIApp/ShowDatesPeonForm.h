@@ -416,7 +416,7 @@ namespace RobotMineroGUIApp {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1056, 558);
+			this->ClientSize = System::Drawing::Size(1080, 571);
 			this->Controls->Add(this->txtContactoEmergencia);
 			this->Controls->Add(this->label12);
 			this->Controls->Add(this->txtNumTelefono);
@@ -471,7 +471,13 @@ namespace RobotMineroGUIApp {
 				pbImagen->Image = nullptr;
 				pbImagen->Invalidate();
 			}
-			//Atributos particulares
+			//Atributos extra
+			if (peon->Edad) {
+				txtEdad->Text = Convert::ToString(peon->Edad);
+			}
+			if (peon->SeguroMedico) {
+				txtSeguroMedico->Text = Convert::ToString(peon->SeguroMedico);
+			}
 			if (peon->ContactoEmergencia) {
 				txtContactoEmergencia->Text = Convert::ToString(peon->ContactoEmergencia);
 			}
@@ -498,6 +504,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 		Peon^ peon = Controller::DevolverPeonPorID(idUsuario);
 		peon->ContactoEmergencia = Convert::ToInt32(txtContactoEmergencia->Text);
 		peon->NumeroTelefono = Convert::ToInt32(txtNumTelefono->Text);
+		peon->Edad = Convert::ToInt32(txtEdad->Text);
 		int index = cmbCondicionesSalud->SelectedIndex;
 		if (index == 0) {
 			peon->CondicionesSalud = "Apto";
@@ -510,6 +517,8 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 		}
 		peon->LastCheck = Convert::ToDateTime(txtUltimaFechaRevision->Text);
 		peon->SeguroMedico = txtSeguroMedico->Text;
+		Controller::ActualizarPeon(peon);
+		MessageBox::Show("Datos actualizados correctamente");
 	}
 	catch (Exception^ ex) {
 		throw ex;

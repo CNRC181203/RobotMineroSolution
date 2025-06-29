@@ -8,6 +8,9 @@ namespace RobotMineroGUIApp {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace RobotMineroModel;
+	using namespace RobotMineroController;
+	using namespace System::Collections::Generic;
 
 	/// <summary>
 	/// Resumen de ShowDatesSupervisor
@@ -39,18 +42,27 @@ namespace RobotMineroGUIApp {
 
 
 	private: System::Windows::Forms::Label^ label6;
-	private: System::Windows::Forms::TextBox^ textBox3;
-	private: System::Windows::Forms::TextBox^ textBox2;
-	private: System::Windows::Forms::Label^ label7;
+	private: System::Windows::Forms::TextBox^ txtSalario;
 
-	private: System::Windows::Forms::TextBox^ txtShowSalarioPeon;
+	private: System::Windows::Forms::TextBox^ txtNumTelefono;
+
+	private: System::Windows::Forms::Label^ label7;
+	private: System::Windows::Forms::TextBox^ txtCapacitacion;
+
+
 	private: System::Windows::Forms::Label^ label11;
-	private: System::Windows::Forms::TextBox^ txtShowLastDaysPeon;
-	private: System::Windows::Forms::TextBox^ txtShowEdadPeon;
-	private: System::Windows::Forms::TextBox^ txtShowApellidoPeon;
-	private: System::Windows::Forms::TextBox^ txtShowNombrePeon;
-	private: System::Windows::Forms::TextBox^ txtShowFechaFinPeon;
-	private: System::Windows::Forms::TextBox^ txtShowFechaStartPeon;
+	private: System::Windows::Forms::TextBox^ txtEntidadCapacitacion;
+
+	private: System::Windows::Forms::TextBox^ txtEdad;
+
+	private: System::Windows::Forms::TextBox^ txtApellido;
+
+	private: System::Windows::Forms::TextBox^ txtNombre;
+
+	private: System::Windows::Forms::TextBox^ txtFechaFin;
+
+	private: System::Windows::Forms::TextBox^ txtFechaInicio;
+
 	private: System::Windows::Forms::Label^ label10;
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::Label^ label4;
@@ -58,11 +70,13 @@ namespace RobotMineroGUIApp {
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::PictureBox^ pbShowImagePeon;
+	private: System::Windows::Forms::PictureBox^ pbImagen;
+
 	private: System::Windows::Forms::Label^ label12;
 	private: System::Windows::Forms::Label^ label8;
 	private: System::Windows::Forms::Label^ label9;
-	private: System::Windows::Forms::TextBox^ textBox1;
+	private: System::Windows::Forms::TextBox^ txtSeguroSalud;
+
 
 	private:
 		/// <summary>
@@ -79,17 +93,17 @@ namespace RobotMineroGUIApp {
 		{
 			this->btnAtras = (gcnew System::Windows::Forms::Button());
 			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
+			this->txtSalario = (gcnew System::Windows::Forms::TextBox());
+			this->txtNumTelefono = (gcnew System::Windows::Forms::TextBox());
 			this->label7 = (gcnew System::Windows::Forms::Label());
-			this->txtShowSalarioPeon = (gcnew System::Windows::Forms::TextBox());
+			this->txtCapacitacion = (gcnew System::Windows::Forms::TextBox());
 			this->label11 = (gcnew System::Windows::Forms::Label());
-			this->txtShowLastDaysPeon = (gcnew System::Windows::Forms::TextBox());
-			this->txtShowEdadPeon = (gcnew System::Windows::Forms::TextBox());
-			this->txtShowApellidoPeon = (gcnew System::Windows::Forms::TextBox());
-			this->txtShowNombrePeon = (gcnew System::Windows::Forms::TextBox());
-			this->txtShowFechaFinPeon = (gcnew System::Windows::Forms::TextBox());
-			this->txtShowFechaStartPeon = (gcnew System::Windows::Forms::TextBox());
+			this->txtEntidadCapacitacion = (gcnew System::Windows::Forms::TextBox());
+			this->txtEdad = (gcnew System::Windows::Forms::TextBox());
+			this->txtApellido = (gcnew System::Windows::Forms::TextBox());
+			this->txtNombre = (gcnew System::Windows::Forms::TextBox());
+			this->txtFechaFin = (gcnew System::Windows::Forms::TextBox());
+			this->txtFechaInicio = (gcnew System::Windows::Forms::TextBox());
 			this->label10 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
@@ -97,12 +111,12 @@ namespace RobotMineroGUIApp {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->pbShowImagePeon = (gcnew System::Windows::Forms::PictureBox());
+			this->pbImagen = (gcnew System::Windows::Forms::PictureBox());
 			this->label12 = (gcnew System::Windows::Forms::Label());
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->label9 = (gcnew System::Windows::Forms::Label());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbShowImagePeon))->BeginInit();
+			this->txtSeguroSalud = (gcnew System::Windows::Forms::TextBox());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbImagen))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// btnAtras
@@ -113,6 +127,7 @@ namespace RobotMineroGUIApp {
 			this->btnAtras->TabIndex = 97;
 			this->btnAtras->Text = L"Atrás";
 			this->btnAtras->UseVisualStyleBackColor = true;
+			this->btnAtras->Click += gcnew System::EventHandler(this, &ShowDatesSupervisor::btnAtras_Click);
 			// 
 			// label6
 			// 
@@ -127,21 +142,21 @@ namespace RobotMineroGUIApp {
 			this->label6->Text = L"Capacitación en control y ";
 			this->label6->Click += gcnew System::EventHandler(this, &ShowDatesSupervisor::label6_Click);
 			// 
-			// textBox3
+			// txtSalario
 			// 
-			this->textBox3->Location = System::Drawing::Point(338, 327);
-			this->textBox3->Margin = System::Windows::Forms::Padding(4);
-			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(227, 22);
-			this->textBox3->TabIndex = 93;
+			this->txtSalario->Location = System::Drawing::Point(338, 327);
+			this->txtSalario->Margin = System::Windows::Forms::Padding(4);
+			this->txtSalario->Name = L"txtSalario";
+			this->txtSalario->Size = System::Drawing::Size(227, 22);
+			this->txtSalario->TabIndex = 93;
 			// 
-			// textBox2
+			// txtNumTelefono
 			// 
-			this->textBox2->Location = System::Drawing::Point(338, 275);
-			this->textBox2->Margin = System::Windows::Forms::Padding(4);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(227, 22);
-			this->textBox2->TabIndex = 92;
+			this->txtNumTelefono->Location = System::Drawing::Point(338, 275);
+			this->txtNumTelefono->Margin = System::Windows::Forms::Padding(4);
+			this->txtNumTelefono->Name = L"txtNumTelefono";
+			this->txtNumTelefono->Size = System::Drawing::Size(227, 22);
+			this->txtNumTelefono->TabIndex = 92;
 			// 
 			// label7
 			// 
@@ -155,13 +170,13 @@ namespace RobotMineroGUIApp {
 			this->label7->TabIndex = 91;
 			this->label7->Text = L"Número de teléfono";
 			// 
-			// txtShowSalarioPeon
+			// txtCapacitacion
 			// 
-			this->txtShowSalarioPeon->Location = System::Drawing::Point(338, 394);
-			this->txtShowSalarioPeon->Margin = System::Windows::Forms::Padding(4);
-			this->txtShowSalarioPeon->Name = L"txtShowSalarioPeon";
-			this->txtShowSalarioPeon->Size = System::Drawing::Size(227, 22);
-			this->txtShowSalarioPeon->TabIndex = 89;
+			this->txtCapacitacion->Location = System::Drawing::Point(338, 394);
+			this->txtCapacitacion->Margin = System::Windows::Forms::Padding(4);
+			this->txtCapacitacion->Name = L"txtCapacitacion";
+			this->txtCapacitacion->Size = System::Drawing::Size(227, 22);
+			this->txtCapacitacion->TabIndex = 89;
 			// 
 			// label11
 			// 
@@ -175,53 +190,53 @@ namespace RobotMineroGUIApp {
 			this->label11->TabIndex = 88;
 			this->label11->Text = L"Salario";
 			// 
-			// txtShowLastDaysPeon
+			// txtEntidadCapacitacion
 			// 
-			this->txtShowLastDaysPeon->Location = System::Drawing::Point(338, 456);
-			this->txtShowLastDaysPeon->Margin = System::Windows::Forms::Padding(4);
-			this->txtShowLastDaysPeon->Name = L"txtShowLastDaysPeon";
-			this->txtShowLastDaysPeon->Size = System::Drawing::Size(227, 22);
-			this->txtShowLastDaysPeon->TabIndex = 87;
+			this->txtEntidadCapacitacion->Location = System::Drawing::Point(338, 456);
+			this->txtEntidadCapacitacion->Margin = System::Windows::Forms::Padding(4);
+			this->txtEntidadCapacitacion->Name = L"txtEntidadCapacitacion";
+			this->txtEntidadCapacitacion->Size = System::Drawing::Size(227, 22);
+			this->txtEntidadCapacitacion->TabIndex = 87;
 			// 
-			// txtShowEdadPeon
+			// txtEdad
 			// 
-			this->txtShowEdadPeon->Location = System::Drawing::Point(338, 227);
-			this->txtShowEdadPeon->Margin = System::Windows::Forms::Padding(4);
-			this->txtShowEdadPeon->Name = L"txtShowEdadPeon";
-			this->txtShowEdadPeon->Size = System::Drawing::Size(227, 22);
-			this->txtShowEdadPeon->TabIndex = 86;
+			this->txtEdad->Location = System::Drawing::Point(338, 227);
+			this->txtEdad->Margin = System::Windows::Forms::Padding(4);
+			this->txtEdad->Name = L"txtEdad";
+			this->txtEdad->Size = System::Drawing::Size(227, 22);
+			this->txtEdad->TabIndex = 86;
 			// 
-			// txtShowApellidoPeon
+			// txtApellido
 			// 
-			this->txtShowApellidoPeon->Location = System::Drawing::Point(338, 186);
-			this->txtShowApellidoPeon->Margin = System::Windows::Forms::Padding(4);
-			this->txtShowApellidoPeon->Name = L"txtShowApellidoPeon";
-			this->txtShowApellidoPeon->Size = System::Drawing::Size(227, 22);
-			this->txtShowApellidoPeon->TabIndex = 85;
+			this->txtApellido->Location = System::Drawing::Point(338, 186);
+			this->txtApellido->Margin = System::Windows::Forms::Padding(4);
+			this->txtApellido->Name = L"txtApellido";
+			this->txtApellido->Size = System::Drawing::Size(227, 22);
+			this->txtApellido->TabIndex = 85;
 			// 
-			// txtShowNombrePeon
+			// txtNombre
 			// 
-			this->txtShowNombrePeon->Location = System::Drawing::Point(338, 146);
-			this->txtShowNombrePeon->Margin = System::Windows::Forms::Padding(4);
-			this->txtShowNombrePeon->Name = L"txtShowNombrePeon";
-			this->txtShowNombrePeon->Size = System::Drawing::Size(227, 22);
-			this->txtShowNombrePeon->TabIndex = 84;
+			this->txtNombre->Location = System::Drawing::Point(338, 146);
+			this->txtNombre->Margin = System::Windows::Forms::Padding(4);
+			this->txtNombre->Name = L"txtNombre";
+			this->txtNombre->Size = System::Drawing::Size(227, 22);
+			this->txtNombre->TabIndex = 84;
 			// 
-			// txtShowFechaFinPeon
+			// txtFechaFin
 			// 
-			this->txtShowFechaFinPeon->Location = System::Drawing::Point(338, 100);
-			this->txtShowFechaFinPeon->Margin = System::Windows::Forms::Padding(4);
-			this->txtShowFechaFinPeon->Name = L"txtShowFechaFinPeon";
-			this->txtShowFechaFinPeon->Size = System::Drawing::Size(227, 22);
-			this->txtShowFechaFinPeon->TabIndex = 83;
+			this->txtFechaFin->Location = System::Drawing::Point(338, 100);
+			this->txtFechaFin->Margin = System::Windows::Forms::Padding(4);
+			this->txtFechaFin->Name = L"txtFechaFin";
+			this->txtFechaFin->Size = System::Drawing::Size(227, 22);
+			this->txtFechaFin->TabIndex = 83;
 			// 
-			// txtShowFechaStartPeon
+			// txtFechaInicio
 			// 
-			this->txtShowFechaStartPeon->Location = System::Drawing::Point(338, 57);
-			this->txtShowFechaStartPeon->Margin = System::Windows::Forms::Padding(4);
-			this->txtShowFechaStartPeon->Name = L"txtShowFechaStartPeon";
-			this->txtShowFechaStartPeon->Size = System::Drawing::Size(227, 22);
-			this->txtShowFechaStartPeon->TabIndex = 82;
+			this->txtFechaInicio->Location = System::Drawing::Point(338, 57);
+			this->txtFechaInicio->Margin = System::Windows::Forms::Padding(4);
+			this->txtFechaInicio->Name = L"txtFechaInicio";
+			this->txtFechaInicio->Size = System::Drawing::Size(227, 22);
+			this->txtFechaInicio->TabIndex = 82;
 			// 
 			// label10
 			// 
@@ -303,16 +318,17 @@ namespace RobotMineroGUIApp {
 			this->button1->TabIndex = 75;
 			this->button1->Text = L"Ingresar datos adicionales";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &ShowDatesSupervisor::button1_Click);
 			// 
-			// pbShowImagePeon
+			// pbImagen
 			// 
-			this->pbShowImagePeon->Location = System::Drawing::Point(690, 61);
-			this->pbShowImagePeon->Margin = System::Windows::Forms::Padding(4);
-			this->pbShowImagePeon->Name = L"pbShowImagePeon";
-			this->pbShowImagePeon->Size = System::Drawing::Size(292, 274);
-			this->pbShowImagePeon->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
-			this->pbShowImagePeon->TabIndex = 74;
-			this->pbShowImagePeon->TabStop = false;
+			this->pbImagen->Location = System::Drawing::Point(690, 61);
+			this->pbImagen->Margin = System::Windows::Forms::Padding(4);
+			this->pbImagen->Name = L"pbImagen";
+			this->pbImagen->Size = System::Drawing::Size(292, 274);
+			this->pbImagen->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+			this->pbImagen->TabIndex = 74;
+			this->pbImagen->TabStop = false;
 			// 
 			// label12
 			// 
@@ -350,13 +366,13 @@ namespace RobotMineroGUIApp {
 			this->label9->TabIndex = 101;
 			this->label9->Text = L"Seguro de salud";
 			// 
-			// textBox1
+			// txtSeguroSalud
 			// 
-			this->textBox1->Location = System::Drawing::Point(338, 499);
-			this->textBox1->Margin = System::Windows::Forms::Padding(4);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(227, 22);
-			this->textBox1->TabIndex = 100;
+			this->txtSeguroSalud->Location = System::Drawing::Point(338, 499);
+			this->txtSeguroSalud->Margin = System::Windows::Forms::Padding(4);
+			this->txtSeguroSalud->Name = L"txtSeguroSalud";
+			this->txtSeguroSalud->Size = System::Drawing::Size(227, 22);
+			this->txtSeguroSalud->TabIndex = 100;
 			// 
 			// ShowDatesSupervisor
 			// 
@@ -364,22 +380,22 @@ namespace RobotMineroGUIApp {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1110, 597);
 			this->Controls->Add(this->label9);
-			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->txtSeguroSalud);
 			this->Controls->Add(this->label8);
 			this->Controls->Add(this->label12);
 			this->Controls->Add(this->btnAtras);
 			this->Controls->Add(this->label6);
-			this->Controls->Add(this->textBox3);
-			this->Controls->Add(this->textBox2);
+			this->Controls->Add(this->txtSalario);
+			this->Controls->Add(this->txtNumTelefono);
 			this->Controls->Add(this->label7);
-			this->Controls->Add(this->txtShowSalarioPeon);
+			this->Controls->Add(this->txtCapacitacion);
 			this->Controls->Add(this->label11);
-			this->Controls->Add(this->txtShowLastDaysPeon);
-			this->Controls->Add(this->txtShowEdadPeon);
-			this->Controls->Add(this->txtShowApellidoPeon);
-			this->Controls->Add(this->txtShowNombrePeon);
-			this->Controls->Add(this->txtShowFechaFinPeon);
-			this->Controls->Add(this->txtShowFechaStartPeon);
+			this->Controls->Add(this->txtEntidadCapacitacion);
+			this->Controls->Add(this->txtEdad);
+			this->Controls->Add(this->txtApellido);
+			this->Controls->Add(this->txtNombre);
+			this->Controls->Add(this->txtFechaFin);
+			this->Controls->Add(this->txtFechaInicio);
 			this->Controls->Add(this->label10);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label4);
@@ -387,11 +403,11 @@ namespace RobotMineroGUIApp {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button1);
-			this->Controls->Add(this->pbShowImagePeon);
+			this->Controls->Add(this->pbImagen);
 			this->Name = L"ShowDatesSupervisor";
 			this->Text = L"Mis datos";
 			this->Load += gcnew System::EventHandler(this, &ShowDatesSupervisor::ShowDatesSupervisor_Load);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbShowImagePeon))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbImagen))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -399,7 +415,63 @@ namespace RobotMineroGUIApp {
 #pragma endregion
 	private: System::Void label6_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-private: System::Void ShowDatesSupervisor_Load(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void ShowDatesSupervisor_Load(System::Object^ sender, System::EventArgs^ e) {
+		try {
+			int idUsuario = Controller::returnId();
+			Supervisor^ supervisor = Controller::DevolverSupervisorPorID(idUsuario);
+			//Atributos generales
+			txtFechaInicio->Text = supervisor->FechaFirst->ToString();
+			txtFechaFin->Text = supervisor->FechaEnd->ToString();
+			txtNombre->Text = supervisor->Nombre;
+			txtApellido->Text = supervisor->Apelllido;
+			txtSalario->Text = Convert::ToString(supervisor->Salario);
+			if (supervisor->Photo != nullptr) {
+				System::IO::MemoryStream^ ms = gcnew System::IO::MemoryStream(supervisor->Photo);
+				pbImagen->Image = Image::FromStream(ms);
+			}
+			else {
+				pbImagen->Image = nullptr;
+				pbImagen->Invalidate();
+			}
+			//Atributos extra
+			if (supervisor->Edad) {
+				txtEdad->Text = Convert::ToString(supervisor->Edad);
+			}
+			if (supervisor->NumeroTelefono) {
+				txtNumTelefono->Text = Convert::ToString(supervisor->NumeroTelefono);
+			}
+			if (supervisor->Capacitacion->Length != 0) {
+				txtCapacitacion->Text = Convert::ToString(supervisor->Capacitacion);
+			}
+			if (supervisor->EntCapacitacion != nullptr) {
+				txtEntidadCapacitacion->Text = Convert::ToString(supervisor->EntCapacitacion);
+			}
+			if (supervisor->SeguroSupervisor) {
+				txtSeguroSalud->Text = Convert::ToString(supervisor->SeguroSupervisor);
+			}
+
+
+		}
+		catch (Exception^ ex) {
+			MessageBox::Show("Error al cargar los datos del supervisor: " + ex->Message);
+		}
+	}
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	try {
+		int idUsuario = Controller::returnId();
+		Supervisor^ supervisor = Controller::DevolverSupervisorPorID(idUsuario);
+		supervisor->Edad = Convert::ToInt32(txtEdad->Text);
+		supervisor->NumeroTelefono = Convert::ToInt32(txtNumTelefono->Text);
+		supervisor->Capacitacion = txtCapacitacion->Text;
+		supervisor->EntCapacitacion = txtEntidadCapacitacion->Text;
+		supervisor->SeguroSupervisor = txtSeguroSalud->Text;
+		Controller::ActualizarSupervisor(supervisor);
+		MessageBox::Show("Datos actualizados correctamente");
+	}
+	catch (Exception^ ex) {
+		throw ex;
+	}
 }
+private: System::Void btnAtras_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }

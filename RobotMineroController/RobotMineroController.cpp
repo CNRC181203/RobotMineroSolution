@@ -205,7 +205,7 @@ int RobotMineroController::Controller::ActualizarPeon(Peon^ peon)
 		{
 			if (ListPeon[i]->Id == peon->Id) {
 				ListPeon[i] = peon;
-				Persistance::PersistBinaryFile("Peon.bin", ListPeon);
+				Persistance::PersistBinaryFile("Peones.bin", ListPeon);
 				return 1;
 			}
 		}
@@ -223,7 +223,7 @@ int RobotMineroController::Controller::EliminarPeon(int id)
 		{
 			if (ListPeon[i]->Id == id) {
 				ListPeon->RemoveAt(i);
-				Persistance::PersistBinaryFile("Peon.bin", ListPeon);
+				Persistance::PersistBinaryFile("Peones.bin", ListPeon);
 				return 1;
 			}
 		}
@@ -251,6 +251,7 @@ Peon^ RobotMineroController::Controller::DevolverPeonPorID(int peonID) {
 /////////////////////////////////////////////////////////////////////////////////////////////	SUPERVISOR															
 Supervisor^ RobotMineroController::Controller::DevolverSupervisorPorID(int supervisorId)
 {
+	ListSupervisor = ConsultarTodosSupervisores();
 	try {
 		for each (Supervisor ^ supervisor in ListSupervisor)
 		{
@@ -313,6 +314,7 @@ int RobotMineroController::Controller::EliminarSupervisor(int supervisorId)
 /////////////////////////////////////////////////////////////////////////////////////////////	ING AMBIENTAL
 IngAmbiental^ RobotMineroController::Controller::DevolverIngAmbientalPorID(int IngAmbientalId)
 {
+	ListAmbiental = ConsultarTodosIngAmbientales();
 	try {
 		for each (IngAmbiental ^ ingAmbiental in ListAmbiental)
 		{
@@ -334,7 +336,7 @@ int RobotMineroController::Controller::ActualizarIngAmbiental(IngAmbiental^ IngA
 		{
 			if (ListAmbiental[i]->Id == IngAmbiental->Id) {
 				ListAmbiental[i] = IngAmbiental;
-				Persistance::PersistBinaryFile("IngAmbiental.bin", ListSupervisor);
+				Persistance::PersistBinaryFile("IngAmbiental.bin", ListAmbiental);
 				return 1;
 			}
 		}

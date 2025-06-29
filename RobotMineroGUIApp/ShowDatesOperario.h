@@ -165,6 +165,7 @@ namespace RobotMineroGUIApp {
 			this->btnAtras->TabIndex = 63;
 			this->btnAtras->Text = L"Atrás";
 			this->btnAtras->UseVisualStyleBackColor = true;
+			this->btnAtras->Click += gcnew System::EventHandler(this, &ShowDatesOperario::btnAtras_Click);
 			// 
 			// txtEspecialidad
 			// 
@@ -409,7 +410,7 @@ private: System::Void ShowDatesOperario_Load(System::Object^ sender, System::Eve
 			pbImage->Image = nullptr;
 			pbImage->Invalidate();
 		}
-		//Atributos particulares
+		//Atributos extra
 		if (operario->Edad) {
 			txtEdad->Text = Convert::ToString(operario->Edad);
 		}
@@ -428,5 +429,6 @@ private: System::Void ShowDatesOperario_Load(System::Object^ sender, System::Eve
 		throw ex;
 	}
 }
+private: System::Void btnAtras_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }

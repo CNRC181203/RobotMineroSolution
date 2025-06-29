@@ -9,6 +9,11 @@ namespace RobotMineroModel {
 		String^ Especializacion;
 		String^ NumeroLicencia;
 		String^ EntidadCertificadora;
+		IngAmbiental() {
+			Especializacion = "";
+			NumeroLicencia = "";
+			EntidadCertificadora = "";
+		}
 		void VisualizarConcetracion();
 	};
 }
