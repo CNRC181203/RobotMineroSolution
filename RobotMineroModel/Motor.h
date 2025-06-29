@@ -1,10 +1,20 @@
 #pragma once
-#include"Actuador.h"
+#include "Componentes.h"
+using namespace System;
+
 namespace RobotMineroModel {
-	public ref class Motor: public Actuador
+	[Serializable]
+	public ref class Motor: public Componentes
 	{
 	public:
-		double Rpm; 
+		property double Rpm; 
+		property String^ Modelo;         // p. ej. “MD-12V-3000”
+
+		property double TorqueNominal;   // Nm
+		property double VoltajeNominal;  // V
+		property double CorrienteNominal;// A
+		
+		Motor() {}
 	private:
 		void CalcularRpm();
 	};

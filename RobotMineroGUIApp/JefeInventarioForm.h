@@ -1,4 +1,8 @@
 #pragma once
+#include "MantenimientoComponentes.h"
+#include "MantenimientoCarroForm.h"
+#include "RgistroCarrosForm.h"
+
 
 namespace RobotMineroGUIApp {
 
@@ -43,6 +47,7 @@ namespace RobotMineroGUIApp {
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Button^ button1;
 
+
 	private:
 		/// <summary>
 		/// Variable del diseñador necesaria.
@@ -77,13 +82,14 @@ namespace RobotMineroGUIApp {
 			// 
 			this->btnRegistros->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnRegistros->Location = System::Drawing::Point(84, 187);
+			this->btnRegistros->Location = System::Drawing::Point(374, 144);
 			this->btnRegistros->Margin = System::Windows::Forms::Padding(4);
 			this->btnRegistros->Name = L"btnRegistros";
 			this->btnRegistros->Size = System::Drawing::Size(253, 36);
 			this->btnRegistros->TabIndex = 9;
 			this->btnRegistros->Text = L"Registro ";
 			this->btnRegistros->UseVisualStyleBackColor = true;
+			this->btnRegistros->Click += gcnew System::EventHandler(this, &JefeInventarioForm::btnRegistros_Click);
 			// 
 			// btnMantenimiento
 			// 
@@ -96,6 +102,7 @@ namespace RobotMineroGUIApp {
 			this->btnMantenimiento->TabIndex = 7;
 			this->btnMantenimiento->Text = L"Mantenimiento de actuadores";
 			this->btnMantenimiento->UseVisualStyleBackColor = true;
+			this->btnMantenimiento->Click += gcnew System::EventHandler(this, &JefeInventarioForm::btnMantenimiento_Click);
 			// 
 			// label1
 			// 
@@ -113,13 +120,14 @@ namespace RobotMineroGUIApp {
 			// 
 			this->button1->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button1->Location = System::Drawing::Point(84, 143);
+			this->button1->Location = System::Drawing::Point(84, 196);
 			this->button1->Margin = System::Windows::Forms::Padding(4);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(262, 36);
 			this->button1->TabIndex = 11;
 			this->button1->Text = L"Mantenimiento de carros";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &JefeInventarioForm::button1_Click);
 			// 
 			// JefeInventarioForm
 			// 
@@ -137,5 +145,21 @@ namespace RobotMineroGUIApp {
 
 		}
 #pragma endregion
-	};
+	private: System::Void btnMantenimiento_Click(System::Object^ sender, System::EventArgs^ e) {
+		MantenimientoComponentesForm^ mantenimientoForm = gcnew MantenimientoComponentesForm();
+		mantenimientoForm->Show();
+		//this->Close();
+	}
+
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	MantenimientoCarroForm^ mantenimientoCarroForm = gcnew MantenimientoCarroForm();
+	mantenimientoCarroForm->Show();
+	//this->Close();
+}
+private: System::Void btnRegistros_Click(System::Object^ sender, System::EventArgs^ e) {
+	RgistroCarrosForm^ registroCarrosForm = gcnew RgistroCarrosForm();	
+	registroCarrosForm->Show();
+	//this->Close();
+}
+};
 }

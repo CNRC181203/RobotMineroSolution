@@ -47,7 +47,7 @@ namespace RobotMineroGUIApp {
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::Label^ label5;
-	private: System::Windows::Forms::TextBox^ txtRecursoId;
+	private: System::Windows::Forms::TextBox^ txtComponenteId;
 	private: System::Windows::Forms::TextBox^ txtRecursoNombre;
 	private: System::Windows::Forms::TextBox^ txtRecursoApellido;
 	private: System::Windows::Forms::TextBox^ txtRecursoSalario;
@@ -140,7 +140,7 @@ namespace RobotMineroGUIApp {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
-			this->txtRecursoId = (gcnew System::Windows::Forms::TextBox());
+			this->txtComponenteId = (gcnew System::Windows::Forms::TextBox());
 			this->txtRecursoNombre = (gcnew System::Windows::Forms::TextBox());
 			this->txtRecursoApellido = (gcnew System::Windows::Forms::TextBox());
 			this->txtRecursoSalario = (gcnew System::Windows::Forms::TextBox());
@@ -218,11 +218,11 @@ namespace RobotMineroGUIApp {
 			// 
 			// txtRecursoId
 			// 
-			this->txtRecursoId->Location = System::Drawing::Point(93, 14);
-			this->txtRecursoId->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->txtRecursoId->Name = L"txtRecursoId";
-			this->txtRecursoId->Size = System::Drawing::Size(80, 22);
-			this->txtRecursoId->TabIndex = 5;
+			this->txtComponenteId->Location = System::Drawing::Point(93, 14);
+			this->txtComponenteId->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->txtComponenteId->Name = L"txtRecursoId";
+			this->txtComponenteId->Size = System::Drawing::Size(80, 22);
+			this->txtComponenteId->TabIndex = 5;
 			// 
 			// txtRecursoNombre
 			// 
@@ -488,7 +488,7 @@ namespace RobotMineroGUIApp {
 			this->Controls->Add(this->txtRecursoSalario);
 			this->Controls->Add(this->txtRecursoApellido);
 			this->Controls->Add(this->txtRecursoNombre);
-			this->Controls->Add(this->txtRecursoId);
+			this->Controls->Add(this->txtComponenteId);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->label3);
@@ -511,7 +511,7 @@ namespace RobotMineroGUIApp {
 	}
 	private: System::Void btmAgregarRecurso_Click(System::Object^ sender, System::EventArgs^ e) {
 		try {
-			int UsuarioNewID = Int32::Parse(txtRecursoId->Text);
+			int UsuarioNewID = Int32::Parse(txtComponenteId->Text);
 			if (UsuarioNewID < 0) {
 				MessageBox::Show("El ID debe ser mayor a 0");
 				return;
@@ -545,10 +545,11 @@ namespace RobotMineroGUIApp {
 			if (scheduleEnd == nullptr) {
 				MessageBox::Show("La fecha no debe estar vacia");
 			}
+			// Generar un nombre de usuario aleatorio
 			Random^ rand = gcnew Random();
 			String^ NombUsuario = UsuarioNewName->Substring(0, Math::Min(3, UsuarioNewName->Length)) + rand->Next(10, 100).ToString();
-			int selectedIndex = cmbRecursoCargo->SelectedIndex;
 
+			int selectedIndex = cmbRecursoCargo->SelectedIndex;
 			if (selectedIndex < 0) {
 				MessageBox::Show("Debe seleccionar algun cargo");
 				return;
@@ -585,6 +586,7 @@ namespace RobotMineroGUIApp {
 			usuarioNew->FechaFirst = scheduleStart;
 			usuarioNew->FechaEnd = scheduleEnd;
 			usuarioNew->NombreUsuario = NombUsuario;
+
 			String^ UsuarioContrasenha = txtContrasenha->Text;
 			usuarioNew->contrasenha = UsuarioContrasenha;
 			if (UsuarioContrasenha->Length == 0) {
@@ -640,8 +642,8 @@ namespace RobotMineroGUIApp {
 
 	private: System::Void btmEliminarRecurso_Click(System::Object^ sender, System::EventArgs^ e) {
 		try {
-			int UsuarioNewID = Int32::Parse(txtRecursoId->Text);
-			UsuarioNewID = Convert::ToInt32(txtRecursoId->Text);
+			int UsuarioNewID = Int32::Parse(txtComponenteId->Text);
+			UsuarioNewID = Convert::ToInt32(txtComponenteId->Text);
 			Usuario^ usuario = Controller::DevolverUsuarioPorID(UsuarioNewID);
 			Controller::EliminarUsuario(UsuarioNewID);
 			if (usuario->GetType() == Peon::typeid) {
@@ -669,7 +671,7 @@ namespace RobotMineroGUIApp {
 
 	private: System::Void btmModificarrecurso_Click(System::Object^ sender, System::EventArgs^ e) {
 		try {
-			int UsuarioNewID = Int32::Parse(txtRecursoId->Text);
+			int UsuarioNewID = Int32::Parse(txtComponenteId->Text);
 			if (UsuarioNewID < 0) {
 				MessageBox::Show("El ID debe ser mayor a 0");
 				return;
@@ -772,7 +774,7 @@ namespace RobotMineroGUIApp {
 			int UsuarioId = Convert::ToInt32(dgvRecursos->Rows[dgvRecursos->SelectedCells[0]->RowIndex]->Cells[0]->Value->ToString());
 			Usuario^ usersss = Controller::DevolverUsuarioPorID(UsuarioId);
 
-			txtRecursoId->Text = "" + usersss->Id;
+			txtComponenteId->Text = "" + usersss->Id;
 			txtRecursoNombre->Text = usersss->Nombre;
 			txtRecursoApellido->Text = usersss->Apelllido;
 			txtRecursoSalario->Text = "" + usersss->Salario;
@@ -818,6 +820,7 @@ private: System::Void label8_Click(System::Object^ sender, System::EventArgs^ e)
 }
 private: System::Void dgvRecursos_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 }
+
 	private: System::Void btnUpdateImage_Click(System::Object^ sender, System::EventArgs^ e) {
 		OpenFileDialog^ ofd = gcnew OpenFileDialog();
 		ofd->Filter = "Image Files (*.jpg;*.jpeg;)|*.jpg;*.jpeg;";

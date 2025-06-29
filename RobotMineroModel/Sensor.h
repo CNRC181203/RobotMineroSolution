@@ -1,11 +1,18 @@
 #pragma once
+#include "Componentes.h"
 using namespace System;
 
 namespace RobotMineroModel {
-	public ref class Sensor
+	public enum class SensorTipo {Humedad,Combustion,GasesContaminantes };
+	[Serializable]
+	public ref class Sensor: public Componentes
+
 	{
 	public:
 		int Id;
-		String^ NumeroSerie;
+		property SensorTipo^ Tipo;
+		property double RangoMaximo; // en metros
+		property double Frecuencia; // en Hz
+		Sensor() {}
 	};
 }

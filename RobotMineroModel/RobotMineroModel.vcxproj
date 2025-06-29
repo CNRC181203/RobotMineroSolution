@@ -119,8 +119,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Actuador.h" />
     <ClInclude Include="CarroMinero.h" />
+    <ClInclude Include="Componentes.h" />
     <ClInclude Include="IngAmbiental.h" />
     <ClInclude Include="JefeInventario.h" />
     <ClInclude Include="MapaMina.h" />
@@ -143,9 +143,9 @@
     <ClInclude Include="Usuario.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Actuador.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="CarroMinero.cpp" />
+    <ClCompile Include="Componentes.cpp" />
     <ClCompile Include="IngAmbiental.cpp" />
     <ClCompile Include="JefeInventario.cpp" />
     <ClCompile Include="MapaMina.cpp" />

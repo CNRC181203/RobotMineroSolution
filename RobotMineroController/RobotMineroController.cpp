@@ -118,7 +118,7 @@ Usuario^ RobotMineroController::Controller::DevolverUsuarioPorNomUsuario(String^
 		throw ex;
 	}
 }
-/////////////////////////////////////////////////////////////////////////////////////////////	OPERARIO
+/////////	OPERARIO
 Operario^ RobotMineroController::Controller::DevolverOperarioPorID(int operarioId)
 {
 	ListOperario = ConsultarTodosOperarios();
@@ -184,7 +184,8 @@ int RobotMineroController::Controller::EliminarOperario(int oprarioId)
 		throw ex;
 	}
 }
-/////////////////////////////////////////////////////////////////////////////////////////////	PEON
+
+/////////	PEON
 List<Peon^>^ RobotMineroController::Controller::ConsultarTodosPeones()
 {	
 	try {
@@ -197,7 +198,6 @@ List<Peon^>^ RobotMineroController::Controller::ConsultarTodosPeones()
 		throw ex;
 	}
 }
-
 int RobotMineroController::Controller::ActualizarPeon(Peon^ peon)
 {
 	try {
@@ -215,7 +215,6 @@ int RobotMineroController::Controller::ActualizarPeon(Peon^ peon)
 		throw ex;
 	}
 }
-
 int RobotMineroController::Controller::EliminarPeon(int id)
 {
 	try{
@@ -248,7 +247,8 @@ Peon^ RobotMineroController::Controller::DevolverPeonPorID(int peonID) {
 		throw ex;
 	}
 }
-/////////////////////////////////////////////////////////////////////////////////////////////	SUPERVISOR															
+
+////////	SUPERVISOR															
 Supervisor^ RobotMineroController::Controller::DevolverSupervisorPorID(int supervisorId)
 {
 	try {
@@ -310,7 +310,8 @@ int RobotMineroController::Controller::EliminarSupervisor(int supervisorId)
 		throw ex;
 	}
 }
-/////////////////////////////////////////////////////////////////////////////////////////////	ING AMBIENTAL
+
+////////	ING AMBIENTAL
 IngAmbiental^ RobotMineroController::Controller::DevolverIngAmbientalPorID(int IngAmbientalId)
 {
 	try {
@@ -326,7 +327,6 @@ IngAmbiental^ RobotMineroController::Controller::DevolverIngAmbientalPorID(int I
 		throw ex;
 	}
 }
-
 int RobotMineroController::Controller::ActualizarIngAmbiental(IngAmbiental^ IngAmbiental)
 {
 	try {
@@ -344,7 +344,6 @@ int RobotMineroController::Controller::ActualizarIngAmbiental(IngAmbiental^ IngA
 		throw ex;
 	}
 }
-
 List<IngAmbiental^>^ RobotMineroController::Controller::ConsultarTodosIngAmbientales()
 {
 	try {
@@ -374,7 +373,8 @@ int RobotMineroController::Controller::EliminarIngAmbiental(int IngAmbientalId)
 		throw ex;
 	}
 }
-/////////////////////////////////////////////////////////////////////////////////////////////	JEFE INVENTARIO
+
+////////	JEFE INVENTARIO
 JefeInventario^ RobotMineroController::Controller::DevolverJefeInventarioPorID(int JefeInventarioId)
 {
 	try {
@@ -436,7 +436,176 @@ int RobotMineroController::Controller::EliminarJefeInventario(int JefeInventario
 		throw ex;
 	}
 }
-/////////////////////////////////////////////////////////////////////////////////////////////	
+
+/* ====================== Actuadores ==================*/
+
+int RobotMineroController::Controller::AgregarComponete(Componentes^ componente)
+{
+	try {
+		ListComponentes->Add(componente);
+		Persistance::PersistBinaryFile("Componentes.bin", ListComponentes);
+		return 1;
+	}
+	catch (Exception^ ex) {
+		throw ex;
+	}
+	return 0;
+}
+
+List<Componentes^>^ RobotMineroController::Controller::ConsultarTodosComponentes()
+{
+	try {
+		ListComponentes = (List<Componentes^>^) Persistance::LoadBinaryFile("Componentes.bin");
+		if (ListComponentes == nullptr)
+			ListComponentes = gcnew List<Componentes^>();
+		return ListComponentes;
+	}
+	catch (Exception^ ex) {
+		throw ex;
+	}
+}
+
+int RobotMineroController::Controller::ActualizarComponete(Componentes^ componente)
+{
+	try {
+		for (int i = 0; i < ListComponentes->Count; i++)
+		{
+			if (ListComponentes[i]->Id == componente->Id) {
+				ListComponentes[i] = componente;
+				Persistance::PersistBinaryFile("Componentes.bin", ListComponentes);
+				return 1;
+			}
+		}
+		return 0;
+	}
+	catch (Exception^ ex) {
+		throw ex;
+	}
+}
+
+int RobotMineroController::Controller::EliminarComponete(int id)
+{
+	try {
+		for (int i = 0; i < ListComponentes->Count; i++)
+		{
+			if (ListComponentes[i]->Id == id) {
+				ListComponentes->RemoveAt(i);
+				Persistance::PersistBinaryFile("Componentes.bin", ListComponentes);
+				return 1;
+			}
+		}
+		return 0;
+	}
+	catch (Exception^ ex) {
+		throw ex;
+	}
+}
+
+Componentes^ RobotMineroController::Controller::DevolverComponentePorID(int componenteID)
+{
+	try {
+		ListComponentes = ConsultarTodosComponentes();
+		for each (Componentes ^ componente in ListComponentes)
+		{
+			if (componente->Id == componenteID) {
+				return componente;
+			}
+		}
+		return nullptr;
+	}
+	catch (Exception^ ex) {
+		throw ex;
+	}
+}
+///* ====================== Carro Minero ==================*/
+int RobotMineroController::Controller::AgregarCarroMinero(CarroMinero^ carro)
+{
+	try {
+		ListCarroMinero->Add(carro);
+		Persistance::PersistBinaryFile("CarroMinero.bin", ListCarroMinero);
+		return 1;
+	}
+	catch (Exception^ ex) {
+		throw ex;
+	}
+	return 0;
+	
+}
+
+List<CarroMinero^>^ RobotMineroController::Controller::ConsultarTodosCarrosMinero()
+{
+	try {
+		ListCarroMinero = (List<CarroMinero^>^) Persistance::LoadBinaryFile("CarroMinero.bin");
+		if (ListCarroMinero == nullptr)
+			ListCarroMinero = gcnew List<CarroMinero^>();
+		return ListCarroMinero;
+	}
+	catch (Exception^ ex) {
+		throw ex;
+	}
+	
+}
+
+int RobotMineroController::Controller::ActualizarCarroMinero(CarroMinero^ carro)
+{
+	try {
+		for (int i = 0; i < ListCarroMinero->Count; i++)
+		{
+			if (ListCarroMinero[i]->Id == carro->Id) {
+				ListCarroMinero[i] = carro;
+				Persistance::PersistBinaryFile("CarroMinero.bin", ListCarroMinero);
+				return 1;
+			}
+		}
+		return 0;
+	}
+	catch (Exception^ ex) {
+		throw ex;
+	}
+	
+}
+
+int RobotMineroController::Controller::EliminarCarroMinero(int carroId)
+{
+	try {
+		for (int i = 0; i < ListCarroMinero->Count; i++)
+		{
+			if (ListCarroMinero[i]->Id == carroId) {
+				ListCarroMinero->RemoveAt(i);
+				Persistance::PersistBinaryFile("CarroMinero.bin", ListCarroMinero);
+				return 1;
+			}
+		}
+		return 0;
+	}
+	catch (Exception^ ex) {
+		throw ex;
+	}
+	
+}
+
+CarroMinero^ RobotMineroController::Controller::DevolverCarroMineroPorID(int carroId)
+{
+	ListCarroMinero = ConsultarTodosCarrosMinero();
+	try {
+		for each (CarroMinero ^ carro in ListCarroMinero)
+		{
+			if (carro->Id == carroId) {
+				return carro;
+			}
+		}
+		return nullptr;
+	}
+	catch (Exception^ ex) {
+		throw ex;
+	}
+	
+}
+
+
+
+
+/* */
 
 void RobotMineroController::Controller::SaveId(int Id)
 {

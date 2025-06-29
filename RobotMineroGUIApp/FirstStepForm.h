@@ -1,6 +1,7 @@
 #pragma once
 #include "LoginForm.h"
 #include "LogingChambersForm.h"
+#include "LogingChambersForm.h"
 
 namespace RobotMineroGUIApp {
 
@@ -70,7 +71,7 @@ namespace RobotMineroGUIApp {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->BackColor = System::Drawing::Color::DarkRed;
+			this->label1->BackColor = System::Drawing::Color::Aquamarine;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Lucida Fax", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label1->ForeColor = System::Drawing::Color::Black;
@@ -84,11 +85,11 @@ namespace RobotMineroGUIApp {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->BackColor = System::Drawing::Color::DarkRed;
+			this->label2->BackColor = System::Drawing::Color::LightCyan;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Lucida Fax", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label2->ForeColor = System::Drawing::Color::Black;
-			this->label2->Location = System::Drawing::Point(409, 150);
+			this->label2->Location = System::Drawing::Point(414, 190);
 			this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(378, 23);
@@ -102,7 +103,7 @@ namespace RobotMineroGUIApp {
 				static_cast<System::Byte>(0)));
 			this->bttnMantenimiento->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->bttnMantenimiento->Location = System::Drawing::Point(305, 246);
-			this->bttnMantenimiento->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->bttnMantenimiento->Margin = System::Windows::Forms::Padding(4);
 			this->bttnMantenimiento->Name = L"bttnMantenimiento";
 			this->bttnMantenimiento->Size = System::Drawing::Size(189, 34);
 			this->bttnMantenimiento->TabIndex = 2;
@@ -117,7 +118,7 @@ namespace RobotMineroGUIApp {
 				static_cast<System::Byte>(0)));
 			this->bttnLogin->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->bttnLogin->Location = System::Drawing::Point(737, 246);
-			this->bttnLogin->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->bttnLogin->Margin = System::Windows::Forms::Padding(4);
 			this->bttnLogin->Name = L"bttnLogin";
 			this->bttnLogin->Size = System::Drawing::Size(203, 34);
 			this->bttnLogin->TabIndex = 3;
@@ -136,7 +137,7 @@ namespace RobotMineroGUIApp {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->Margin = System::Windows::Forms::Padding(4);
 			this->Name = L"FirstStepForm";
 			this->Text = L"FirstStepForm";
 			this->Load += gcnew System::EventHandler(this, &FirstStepForm::FirstStepForm_Load);
@@ -145,18 +146,18 @@ namespace RobotMineroGUIApp {
 
 		}
 #pragma endregion
-	private: System::Void FirstStepForm_Load(System::Object^ sender, System::EventArgs^ e) {
-	}
-private: System::Void bttnMantenimiento_Click(System::Object^ sender, System::EventArgs^ e) {
-	LoginForm^ LogObject = gcnew LoginForm();
-	LogObject->Show();
-	this->Hide();
-}
+		private: System::Void FirstStepForm_Load(System::Object^ sender, System::EventArgs^ e) {
+		}
+		private: System::Void bttnMantenimiento_Click(System::Object^ sender, System::EventArgs^ e) {
+			LoginForm^ LogObject = gcnew LoginForm();
+			LogObject->Show();
+			this->Hide();
+		}
 
-private: System::Void bttnLogin_Click(System::Object^ sender, System::EventArgs^ e) {
-	LogingChambersForm^ objectForm = gcnew LogingChambersForm();
-	objectForm->Show();
-	this->Hide();
-}
-};
+		private: System::Void bttnLogin_Click(System::Object^ sender, System::EventArgs^ e) {
+			LogingChambersForm^ objectForm = gcnew LogingChambersForm();
+				objectForm->Show();
+		this->Hide();
+		}
+	};
 }

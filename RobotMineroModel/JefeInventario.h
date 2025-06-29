@@ -7,6 +7,7 @@ namespace RobotMineroModel {
 	public ref class JefeInventario :public Usuario
 	{
 	public:
+
 		property String^ HorarioTrabajo;
 		JefeInventario() {
 			HorarioTrabajo = "";

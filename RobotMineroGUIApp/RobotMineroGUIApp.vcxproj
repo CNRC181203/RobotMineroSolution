@@ -127,12 +127,14 @@
     <ClCompile Include="JefeInventarioForm.cpp" />
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="LogingChambersForm.cpp" />
-    <ClCompile Include="MantenimientoActuadoresForm.cpp" />
+    <ClCompile Include="MantenimientoCarroForm.cpp" />
+    <ClCompile Include="MantenimientoComponentes.cpp" />
     <ClCompile Include="MapaPeonForm.cpp" />
     <ClCompile Include="OperarioForm.cpp" />
     <ClCompile Include="PeonForm.cpp" />
     <ClCompile Include="ReporteAmbientalForm.cpp" />
     <ClCompile Include="ReporteFuncionamientoForm.cpp" />
+    <ClCompile Include="RgistroCarrosForm.cpp" />
     <ClCompile Include="RobotMineroForm.cpp" />
     <ClCompile Include="ShowDatesIngAmbiental.cpp" />
     <ClCompile Include="ShowDatesOperario.cpp" />
@@ -160,7 +162,10 @@
     <ClInclude Include="LogingChambersForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="MantenimientoActuadoresForm.h">
+    <ClInclude Include="MantenimientoCarroForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="MantenimientoComponentes.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="MapaPeonForm.h">
@@ -176,6 +181,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="ReporteFuncionamientoForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="RgistroCarrosForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="RobotMineroForm.h">
@@ -219,8 +227,11 @@
     <EmbeddedResource Include="LogingChambersForm.resx">
       <DependentUpon>LogingChambersForm.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MantenimientoActuadoresForm.resx">
-      <DependentUpon>MantenimientoActuadoresForm.h</DependentUpon>
+    <EmbeddedResource Include="MantenimientoCarroForm.resx">
+      <DependentUpon>MantenimientoCarroForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MantenimientoComponentes.resx">
+      <DependentUpon>MantenimientoComponentes.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MapaPeonForm.resx">
       <DependentUpon>MapaPeonForm.h</DependentUpon>
@@ -230,6 +241,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PeonForm.resx">
       <DependentUpon>PeonForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RgistroCarrosForm.resx">
+      <DependentUpon>RgistroCarrosForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RobotMineroForm.resx">
       <DependentUpon>RobotMineroForm.h</DependentUpon>
