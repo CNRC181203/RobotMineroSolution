@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "RobotMineroController.h"
+using namespace System::Threading;
 
 // #include "RobotMineroController.h"
 
@@ -197,6 +198,33 @@ Peon^ RobotMineroController::Controller::DevolverPeonPorID(int peonID) {
 		}
 	}
 	return nullptr;
+}
+void RobotMineroController::Controller::OpenPort()
+{
+	try {
+		ArduinoPort = gcnew SerialPort();
+		ArduinoPort->PortName = "COM7";
+		ArduinoPort->BaudRate = 9600;
+		ArduinoPort->Open();
+	}
+	catch (Exception^ ex) {
+		throw ex;
+	}
+}
+void RobotMineroController::Controller::ClosePort()
+{
+	try {
+		if (ArduinoPort->IsOpen)
+			ArduinoPort->Close();
+	}
+	catch (Exception^ ex) {
+		throw ex;
+	}
+}
+String^ RobotMineroController::Controller::IniciarMovimientoYLeerSensores()
+{
+	throw gcnew System::NotImplementedException();
+	// TODO: Insertar una instrucción "return" aquí
 }
 void RobotMineroController::Controller::SaveId(int Id)
 {

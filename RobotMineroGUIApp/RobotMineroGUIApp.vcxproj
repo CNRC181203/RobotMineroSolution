@@ -205,6 +205,9 @@
     <EmbeddedResource Include="PeonForm.resx">
       <DependentUpon>PeonForm.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReporteAmbientalForm.resx">
+      <DependentUpon>ReporteAmbientalForm.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RobotMineroForm.resx">
       <DependentUpon>RobotMineroForm.h</DependentUpon>
     </EmbeddedResource>

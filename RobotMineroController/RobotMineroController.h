@@ -4,8 +4,15 @@ using namespace System;
 using namespace System::Collections::Generic;
 using namespace RobotMineroModel;
 using namespace RobotMineroPersistencia;
+//ARDUINO
+using namespace System::IO;
+using namespace System::IO::Ports;
 
 namespace RobotMineroController {
+	public enum class Protocol {
+		UART,
+		NMEA
+	};
 	public ref class Controller
 	{
 	public : 
@@ -13,6 +20,11 @@ namespace RobotMineroController {
 		static int savedorId;
 
 		static List<Peon^>^ ListPeones = gcnew List<Peon^>();
+
+		//ARDUINO
+		static List<double>^ valoresMQ2 = gcnew List<double>();
+		static List<double>^ valoresMQ135 = gcnew List<double>();
+		static List<double>^ valoresHumedad = gcnew List<double>();
 		
 	public:
 		//Meotodo adicionales
@@ -32,6 +44,21 @@ namespace RobotMineroController {
 		static int ActualizarPeon(Peon^ peon);
 		static int EliminarPeon(int id);
 		static Peon^ DevolverPeonPorID(int peonID);
+
+		//ARDUINO
+		//completado
+		static SerialPort^ ArduinoPort;
+		//Diccionario con los protocolos de comunicación UART y NMEA
+		static Dictionary<String^, Protocol>^ protocolDictionary = gcnew Dictionary<String^, Protocol>();
+
+		static Controller() {
+			// Agrega elementos al diccionario
+			protocolDictionary->Add("UART", Protocol::UART);
+			protocolDictionary->Add("NMEA", Protocol::NMEA);
+		}
+		static void OpenPort();
+		static void ClosePort();
+		static String^ IniciarMovimientoYLeerSensores();
 
 
 		//=== falta definir ==== 
