@@ -586,7 +586,7 @@ namespace RobotMineroGUIApp {
 			usuarioNew->FechaEnd = scheduleEnd;
 			usuarioNew->NombreUsuario = NombUsuario;
 			String^ UsuarioContrasenha = txtContrasenha->Text;
-			usuarioNew->contrasenha = UsuarioContrasenha;
+			usuarioNew->Contrasenha = UsuarioContrasenha;
 			if (UsuarioContrasenha->Length == 0) {
 				MessageBox::Show("La cotraseña no debe estar vacia");
 			}
@@ -628,7 +628,7 @@ namespace RobotMineroGUIApp {
 								 "" + ususarioNewNew[i]->Apelllido,
 								 "" + ususarioNewNew[i]->Salario,
 								 Cargo,
-								 ususarioNewNew[i]->contrasenha,
+								 ususarioNewNew[i]->Contrasenha,
 								 ususarioNewNew[i]->FechaFirst != nullptr ? ususarioNewNew[i]->FechaFirst->ToString() : "",
 								 ususarioNewNew[i]->FechaEnd != nullptr ? ususarioNewNew[i]->FechaEnd->ToString() : "", 
 								 ususarioNewNew[i]->NombreUsuario
@@ -744,7 +744,7 @@ namespace RobotMineroGUIApp {
 			usuarioNew->FechaEnd = scheduleEnd;
 			usuarioNew->NombreUsuario = UsuarioAnterior->NombreUsuario;
 			String^ UsuarioContrasenha = txtContrasenha->Text;
-			usuarioNew->contrasenha = UsuarioContrasenha;
+			usuarioNew->Contrasenha = UsuarioContrasenha;
 			if (UsuarioContrasenha->Length == 0) {
 				MessageBox::Show("La cotraseña no debe estar vacia");
 			}
@@ -776,7 +776,7 @@ namespace RobotMineroGUIApp {
 			txtRecursoNombre->Text = usersss->Nombre;
 			txtRecursoApellido->Text = usersss->Apelllido;
 			txtRecursoSalario->Text = "" + usersss->Salario;
-			txtContrasenha->Text = usersss->contrasenha;
+			txtContrasenha->Text = usersss->Contrasenha;
 			dtpStart->Value = *usersss->FechaFirst;
 			dtpEnd->Value = *usersss->FechaEnd;
 

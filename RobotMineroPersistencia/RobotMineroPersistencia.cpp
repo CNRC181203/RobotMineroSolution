@@ -439,4 +439,777 @@ IngAmbiental^ RobotMineroPersistencia::Persistance::QueryIngAmbientalById(int us
     return user;  // Devolvemos el objeto IngAmbiental con los datos
 }
 
+int RobotMineroPersistencia::Persistance::AddSupervisor(Supervisor^ user)
+{
+    int userId;
+    SqlConnection^ conn;
+    try {
+        /* Paso 1: Se obtiene la conexión */
+        conn = GetConnection();
+
+        /* Paso 2: Se prepara la sentencia SQL */
+        String^ sqlStr = "dbo.usp_AddSupervisor";  // Asegúrate de que el procedimiento almacenado esté creado
+        SqlCommand^ cmd = gcnew SqlCommand(sqlStr, conn);
+        cmd->CommandType = System::Data::CommandType::StoredProcedure;
+
+        // Definir los parámetros del procedimiento almacenado
+        cmd->Parameters->Add("@username", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@password", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@name", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@lastname", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@status", System::Data::SqlDbType::Char, 1);
+        cmd->Parameters->Add("@document_number", System::Data::SqlDbType::VarChar, 11);
+        cmd->Parameters->Add("@document_type", System::Data::SqlDbType::Char, 1);
+        cmd->Parameters->Add("@birthday", System::Data::SqlDbType::DateTime);
+        cmd->Parameters->Add("@address", System::Data::SqlDbType::VarChar, 50);
+        cmd->Parameters->Add("@gender", System::Data::SqlDbType::Char, 1);
+        cmd->Parameters->Add("@phone_number", System::Data::SqlDbType::VarChar, 15);
+        cmd->Parameters->Add("@photo", System::Data::SqlDbType::Image);
+        cmd->Parameters->Add("@salary", System::Data::SqlDbType::Decimal);
+        cmd->Parameters->Add("@schedule", System::Data::SqlDbType::VarChar, 20);
+        cmd->Parameters->Add("@hire_date", System::Data::SqlDbType::DateTime);
+        cmd->Parameters->Add("@training", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@training_entity", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@supervisor_insurance", System::Data::SqlDbType::VarChar, 100);
+
+        // Parámetro de salida para el ID
+        SqlParameter^ outputIdParam = gcnew SqlParameter("@id", System::Data::SqlDbType::Int);
+        outputIdParam->Direction = System::Data::ParameterDirection::Output;
+        cmd->Parameters->Add(outputIdParam);
+
+        cmd->Prepare();
+
+        // Asignar valores a los parámetros
+        cmd->Parameters["@username"]->Value = user->NombreUsuario;
+        cmd->Parameters["@password"]->Value = user->Contrasenha;
+        cmd->Parameters["@name"]->Value = user->Nombre;
+        cmd->Parameters["@lastname"]->Value = user->Apelllido;
+        cmd->Parameters["@status"]->Value = 'A';  // Asumiendo que el estado es 'A' (activo)
+        cmd->Parameters["@document_number"]->Value = user->NumeroTelefono.ToString();
+        cmd->Parameters["@document_type"]->Value = '1';  // Suponiendo que es un DNI
+        cmd->Parameters["@birthday"]->Value = user->FechaFirst;
+        cmd->Parameters["@address"]->Value = "Dirección ejemplo";  // Asegúrate de asignar un valor a la dirección
+        cmd->Parameters["@gender"]->Value = 'M';  // Suponiendo que es masculino
+        cmd->Parameters["@phone_number"]->Value = user->NumeroTelefono.ToString();
+
+        // Manejo de la foto
+        if (user->Photo == nullptr)
+            cmd->Parameters["@photo"]->Value = DBNull::Value;  // Si no hay foto, asignar DBNull
+        else
+            cmd->Parameters["@photo"]->Value = user->Photo;  // Asignar la foto si existe
+
+        // Propiedades específicas del Supervisor
+        cmd->Parameters["@salary"]->Value = user->Salario;
+        cmd->Parameters["@schedule"]->Value = "Full Time";  // Horario por defecto
+        cmd->Parameters["@hire_date"]->Value = user->FechaFirst;
+        cmd->Parameters["@training"]->Value = user->Capacitacion;
+        cmd->Parameters["@training_entity"]->Value = user->EntCapacitacion;
+        cmd->Parameters["@supervisor_insurance"]->Value = user->SeguroSupervisor;
+
+        /* Paso 3: Se ejecuta la sentencia SQL */
+        cmd->ExecuteNonQuery();
+
+        /* Paso 4: Se procesan los resultados */
+        userId = Convert::ToInt32(cmd->Parameters["@id"]->Value);
+    }
+    catch (Exception^ ex) {
+        // Guardar en el log o mandar un correo electrónico al Administrador
+        throw ex;
+    }
+    finally {
+        /* Paso 5: Se cierran los objetos de conexión */
+        if (conn != nullptr) conn->Close();
+    }
+    return userId;  // Devuelve el ID del Supervisor insertado
+}
+
+int RobotMineroPersistencia::Persistance::UpdateSupervisor(Supervisor^ user)
+{
+    int res = 0;
+    SqlConnection^ conn;
+    try {
+        /* Paso 1: Se obtiene la conexión */
+        conn = GetConnection();
+
+        /* Paso 2: Se prepara la sentencia SQL */
+        String^ sqlStr = "dbo.usp_UpdateSupervisor";  // Asegúrate de tener este procedimiento almacenado
+        SqlCommand^ cmd = gcnew SqlCommand(sqlStr, conn);
+        cmd->CommandType = System::Data::CommandType::StoredProcedure;
+
+        // Definir los parámetros del procedimiento almacenado
+        cmd->Parameters->Add("@id", System::Data::SqlDbType::Int);
+        cmd->Parameters->Add("@username", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@password", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@name", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@lastname", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@status", System::Data::SqlDbType::Char, 1);
+        cmd->Parameters->Add("@document_number", System::Data::SqlDbType::VarChar, 11);
+        cmd->Parameters->Add("@document_type", System::Data::SqlDbType::Char, 1);
+        cmd->Parameters->Add("@birthday", System::Data::SqlDbType::DateTime);
+        cmd->Parameters->Add("@address", System::Data::SqlDbType::VarChar, 50);
+        cmd->Parameters->Add("@gender", System::Data::SqlDbType::Char, 1);
+        cmd->Parameters->Add("@phone_number", System::Data::SqlDbType::VarChar, 15);
+        cmd->Parameters->Add("@photo", System::Data::SqlDbType::Image);
+        cmd->Parameters->Add("@salary", System::Data::SqlDbType::Decimal);
+        cmd->Parameters->Add("@schedule", System::Data::SqlDbType::VarChar, 20);
+        cmd->Parameters->Add("@hire_date", System::Data::SqlDbType::DateTime);
+        cmd->Parameters->Add("@training", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@training_entity", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@supervisor_insurance", System::Data::SqlDbType::VarChar, 100);
+
+        // Asignar valores a los parámetros
+        cmd->Parameters["@id"]->Value = user->Id;
+        cmd->Parameters["@username"]->Value = user->NombreUsuario;
+        cmd->Parameters["@password"]->Value = user->Contrasenha;
+        cmd->Parameters["@name"]->Value = user->Nombre;
+        cmd->Parameters["@lastname"]->Value = user->Apelllido;
+        cmd->Parameters["@status"]->Value = 'A';  // Asumiendo que el estado es 'A' (activo)
+        cmd->Parameters["@document_number"]->Value = user->NumeroTelefono.ToString();
+        cmd->Parameters["@document_type"]->Value = '1';  // Suponiendo que es un DNI
+        cmd->Parameters["@birthday"]->Value = user->FechaFirst;
+        cmd->Parameters["@address"]->Value = "Dirección ejemplo";  // Asegúrate de asignar un valor a la dirección
+        cmd->Parameters["@gender"]->Value = 'M';  // Suponiendo que es masculino
+        cmd->Parameters["@phone_number"]->Value = user->NumeroTelefono.ToString();
+
+        // Manejo de la foto
+        if (user->Photo == nullptr)
+            cmd->Parameters["@photo"]->Value = DBNull::Value;  // Si no hay foto, asignar DBNull
+        else
+            cmd->Parameters["@photo"]->Value = user->Photo;  // Asignar la foto si existe
+
+        // Propiedades específicas del Supervisor
+        cmd->Parameters["@salary"]->Value = user->Salario;
+        cmd->Parameters["@schedule"]->Value = "Full Time";  // Horario por defecto
+        cmd->Parameters["@hire_date"]->Value = user->FechaFirst;
+        cmd->Parameters["@training"]->Value = user->Capacitacion;
+        cmd->Parameters["@training_entity"]->Value = user->EntCapacitacion;
+        cmd->Parameters["@supervisor_insurance"]->Value = user->SeguroSupervisor;
+
+        /* Paso 3: Se ejecuta la sentencia SQL */
+        res = cmd->ExecuteNonQuery(); // Ejecuta la actualización
+
+    }
+    catch (Exception^ ex) {
+        // Guardar en el log o mandar un correo electrónico al Administrador
+        throw ex;
+    }
+    finally {
+        /* Paso 5: Se cierran los objetos de conexión */
+        if (conn != nullptr) conn->Close();
+    }
+    return res;  // Devuelve el número de filas afectadas
+}
+
+List<Supervisor^>^ RobotMineroPersistencia::Persistance::QueryAllSupervisor()
+{
+    List<Supervisor^>^ supervisorsList = gcnew List<Supervisor^>();
+    SqlConnection^ conn;
+    SqlDataReader^ reader;
+    try {
+        // Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+
+        // Paso 2: Se prepara la sentencia SQL
+        String^ sqlStr = "dbo.usp_QueryAllSupervisor";  // Asegúrate de que este procedimiento almacenado exista
+        SqlCommand^ cmd = gcnew SqlCommand(sqlStr, conn);
+        cmd->CommandType = System::Data::CommandType::StoredProcedure;
+        cmd->Prepare();
+
+        // Paso 3: Se ejecuta la sentencia SQL
+        reader = cmd->ExecuteReader();
+
+        // Paso 4: Se procesa los resultados
+        while (reader->Read()) {
+            Supervisor^ supervisor = gcnew Supervisor();
+            supervisor->Id = Convert::ToInt32(reader["ID"]->ToString());
+            supervisor->NombreUsuario = reader["USERNAME"]->ToString();
+            supervisor->Contrasenha = reader["PASSWORD"]->ToString();
+            supervisor->Nombre = reader["NAME"]->ToString();
+            supervisor->Apelllido = reader["LASTNAME"]->ToString();
+            supervisor->NumeroTelefono = Convert::ToInt32(reader["PHONE_NUMBER"]->ToString());
+            supervisor->Edad = Convert::ToInt32(reader["EDAD"]->ToString());
+
+            // Asignar valores a las propiedades específicas del Supervisor
+            supervisor->Capacitacion = reader["CAPACITACION"]->ToString();
+            supervisor->EntCapacitacion = reader["ENTCAPACITACION"]->ToString();
+            supervisor->SeguroSupervisor = reader["SEGUROSUPERVISOR"]->ToString();
+
+            // Añadir el Supervisor a la lista
+            supervisorsList->Add(supervisor);
+        }
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        // Paso 5: Se cierran los objetos de conexión
+        if (reader != nullptr) reader->Close();
+        if (conn != nullptr) conn->Close();
+    }
+    return supervisorsList;
+}
+
+Supervisor^ RobotMineroPersistencia::Persistance::QuerySupervisorById(int userId)
+{
+    Supervisor^ supervisor;
+    SqlConnection^ conn;
+    SqlDataReader^ reader;
+    try {
+        // Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+
+        // Paso 2: Se prepara la sentencia SQL
+        String^ sqlStr = "dbo.usp_QuerySupervisorById";  // Asegúrate de que este procedimiento almacenado exista
+        SqlCommand^ cmd = gcnew SqlCommand(sqlStr, conn);
+        cmd->CommandType = System::Data::CommandType::StoredProcedure;
+        cmd->Parameters->Add("@id", System::Data::SqlDbType::Int);
+        cmd->Prepare();
+        cmd->Parameters["@id"]->Value = userId;
+
+        // Paso 3: Se ejecuta la sentencia SQL
+        reader = cmd->ExecuteReader();
+
+        // Paso 4: Se procesa los resultados
+        if (reader->Read()) {
+            supervisor = gcnew Supervisor();
+            supervisor->Id = Convert::ToInt32(reader["ID"]->ToString());
+            supervisor->NombreUsuario = reader["USERNAME"]->ToString();
+            supervisor->Contrasenha = reader["PASSWORD"]->ToString();
+            supervisor->Nombre = reader["NAME"]->ToString();
+            supervisor->Apelllido = reader["LASTNAME"]->ToString();
+            supervisor->NumeroTelefono = Convert::ToInt32(reader["PHONE_NUMBER"]->ToString());
+            supervisor->Edad = Convert::ToInt32(reader["EDAD"]->ToString());
+
+            // Asignar valores a las propiedades específicas del Supervisor
+            supervisor->Capacitacion = reader["CAPACITACION"]->ToString();
+            supervisor->EntCapacitacion = reader["ENTCAPACITACION"]->ToString();
+            supervisor->SeguroSupervisor = reader["SEGUROSUPERVISOR"]->ToString();
+        }
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        // Paso 5: Se cierran los objetos de conexión
+        if (reader != nullptr) reader->Close();
+        if (conn != nullptr) conn->Close();
+    }
+    return supervisor;
+}
+
+int RobotMineroPersistencia::Persistance::AddOperario(Operario^ user)
+{
+    int userId;
+    SqlConnection^ conn;
+    try {
+        // Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+
+        // Paso 2: Se prepara la sentencia SQL
+        String^ sqlStr = "dbo.usp_AddOperario";  // Asegúrate de tener el procedimiento almacenado correspondiente
+        SqlCommand^ cmd = gcnew SqlCommand(sqlStr, conn);
+        cmd->CommandType = System::Data::CommandType::StoredProcedure;
+
+        // Definir los parámetros del procedimiento almacenado
+        cmd->Parameters->Add("@username", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@password", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@name", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@lastname", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@status", System::Data::SqlDbType::Char, 1);
+        cmd->Parameters->Add("@document_number", System::Data::SqlDbType::VarChar, 11);
+        cmd->Parameters->Add("@document_type", System::Data::SqlDbType::Char, 1);
+        cmd->Parameters->Add("@birthday", System::Data::SqlDbType::DateTime);
+        cmd->Parameters->Add("@address", System::Data::SqlDbType::VarChar, 50);
+        cmd->Parameters->Add("@gender", System::Data::SqlDbType::Char, 1);
+        cmd->Parameters->Add("@phone_number", System::Data::SqlDbType::VarChar, 15);
+        cmd->Parameters->Add("@photo", System::Data::SqlDbType::Image);
+        cmd->Parameters->Add("@specialty", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@intervention_count", System::Data::SqlDbType::Int);
+
+        // Parámetro de salida para el ID
+        SqlParameter^ outputIdParam = gcnew SqlParameter("@id", System::Data::SqlDbType::Int);
+        outputIdParam->Direction = System::Data::ParameterDirection::Output;
+        cmd->Parameters->Add(outputIdParam);
+
+        cmd->Prepare();
+
+        // Asignar valores a los parámetros
+        cmd->Parameters["@username"]->Value = user->NombreUsuario;
+        cmd->Parameters["@password"]->Value = user->Contrasenha;
+        cmd->Parameters["@name"]->Value = user->Nombre;
+        cmd->Parameters["@lastname"]->Value = user->Apelllido;
+        cmd->Parameters["@status"]->Value = 'A';  // Suponiendo que el estado es 'A' (activo)
+        cmd->Parameters["@document_number"]->Value = user->NumeroTelefono.ToString();
+        cmd->Parameters["@document_type"]->Value = '1';  // Suponiendo que es un DNI
+        cmd->Parameters["@birthday"]->Value = user->FechaFirst;
+        cmd->Parameters["@address"]->Value = "Dirección ejemplo";  // Asegúrate de asignar un valor a la dirección
+        cmd->Parameters["@gender"]->Value = 'M';  // Suponiendo que es masculino
+        cmd->Parameters["@phone_number"]->Value = user->NumeroTelefono.ToString();
+
+        // Manejo de la foto
+        if (user->Photo == nullptr)
+            cmd->Parameters["@photo"]->Value = DBNull::Value;  // Si no hay foto, asignar DBNull
+        else
+            cmd->Parameters["@photo"]->Value = user->Photo;  // Asignar la foto si existe
+
+        cmd->Parameters["@specialty"]->Value = user->Especialidad;
+        cmd->Parameters["@intervention_count"]->Value = user->NumeroIntervenciones;
+
+        /* Paso 3: Se ejecuta la sentencia SQL */
+        cmd->ExecuteNonQuery();
+
+        /* Paso 4: Se procesan los resultados */
+        userId = Convert::ToInt32(cmd->Parameters["@id"]->Value);
+    }
+    catch (Exception^ ex) {
+        // Guardar en el log o mandar un correo electrónico al Administrador
+        throw ex;
+    }
+    finally {
+        /* Paso 5: Se cierran los objetos de conexión */
+        if (conn != nullptr) conn->Close();
+    }
+    return userId;
+}
+
+int RobotMineroPersistencia::Persistance::UpdateOperario(Operario^ user)
+{
+    int res = 0;
+    SqlConnection^ conn;
+    try {
+        /* Paso 1: Se obtiene la conexión */
+        conn = GetConnection();
+
+        /* Paso 2: Se prepara la sentencia SQL */
+        String^ sqlStr = "dbo.usp_UpdateOperario";  // Asegúrate de tener el procedimiento almacenado correspondiente
+        SqlCommand^ cmd = gcnew SqlCommand(sqlStr, conn);
+        cmd->CommandType = System::Data::CommandType::StoredProcedure;
+
+        // Definir los parámetros del procedimiento almacenado
+        cmd->Parameters->Add("@id", System::Data::SqlDbType::Int);
+        cmd->Parameters->Add("@username", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@password", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@name", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@lastname", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@status", System::Data::SqlDbType::Char, 1);
+        cmd->Parameters->Add("@document_number", System::Data::SqlDbType::VarChar, 11);
+        cmd->Parameters->Add("@document_type", System::Data::SqlDbType::Char, 1);
+        cmd->Parameters->Add("@birthday", System::Data::SqlDbType::DateTime);
+        cmd->Parameters->Add("@address", System::Data::SqlDbType::VarChar, 50);
+        cmd->Parameters->Add("@gender", System::Data::SqlDbType::Char, 1);
+        cmd->Parameters->Add("@phone_number", System::Data::SqlDbType::VarChar, 15);
+        cmd->Parameters->Add("@photo", System::Data::SqlDbType::Image);
+        cmd->Parameters->Add("@specialty", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@intervention_count", System::Data::SqlDbType::Int);
+
+        cmd->Prepare();
+
+        // Asignar valores a los parámetros
+        cmd->Parameters["@id"]->Value = user->Id;
+        cmd->Parameters["@username"]->Value = user->NombreUsuario;
+        cmd->Parameters["@password"]->Value = user->Contrasenha;
+        cmd->Parameters["@name"]->Value = user->Nombre;
+        cmd->Parameters["@lastname"]->Value = user->Apelllido;
+        cmd->Parameters["@status"]->Value = 'A';  // Suponiendo que el estado es 'A' (activo)
+        cmd->Parameters["@document_number"]->Value = user->NumeroTelefono.ToString();
+        cmd->Parameters["@document_type"]->Value = '1';  // Suponiendo que es un DNI
+        cmd->Parameters["@birthday"]->Value = user->FechaFirst;
+        cmd->Parameters["@address"]->Value = "Dirección ejemplo";  // Asegúrate de asignar un valor a la dirección
+        cmd->Parameters["@gender"]->Value = 'M';  // Suponiendo que es masculino
+        cmd->Parameters["@phone_number"]->Value = user->NumeroTelefono.ToString();
+
+        // Manejo de la foto
+        if (user->Photo == nullptr)
+            cmd->Parameters["@photo"]->Value = DBNull::Value;  // Si no hay foto, asignar DBNull
+        else
+            cmd->Parameters["@photo"]->Value = user->Photo;  // Asignar la foto si existe
+
+        cmd->Parameters["@specialty"]->Value = user->Especialidad;
+        cmd->Parameters["@intervention_count"]->Value = user->NumeroIntervenciones;
+
+        /* Paso 3: Se ejecuta la sentencia SQL */
+        res = cmd->ExecuteNonQuery();
+    }
+    catch (Exception^ ex) {
+        // Guardar en el log o mandar un correo electrónico al Administrador
+        throw ex;
+    }
+    finally {
+        /* Paso 5: Se cierran los objetos de conexión */
+        if (conn != nullptr) conn->Close();
+    }
+    return res;
+}
+
+List<Operario^>^ RobotMineroPersistencia::Persistance::QueryAllOperario()
+{
+    List<Operario^>^ operariosList = gcnew List<Operario^>();
+    SqlConnection^ conn;
+    SqlDataReader^ reader;
+    try {
+        // Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+
+        // Paso 2: Se prepara la sentencia SQL
+        String^ sqlStr = "dbo.usp_QueryAllOperarios";  // Asume que tienes el procedimiento almacenado creado
+        SqlCommand^ cmd = gcnew SqlCommand(sqlStr, conn);
+        cmd->CommandType = System::Data::CommandType::StoredProcedure;
+        cmd->Prepare();
+
+        // Paso 3: Se ejecuta la sentencia SQL
+        reader = cmd->ExecuteReader();
+
+        // Paso 4: Se procesan los resultados
+        while (reader->Read()) {
+            Operario^ operario = gcnew Operario();
+            operario->Id = Convert::ToInt32(reader["ID"]->ToString());
+            operario->NombreUsuario = reader["USERNAME"]->ToString();
+            operario->Contrasenha = reader["PASSWORD"]->ToString();
+            operario->Nombre = reader["NAME"]->ToString();
+            operario->Apelllido = reader["LASTNAME"]->ToString();
+            operario->Salario = Convert::ToDouble(reader["SALARY"]->ToString());
+            operario->FechaFirst = Convert::ToDateTime(reader["FECHAFIRST"]);
+            operario->FechaEnd = Convert::ToDateTime(reader["FECHAEND"]);
+            operario->NumeroTelefono = Convert::ToInt32(reader["NUMEROTELEFONO"]);
+            operario->Edad = Convert::ToInt32(reader["EDAD"]);
+
+            // Verificar si la foto está presente
+            if (!DBNull::Value->Equals(reader["PHOTO"]))
+                operario->Photo = (array<Byte>^)reader["PHOTO"];
+
+            // Añadir a la lista
+            operariosList->Add(operario);
+        }
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        // Paso 5: Se cierran los objetos de conexión
+        if (reader != nullptr) reader->Close();
+        if (conn != nullptr) conn->Close();
+    }
+
+    return operariosList;
+}
+
+Operario^ RobotMineroPersistencia::Persistance::QueryOperarioById(int userId)
+{
+    Operario^ operario = nullptr;
+    SqlConnection^ conn;
+    SqlDataReader^ reader;
+    try {
+        // Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+
+        // Paso 2: Se prepara la sentencia SQL
+        String^ sqlStr = "dbo.usp_QueryOperarioById";  // Asume que tienes el procedimiento almacenado creado
+        SqlCommand^ cmd = gcnew SqlCommand(sqlStr, conn);
+        cmd->CommandType = System::Data::CommandType::StoredProcedure;
+        cmd->Parameters->Add("@id", System::Data::SqlDbType::Int);
+        cmd->Prepare();
+        cmd->Parameters["@id"]->Value = userId;
+
+        // Paso 3: Se ejecuta la sentencia SQL
+        reader = cmd->ExecuteReader();
+
+        // Paso 4: Se procesa el resultado
+        if (reader->Read()) {
+            operario = gcnew Operario();
+            operario->Id = Convert::ToInt32(reader["ID"]->ToString());
+            operario->NombreUsuario = reader["USERNAME"]->ToString();
+            operario->Contrasenha = reader["PASSWORD"]->ToString();
+            operario->Nombre = reader["NAME"]->ToString();
+            operario->Apelllido = reader["LASTNAME"]->ToString();
+            operario->Salario = Convert::ToDouble(reader["SALARY"]->ToString());
+            operario->FechaFirst = Convert::ToDateTime(reader["FECHAFIRST"]);
+            operario->FechaEnd = Convert::ToDateTime(reader["FECHAEND"]);
+            operario->NumeroTelefono = Convert::ToInt32(reader["NUMEROTELEFONO"]);
+            operario->Edad = Convert::ToInt32(reader["EDAD"]);
+
+            // Verificar si la foto está presente
+            if (!DBNull::Value->Equals(reader["PHOTO"]))
+                operario->Photo = (array<Byte>^)reader["PHOTO"];
+        }
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        // Paso 5: Se cierran los objetos de conexión
+        if (reader != nullptr) reader->Close();
+        if (conn != nullptr) conn->Close();
+    }
+
+    return operario;
+}
+
+int RobotMineroPersistencia::Persistance::AddPeon(Peon^ user)
+{
+    int userId;
+    SqlConnection^ conn;
+    try {
+        /* Paso 1: Se obtiene la conexión */
+        conn = GetConnection();
+
+        /* Paso 2: Se prepara la sentencia SQL */
+        String^ sqlStr = "dbo.usp_AddPeon";  // Asume que tienes el procedimiento almacenado creado para agregar un Peon
+        SqlCommand^ cmd = gcnew SqlCommand(sqlStr, conn);
+        cmd->CommandType = System::Data::CommandType::StoredProcedure;
+
+        // Definir los parámetros del procedimiento almacenado
+        cmd->Parameters->Add("@username", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@password", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@name", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@lastname", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@status", System::Data::SqlDbType::Char, 1);
+        cmd->Parameters->Add("@document_number", System::Data::SqlDbType::VarChar, 11);
+        cmd->Parameters->Add("@document_type", System::Data::SqlDbType::Char, 1);
+        cmd->Parameters->Add("@birthday", System::Data::SqlDbType::DateTime);
+        cmd->Parameters->Add("@address", System::Data::SqlDbType::VarChar, 50);
+        cmd->Parameters->Add("@gender", System::Data::SqlDbType::Char, 1);
+        cmd->Parameters->Add("@phone_number", System::Data::SqlDbType::VarChar, 15);
+        cmd->Parameters->Add("@photo", System::Data::SqlDbType::Image);
+        cmd->Parameters->Add("@contacto_emergencia", System::Data::SqlDbType::Int);
+        cmd->Parameters->Add("@condiciones_salud", System::Data::SqlDbType::VarChar, 255);
+        cmd->Parameters->Add("@seguro_medico", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@last_check", System::Data::SqlDbType::DateTime);
+
+        // Parámetro de salida para el ID
+        SqlParameter^ outputIdParam = gcnew SqlParameter("@id", System::Data::SqlDbType::Int);
+        outputIdParam->Direction = System::Data::ParameterDirection::Output;
+        cmd->Parameters->Add(outputIdParam);
+
+        cmd->Prepare();
+
+        // Asignar valores a los parámetros
+        cmd->Parameters["@username"]->Value = user->NombreUsuario;
+        cmd->Parameters["@password"]->Value = user->Contrasenha;
+        cmd->Parameters["@name"]->Value = user->Nombre;
+        cmd->Parameters["@lastname"]->Value = user->Apelllido;
+        cmd->Parameters["@status"]->Value = 'A';  // Asumiendo que el estado es 'A' (activo)
+        cmd->Parameters["@document_number"]->Value = user->NumeroTelefono.ToString();
+        cmd->Parameters["@document_type"]->Value = '1';  // Suponiendo que es un DNI
+        cmd->Parameters["@birthday"]->Value = user->FechaFirst;
+        cmd->Parameters["@address"]->Value = "Dirección ejemplo";  // Asegúrate de asignar un valor a la dirección
+        cmd->Parameters["@gender"]->Value = 'M';  // Suponiendo que es masculino
+        cmd->Parameters["@phone_number"]->Value = user->NumeroTelefono.ToString();
+
+        // Manejo de la foto
+        if (user->Photo == nullptr)
+            cmd->Parameters["@photo"]->Value = DBNull::Value;  // Si no hay foto, asignar DBNull
+        else
+            cmd->Parameters["@photo"]->Value = user->Photo;  // Asignar la foto si existe
+
+        // Asignar los valores específicos para Peon
+        cmd->Parameters["@contacto_emergencia"]->Value = user->ContactoEmergencia;
+        cmd->Parameters["@condiciones_salud"]->Value = user->CondicionesSalud;
+        cmd->Parameters["@seguro_medico"]->Value = user->SeguroMedico;
+        cmd->Parameters["@last_check"]->Value = user->LastCheck;
+
+        /* Paso 3: Se ejecuta la sentencia SQL */
+        cmd->ExecuteNonQuery();
+
+        /* Paso 4: Se procesan los resultados */
+        userId = Convert::ToInt32(cmd->Parameters["@id"]->Value);
+    }
+    catch (Exception^ ex) {
+        // Guardar en el log o mandar un correo electrónico al Administrador
+        throw ex;
+    }
+    finally {
+        /* Paso 5: Se cierran los objetos de conexión */
+        if (conn != nullptr) conn->Close();
+    }
+    return userId;
+}
+
+int RobotMineroPersistencia::Persistance::UpdatePeon(Peon^ user)
+{
+    int res = 0;
+    SqlConnection^ conn;
+    try {
+        /* Paso 1: Se obtiene la conexión */
+        conn = GetConnection();
+
+        /* Paso 2: Se prepara la sentencia SQL */
+        String^ sqlStr = "dbo.usp_UpdatePeon";  // Asegúrate de que el procedimiento almacenado exista en la base de datos
+        SqlCommand^ cmd = gcnew SqlCommand(sqlStr, conn);
+        cmd->CommandType = System::Data::CommandType::StoredProcedure;
+
+        // Definir los parámetros del procedimiento almacenado
+        cmd->Parameters->Add("@id", System::Data::SqlDbType::Int);
+        cmd->Parameters->Add("@username", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@password", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@name", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@lastname", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@status", System::Data::SqlDbType::Char, 1);
+        cmd->Parameters->Add("@document_number", System::Data::SqlDbType::VarChar, 11);
+        cmd->Parameters->Add("@document_type", System::Data::SqlDbType::Char, 1);
+        cmd->Parameters->Add("@birthday", System::Data::SqlDbType::DateTime);
+        cmd->Parameters->Add("@address", System::Data::SqlDbType::VarChar, 50);
+        cmd->Parameters->Add("@gender", System::Data::SqlDbType::Char, 1);
+        cmd->Parameters->Add("@phone_number", System::Data::SqlDbType::VarChar, 15);
+        cmd->Parameters->Add("@photo", System::Data::SqlDbType::Image);
+        cmd->Parameters->Add("@contacto_emergencia", System::Data::SqlDbType::Int);
+        cmd->Parameters->Add("@condiciones_salud", System::Data::SqlDbType::VarChar, 255);
+        cmd->Parameters->Add("@seguro_medico", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@last_check", System::Data::SqlDbType::DateTime);
+
+        cmd->Prepare();
+
+        // Asignar valores a los parámetros
+        cmd->Parameters["@id"]->Value = user->Id;
+        cmd->Parameters["@username"]->Value = user->NombreUsuario;
+        cmd->Parameters["@password"]->Value = user->Contrasenha;
+        cmd->Parameters["@name"]->Value = user->Nombre;
+        cmd->Parameters["@lastname"]->Value = user->Apelllido;
+        cmd->Parameters["@status"]->Value = 'A';  // Suponiendo que el estado es 'A' (activo)
+        cmd->Parameters["@document_number"]->Value = user->NumeroTelefono.ToString();
+        cmd->Parameters["@document_type"]->Value = '1';  // Suponiendo que es un DNI
+        cmd->Parameters["@birthday"]->Value = user->FechaFirst;
+        cmd->Parameters["@address"]->Value = "Dirección ejemplo";  // Asegúrate de asignar un valor a la dirección
+        cmd->Parameters["@gender"]->Value = 'M';  // Suponiendo que es masculino
+        cmd->Parameters["@phone_number"]->Value = user->NumeroTelefono.ToString();
+
+        // Manejo de la foto
+        if (user->Photo == nullptr)
+            cmd->Parameters["@photo"]->Value = DBNull::Value;  // Si no hay foto, asignar DBNull
+        else
+            cmd->Parameters["@photo"]->Value = user->Photo;  // Asignar la foto si existe
+
+        // Asignar los valores específicos para Peon
+        cmd->Parameters["@contacto_emergencia"]->Value = user->ContactoEmergencia;
+        cmd->Parameters["@condiciones_salud"]->Value = user->CondicionesSalud;
+        cmd->Parameters["@seguro_medico"]->Value = user->SeguroMedico;
+        cmd->Parameters["@last_check"]->Value = user->LastCheck;
+
+        /* Paso 3: Se ejecuta la sentencia SQL */
+        res = cmd->ExecuteNonQuery();
+    }
+    catch (Exception^ ex) {
+        // Guardar en el log o mandar un correo electrónico al Administrador
+        throw ex;
+    }
+    finally {
+        /* Paso 4: Se cierran los objetos de conexión */
+        if (conn != nullptr) conn->Close();
+    }
+    return res;
+}
+
+List<Peon^>^ RobotMineroPersistencia::Persistance::QueryAllPeon()
+{
+    List<Peon^>^ peonList = gcnew List<Peon^>();
+    SqlConnection^ conn;
+    SqlDataReader^ reader;
+    try {
+        // Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+
+        // Paso 2: Se prepara la sentencia SQL
+        String^ sqlStr = "dbo.usp_QueryAllPeon";  // Asegúrate de que el procedimiento almacenado exista
+        SqlCommand^ cmd = gcnew SqlCommand(sqlStr, conn);
+        cmd->CommandType = System::Data::CommandType::StoredProcedure;
+        cmd->Prepare();
+
+        // Paso 3: Se ejecuta la sentencia SQL
+        reader = cmd->ExecuteReader();
+
+        // Paso 4: Se procesan los resultados
+        while (reader->Read()) {
+            Peon^ peon = gcnew Peon();
+
+            peon->Id = Convert::ToInt32(reader["ID"]->ToString());
+            peon->NombreUsuario = reader["USERNAME"]->ToString();
+            peon->Contrasenha = reader["PASSWORD"]->ToString();
+            peon->Nombre = reader["NAME"]->ToString();
+            peon->Apelllido = reader["LASTNAME"]->ToString();
+            peon->Salario = Convert::ToDouble(reader["SALARY"]->ToString());
+            peon->FechaFirst = Convert::ToDateTime(reader["FECHAFIRST"]);
+            peon->FechaEnd = Convert::ToDateTime(reader["FECHAEND"]);
+            peon->Edad = Convert::ToInt32(reader["EDAD"]->ToString());
+            peon->NumeroTelefono = Convert::ToInt32(reader["NUMEROTELEFONO"]->ToString());
+
+            // Asignar el valor de Photo si no es DBNull
+            if (!DBNull::Value->Equals(reader["PHOTO"])) {
+                peon->Photo = (array<Byte>^)reader["PHOTO"];
+            }
+
+            peon->ContactoEmergencia = Convert::ToInt32(reader["CONTACTOEMERGENCIA"]->ToString());
+            peon->CondicionesSalud = reader["CONDICIONESSALUD"]->ToString();
+            peon->SeguroMedico = reader["SEGUROMEDICO"]->ToString();
+            peon->LastCheck = Convert::ToDateTime(reader["LASTCHECK"]);
+
+            peonList->Add(peon);  // Agregar el Peon a la lista
+        }
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        // Paso 5: Se cierran los objetos de conexión
+        if (reader != nullptr) reader->Close();
+        if (conn != nullptr) conn->Close();
+    }
+    return peonList;
+}
+
+Peon^ RobotMineroPersistencia::Persistance::QueryPeonById(int userId)
+{
+    Peon^ peon = nullptr;
+    SqlConnection^ conn;
+    SqlDataReader^ reader;
+    try {
+        // Paso 1: Se obtiene la conexión
+        conn = GetConnection();
+
+        // Paso 2: Se prepara la sentencia SQL
+        String^ sqlStr = "dbo.usp_QueryPeonById";  // Asegúrate de que el procedimiento almacenado exista
+        SqlCommand^ cmd = gcnew SqlCommand(sqlStr, conn);
+        cmd->CommandType = System::Data::CommandType::StoredProcedure;
+        cmd->Parameters->Add("@id", System::Data::SqlDbType::Int);
+        cmd->Prepare();
+        cmd->Parameters["@id"]->Value = userId;
+
+        // Paso 3: Se ejecuta la sentencia SQL
+        reader = cmd->ExecuteReader();
+
+        // Paso 4: Se procesan los resultados
+        if (reader->Read()) {
+            peon = gcnew Peon();
+
+            peon->Id = Convert::ToInt32(reader["ID"]->ToString());
+            peon->NombreUsuario = reader["USERNAME"]->ToString();
+            peon->Contrasenha = reader["PASSWORD"]->ToString();
+            peon->Nombre = reader["NAME"]->ToString();
+            peon->Apelllido = reader["LASTNAME"]->ToString();
+            peon->Salario = Convert::ToDouble(reader["SALARY"]->ToString());
+            peon->FechaFirst = Convert::ToDateTime(reader["FECHAFIRST"]);
+            peon->FechaEnd = Convert::ToDateTime(reader["FECHAEND"]);
+            peon->Edad = Convert::ToInt32(reader["EDAD"]->ToString());
+            peon->NumeroTelefono = Convert::ToInt32(reader["NUMEROTELEFONO"]->ToString());
+
+            // Asignar el valor de Photo si no es DBNull
+            if (!DBNull::Value->Equals(reader["PHOTO"])) {
+                peon->Photo = (array<Byte>^)reader["PHOTO"];
+            }
+
+            peon->ContactoEmergencia = Convert::ToInt32(reader["CONTACTOEMERGENCIA"]->ToString());
+            peon->CondicionesSalud = reader["CONDICIONESSALUD"]->ToString();
+            peon->SeguroMedico = reader["SEGUROMEDICO"]->ToString();
+            peon->LastCheck = Convert::ToDateTime(reader["LASTCHECK"]);
+        }
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        // Paso 5: Se cierran los objetos de conexión
+        if (reader != nullptr) reader->Close();
+        if (conn != nullptr) conn->Close();
+    }
+    return peon;
+}
+
 

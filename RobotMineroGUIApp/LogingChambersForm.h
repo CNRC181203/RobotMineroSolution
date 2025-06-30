@@ -166,7 +166,7 @@ private: System::Void bttnAceppt2_Click(System::Object^ sender, System::EventArg
 			Usuario^ user = Controller::DevolverUsuarioPorNomUsuario(NombreUsuario);
 			String^ extractPassword = txtPasswordLoginChamb->Text;
 
-			if (extractPassword == user->contrasenha) {
+			if (extractPassword == user->Contrasenha) {
 				String^ mensaje = String::Format("Bienvenido {0} {1}", user->Nombre, user->Apelllido);
 				MessageBox::Show(mensaje);
 				Controller::SaveId(user->Id);

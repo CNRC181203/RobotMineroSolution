@@ -4,7 +4,7 @@
 
 int RobotMineroController::Controller::AgregarUsuario(Usuario^ usuario)
 {
-	try {
+	/*try {
 		usuariosNew->Add(usuario);
 		Persistance::PersistBinaryFile("usuariosNew.bin", usuariosNew);
 		if (usuario->GetType() == Peon::typeid) {
@@ -32,7 +32,21 @@ int RobotMineroController::Controller::AgregarUsuario(Usuario^ usuario)
 	catch (Exception^ ex) {
 		throw ex;
 	}
-	return 0;
+	return 0;*/
+	int result = 0;
+	if (usuario->GetType() == IngAmbiental::typeid) {
+		result = Persistance::AddIngAmbiental((IngAmbiental^)usuario);
+	}
+	else  if (usuario->GetType() == Supervisor::typeid) {
+		result = Persistance::AddSupervisor((Supervisor^)usuario);
+	}
+	else  if (usuario->GetType() == Operario::typeid) {
+		result = Persistance::AddOperario((Operario^)usuario);
+	}
+	else  if (usuario->GetType() == Peon::typeid) {
+		result = Persistance::AddPeon((Peon^)usuario);
+	}
+	return result;
 }
 
 List<Usuario^>^ RobotMineroController::Controller::ConsultarTodosUsuario()
@@ -51,7 +65,7 @@ List<Usuario^>^ RobotMineroController::Controller::ConsultarTodosUsuario()
 int RobotMineroController::Controller::ActualizarUsuario(Usuario^ usuario)
 {
 
-	try {
+	/*try {
 		for (int i = 0; i < usuariosNew->Count; i++)
 		{
 			if (usuariosNew[i]->Id == usuario->Id) {
@@ -64,12 +78,26 @@ int RobotMineroController::Controller::ActualizarUsuario(Usuario^ usuario)
 	}
 	catch (Exception^ ex) {
 		throw ex;
+	}*/
+	int result = 0;
+	if (usuario->GetType() == IngAmbiental::typeid) {
+		result = Persistance::UpdateIngAmbiental((IngAmbiental^)usuario);
 	}
+	else  if (usuario->GetType() == Supervisor::typeid) {
+		result = Persistance::UpdateSupervisor((Supervisor^)usuario);
+	}
+	else  if (usuario->GetType() == Operario::typeid) {
+		result = Persistance::UpdateOperario((Operario^)usuario);
+	}
+	else  if (usuario->GetType() == Peon::typeid) {
+		result = Persistance::UpdatePeon((Peon^)usuario);
+	}
+	return result;
 }
 
 int RobotMineroController::Controller::EliminarUsuario(int id)
 {
-	try {
+	/*try {
 		for (int i = 0; i < usuariosNew->Count; i++)
 		{
 			if (usuariosNew[i]->Id == id) {
@@ -82,7 +110,8 @@ int RobotMineroController::Controller::EliminarUsuario(int id)
 	}
 	catch (Exception^ ex) {
 		throw ex;
-	}
+	}*/
+	return Persistance::DeleteUser(id);
 }
 
 Usuario^ RobotMineroController::Controller::DevolverUsuarioPorID(int usuarioID) {
@@ -121,7 +150,7 @@ Usuario^ RobotMineroController::Controller::DevolverUsuarioPorNomUsuario(String^
 /////////////////////////////////////////////////////////////////////////////////////////////	OPERARIO
 Operario^ RobotMineroController::Controller::DevolverOperarioPorID(int operarioId)
 {
-	ListOperario = ConsultarTodosOperarios();
+	/*ListOperario = ConsultarTodosOperarios();
 	try {
 		for each (Operario ^ operario in ListOperario)
 		{
@@ -133,7 +162,8 @@ Operario^ RobotMineroController::Controller::DevolverOperarioPorID(int operarioI
 	}
 	catch (Exception^ ex) {
 		throw ex;
-	}
+	}*/
+	return Persistance::QueryOperarioById(operarioId);
 }
 
 int RobotMineroController::Controller::ActualizarOperario(Operario^ operario)
@@ -156,7 +186,7 @@ int RobotMineroController::Controller::ActualizarOperario(Operario^ operario)
 
 List<Operario^>^ RobotMineroController::Controller::ConsultarTodosOperarios()
 {
-	try {
+	/*try {
 		ListOperario = (List<Operario^>^) Persistance::LoadBinaryFile("Operarios.bin");
 		if (ListOperario== nullptr)
 			ListOperario = gcnew List<Operario^>();
@@ -164,7 +194,8 @@ List<Operario^>^ RobotMineroController::Controller::ConsultarTodosOperarios()
 	}
 	catch (Exception^ ex) {
 		throw ex;
-	}
+	}*/
+	return Persistance::QueryAllOperario();
 }
 
 int RobotMineroController::Controller::EliminarOperario(int oprarioId)
@@ -187,7 +218,7 @@ int RobotMineroController::Controller::EliminarOperario(int oprarioId)
 /////////////////////////////////////////////////////////////////////////////////////////////	PEON
 List<Peon^>^ RobotMineroController::Controller::ConsultarTodosPeones()
 {	
-	try {
+	/*try {
 		ListPeon = (List<Peon^>^) Persistance::LoadBinaryFile("Peones.bin");
 		if (ListPeon == nullptr)
 			ListPeon = gcnew List<Peon^>();
@@ -195,7 +226,8 @@ List<Peon^>^ RobotMineroController::Controller::ConsultarTodosPeones()
 	}
 	catch (Exception^ ex) {
 		throw ex;
-	}
+	}*/
+	return Persistance::QueryAllPeon();
 }
 
 int RobotMineroController::Controller::ActualizarPeon(Peon^ peon)
@@ -234,7 +266,7 @@ int RobotMineroController::Controller::EliminarPeon(int id)
 	}
 }
 Peon^ RobotMineroController::Controller::DevolverPeonPorID(int peonID) {
-	ListPeon = ConsultarTodosPeones();
+	/*ListPeon = ConsultarTodosPeones();
 	try {
 		for each (Peon ^ resource in ListPeon)
 		{
@@ -246,12 +278,13 @@ Peon^ RobotMineroController::Controller::DevolverPeonPorID(int peonID) {
 	}
 	catch (Exception^ ex) {
 		throw ex;
-	}
+	}*/
+	return Persistance::QueryPeonById(peonID);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////	SUPERVISOR															
 Supervisor^ RobotMineroController::Controller::DevolverSupervisorPorID(int supervisorId)
 {
-	try {
+	/*try {
 		for each (Supervisor ^ supervisor in ListSupervisor)
 		{
 			if (supervisor->Id == supervisorId) {
@@ -262,7 +295,8 @@ Supervisor^ RobotMineroController::Controller::DevolverSupervisorPorID(int super
 	}
 	catch (Exception^ ex) {
 		throw ex;
-	}
+	}*/
+	return Persistance::QuerySupervisorById(supervisorId);
 }
 int RobotMineroController::Controller::ActualizarSupervisor(Supervisor^ supervisor)
 {
@@ -283,7 +317,7 @@ int RobotMineroController::Controller::ActualizarSupervisor(Supervisor^ supervis
 }
 List<Supervisor^>^ RobotMineroController::Controller::ConsultarTodosSupervisores()
 {
-	try {
+	/*try {
 		ListSupervisor = (List<Supervisor^>^) Persistance::LoadBinaryFile("Supervisor.bin");
 		if (ListSupervisor == nullptr)
 			ListSupervisor = gcnew List<Supervisor^>();
@@ -291,7 +325,8 @@ List<Supervisor^>^ RobotMineroController::Controller::ConsultarTodosSupervisores
 	}
 	catch (Exception^ ex) {
 		throw ex;
-	}
+	}*/
+	return Persistance::QueryAllSupervisor();
 }
 int RobotMineroController::Controller::EliminarSupervisor(int supervisorId)
 {
@@ -313,7 +348,7 @@ int RobotMineroController::Controller::EliminarSupervisor(int supervisorId)
 /////////////////////////////////////////////////////////////////////////////////////////////	ING AMBIENTAL
 IngAmbiental^ RobotMineroController::Controller::DevolverIngAmbientalPorID(int IngAmbientalId)
 {
-	try {
+	/*try {
 		for each (IngAmbiental ^ ingAmbiental in ListAmbiental)
 		{
 			if (ingAmbiental->Id == IngAmbientalId) {
@@ -324,7 +359,8 @@ IngAmbiental^ RobotMineroController::Controller::DevolverIngAmbientalPorID(int I
 	}
 	catch (Exception^ ex) {
 		throw ex;
-	}
+	}*/
+	return Persistance::QueryIngAmbientalById(IngAmbientalId);
 }
 
 int RobotMineroController::Controller::ActualizarIngAmbiental(IngAmbiental^ IngAmbiental)
@@ -347,7 +383,7 @@ int RobotMineroController::Controller::ActualizarIngAmbiental(IngAmbiental^ IngA
 
 List<IngAmbiental^>^ RobotMineroController::Controller::ConsultarTodosIngAmbientales()
 {
-	try {
+	/*try {
 		ListAmbiental = (List<IngAmbiental^>^) Persistance::LoadBinaryFile("IngAmbiental.bin");
 		if (ListAmbiental == nullptr)
 			ListAmbiental = gcnew List<IngAmbiental^>();
@@ -355,7 +391,8 @@ List<IngAmbiental^>^ RobotMineroController::Controller::ConsultarTodosIngAmbient
 	}
 	catch (Exception^ ex) {
 		throw ex;
-	}
+	}*/
+	return Persistance::QueryAllIngAmbiental();
 }
 int RobotMineroController::Controller::EliminarIngAmbiental(int IngAmbientalId)
 {
